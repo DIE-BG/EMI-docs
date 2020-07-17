@@ -1,0 +1,24 @@
+site_name: EMI
+nav:
+  - Principal:
+    - Home: index.md
+    - About: about.md
+    - Calibración: Calibración varianza RW.md
+  - Otros: 
+    - Nueva página: newpage.md
+
+theme: readthedocs
+
+extra_css:
+    # - https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css
+    # - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/default.min.css
+
+extra_javascript: 
+    - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+    #- https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js
+    # - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js
+    # - highlight-setup.js
+
+markdown_extensions:
+    - codehilite
+    - pymdownx.arithmatex

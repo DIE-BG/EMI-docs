@@ -1,0 +1,1 @@
+hljs.configure({languages: [ 'Matlab', 'shell' ]});
