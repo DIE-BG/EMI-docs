@@ -1,5 +1,9 @@
 site_name: EMI
+site_description: Proyecto de evaluación de medidas de inflación en MATLAB. Realizado por el Departamento de Investigaciones Económicas del Banco de Guatemala.
+repo_url: https://github.com/DIE-BANGUAT/EMI-mkdocs
 nav:
+    - EMI: 
+        - index.md
     - Principal:
         - Introducción: cuerpo/introduccion.md
         - Justificación: cuerpo/justificacion.md
@@ -26,3 +30,4 @@ markdown_extensions:
 
 extra_javascript: 
     - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+    # - js/extra.js
