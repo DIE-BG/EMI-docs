@@ -1,24 +1,28 @@
 site_name: EMI
 nav:
-  - Principal:
-    - Home: index.md
-    - About: about.md
-    - Calibración: Calibración varianza RW.md
-  - Otros: 
-    - Nueva página: newpage.md
+    - Principal:
+        - Introducción: cuerpo/introduccion.md
+        - Justificación: cuerpo/justificacion.md
+    - Calibración: 
+        - Determinación del proceso de caminata aleatoria: calibracion/Determinación proceso caminata aleatoria.md
+        - Calibración de varianza del proceso de caminata aleatoria: calibracion/Calibración varianza RW.md
+        - Selección del número de simulaciones: calibracion/Selección simulaciones.md
+        - Selección de la medida de evaluación: calibracion/Determinación medida evaluación.md
+        - Remuestreo con block bootstrap: calibracion/Remuestreo block bootstrap.md
 
-theme: readthedocs
+theme: 
+    name: readthedocs
+    highlightjs: true
+    hljs_style: "Tomorrow"
+    hljs_languages:
+        - matlab
+        - python
 
-extra_css:
-    # - https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css
-    # - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/default.min.css
+markdown_extensions:
+    - pymdownx.arithmatex
+    - toc:
+        baselevel: 2
+        permalink: True
 
 extra_javascript: 
     - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML
-    #- https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js
-    # - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js
-    # - highlight-setup.js
-
-markdown_extensions:
-    - codehilite
-    - pymdownx.arithmatex

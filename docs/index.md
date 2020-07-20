@@ -1,42 +1,9 @@
-# Evaluación de medidas de inflación de Guatemala
+# Evaluación de medidas de inflación (EMI) de Guatemala
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+En este repositorio se encuentra publicada la documentación respecto al proyecto de evaluación de medidas de inflación (EMI), el cual consiste en evaluar a través de simulación, la eficiencia de diferentes procedimientos o métodos que resulten en una medida de ritmo inflacionario interanual, desde un punto de vista de estas medidas como estimadores muestrales de la inflación generalizada no observable.
 
-$$ a = b+c $$
+Este trabajo se ha desarrollado desde el año 2017 con la colaboración de Juan Carlos Castañeda, Oscar Solís y Rodrigo Chang, miembros del Departamento de Investigaciones Económicas del Banco de Guatemala. El contenido de este trabajo de investigación es responsabilidad exclusiva de sus autores y no necesariamente representa la postura institucional del Banco de Guatemala. 
 
-An so, $A = \pi r^2$.
-
-When \(a \ne 0\), there are two solutions to \( ax^2 + bx + c = 0 \) and they are
-$$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
-
-Also:  
-
-$$\displaystyle \prod_{j=0}^{\infty}\frac{1}{(1-q^{5j+2})(1-q^{5j+3})}$$ 
-
-Se codifica en la variable `a`, entonces:  
-
-```matlab
-% factorial: esta funcion
-%
-function nf = factorial(n)
-    if n == 0
-        return 1;
-    else
-        return n*factorial(n-1);
-    end
-end
-```
-
-## Commands
-
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
-
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+[![made-with-Markdown](https://img.shields.io/badge/Made%20with-Markdown-1f425f.svg)](http://commonmark.org)
+[![made-with-latex](https://img.shields.io/badge/Made%20with-LaTeX-1f425f.svg)](https://www.latex-project.org/)
+[![made-with-mathjax](https://img.shields.io/badge/Made%20with-MathJax-1f425f.svg)](https://www.mathjax.org/)
