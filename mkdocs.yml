@@ -13,6 +13,9 @@ nav:
         - Selección del número de simulaciones: calibracion/Selección simulaciones.md
         - Selección de la medida de evaluación: calibracion/Determinación medida evaluación.md
         - Remuestreo con block bootstrap: calibracion/Remuestreo block bootstrap.md
+    - Evaluación: 
+        - Criterios de evaluación y pruebas de sensibilidad: evaluacion/criterios-de-evaluacion.md 
+        - Evaluación de las medidas basadas en percentiles: evaluacion/evaluacion-percentiles.md
 
 theme: 
     name: readthedocs
@@ -29,5 +32,5 @@ markdown_extensions:
         permalink: True
 
 extra_javascript: 
+    - js/extra.js
     - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML
-    # - js/extra.js
