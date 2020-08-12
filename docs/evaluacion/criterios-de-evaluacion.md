@@ -35,8 +35,8 @@ Para evaluar la robustez de los resultados obtenidos con los criterios de evalua
 - **Cambio en el período final de evaluación**: se considera variar el período final de evaluación en meses de diciembre de 2018, junio de 2019 y junio de 2020.  
 
 - **Cambio en el estadístico de evaluación**: además de utilizar el MSE, se considera utilizar los siguientes estadísticos para evaluar el desempeño de los estimadores muestrales de inflación:
-    - Promedio en el muestreo de la raíz del error cuadrático medio ($\overline{\text{RMSE}}$) como estimador de la precisión de la medida de inflación. 
-    - Promedio en el muestreo del error medio ($\overline{\text{ME}}$) como estimador del sesgo.
+    - Promedio en el muestreo de la raíz del error cuadrático medio ($\overline{\text{RMSE}}$) de las trayectorias muestrales como estimador de la precisión de la medida de inflación.  
+    - Promedio en el muestreo del valor absoluto del error medio ($\overline{\text{ME}}$) como estimador del sesgo (de cualquier signo) de la medida de inflación.
     - Promedio en el muestreo del coeficiente de correlación lineal ($\overline{\rho}$) entre la medida de inflación y la trayectoria de inflación paramétrica.
     - Índice de error muestral de la medida de inflación (combinación lineal de los anteriores).
 
@@ -55,10 +55,12 @@ Para evaluar la robustez de los resultados obtenidos con los criterios de evalua
     - Variación interanual del IPC (sin cambios de base). 
     - Media ponderada interanual.
 
+- **Cambio en la forma de remuestreo utilizando *block bootstrap***: se comparan resultados del escenario base con los resultados obtenidos al utilizar la técnica de muestreo de *bootstrap* de bloque en las variaciones intermensuales de cada gasto básico en las bases del IPC, utilizando un largo de bloque de 12 meses. Este procedimiento permite seguir obteniendo variaciones intermensuales aleatorias en los mismos meses de ocurrencia, pero manteniendo la estructura de autocorrelación individual en la mayoría de las series de tiempo al utilizar la variante de *nonoverlapping block bootstrap*. 
+
 - **Análisis de las distribuciones de simulación del estadístico de evaluación**: se analiza el comportamiento general del estadístico de simulación a través de la distribución de simulación obtenida del proceso de evaluación para comentar sobre las causas técnicas o coyunturales que hacen que exhiba determinada forma o valores de los siguientes estadísticos.
     - Promedio.
     - Desviación estándar.
     - Asimetría. 
     - Curtosis.
 
-- **Análisis de trayectorias utilizando los datos históricamente observados**: se analizan cualitativamente las trayectorias observadas históricamente de las medidas de inflación para determinar su consistencia con dinámica de inflación en el país durante el período de evaluación. 
+- **Análisis de trayectorias utilizando los datos históricamente observados**: se analizan cualitativamente las trayectorias observadas históricamente de las medidas de inflación para determinar su consistencia con dinámica de inflación en el país durante el período de evaluación.  
