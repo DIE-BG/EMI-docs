@@ -34,28 +34,29 @@ Para evaluar la robustez de los resultados obtenidos con los criterios de evalua
 
 - **Cambio en el período final de evaluación**: se considera variar el período final de evaluación en meses de diciembre de 2018, junio de 2019 y junio de 2020.  
 
-- **Cambio en el estadístico de evaluación**: además de utilizar el MSE, se considera utilizar los siguientes estadísticos para evaluar el desempeño de los estimadores muestrales de inflación:
-    - Promedio en el muestreo de la raíz del error cuadrático medio ($\overline{\text{RMSE}}$) de las trayectorias muestrales como estimador de la precisión de la medida de inflación.  
-    - Promedio en el muestreo del valor absoluto del error medio ($\overline{\text{ME}}$) como estimador del sesgo (de cualquier signo) de la medida de inflación.
+- **Cambio en el estadístico de evaluación**: se considera a continuación un análisis de sensibilidad que considera diferentes estadísticos de evaluación del desempeño de los estimadores muestrales de inflación, respecto del MSE utilizado en el escenario base de evaluación. A continuación, se detallan los estadísticos de evaluación alternativos:
+    - Promedio en el muestreo de la raíz del error cuadrático medio ($\overline{\text{RMSE}}$) de las trayectorias muestrales como estimador de la precisión de la medida de inflación. 
+    - Promedio en el muestreo del valor absoluto del error medio ($|\overline{\text{ME}}|$) como estimador del sesgo (de cualquier signo) de la medida de inflación.
     - Promedio en el muestreo del coeficiente de correlación lineal ($\overline{\rho}$) entre la medida de inflación y la trayectoria de inflación paramétrica.
-    - Índice de error muestral de la medida de inflación (combinación lineal de los anteriores).
+    - Índice de error muestral (IEM) de la medida de inflación (combinación lineal de los anteriores), como una medida de resumen de las propiedades de precisión, sesgo y correlación de la medida de inflación. La fórmula utilizada es la siguiente: 
+    $$ \text{IEM} =  \overline{\text{RMSE}} + |\overline{\text{ME}}| + (1-\overline{\rho}) $$
 
-- **Cambio en el período de evaluación del estadístico**: se considera el desempeño de las medidas de inflacióin en los siguientes subperíodos: 
-    - Período de la base 2000 del IPC.
-    - Período de transición de la base 2000 a la base 2010 del IPC.
-    - Período de la base 2010 del IPC.
+- **Cambio en el período de evaluación del estadístico**: se considera el desempeño de las medidas de inflación en los siguientes subperíodos:  
+    - Período de la base 2000 del IPC: comprendido desde diciembre de 2001 hasta el período de cambio de base del IPC en diciembre de 2010. 
+    - Período de transición de la base 2000 a la base 2010 del IPC: comprendido por las observaciones entre enero de 2011 y noviembre de 2011.
+    - Período de la base 2010 del IPC: comprendido por las observaciones a partir de diciembre de 2011 a diciembre de 2019.
 
 - **Cambio en el número de simulaciones**: se considera un cambio en el parámetro $\epsilon$ de tal forma que $\epsilon=0.025\bar{Z}$, es decir, que la estimación del promedio del estadístico de evaluación no esté más allá de un $2.5\%$ del valor verdadero. Este cambio conlleva realizar $411,810.3$ simulaciones, por lo que se realizará un análisis de sensibilidad de los resultados de simulación que utilice $420,000$ realizaciones para asegurar que el número de simulaciones sea suficiente para tener la mínima variabilidad en las estimaciones.
 
 - **Cambio en la componente de tendencia**: se consideran dos escenarios adicionales de la componente aditiva de tendencia.  
-    - Sin tendencia.
-    - Crecimiento exponencial.
+    - Sin tendencia: se agrega una componente aditiva igual a cero. Es decir, en este escenario se considera únicamente el comportamiento promedio en el muestreo de las variaciones intermensuales de los gastos básicos, y no el de una componente generalizada que inyecta tendencia en el comportamiento promedio. 
+    - Crecimiento exponencial: la componente aditiva de tendencia parte de cero y crece forma exponencial a una tasa del 4% anual.
 
 - **Cambio en el parámetro poblacional de inflación**: se consideran dos trayectorias paramétricas de inflación adicionales con las que se comparan los resultados.  
     - Variación interanual del IPC (sin cambios de base). 
     - Media ponderada interanual.
 
-- **Cambio en la forma de remuestreo utilizando *block bootstrap***: se comparan resultados del escenario base con los resultados obtenidos al utilizar la técnica de muestreo de *bootstrap* de bloque en las variaciones intermensuales de cada gasto básico en las bases del IPC, utilizando un largo de bloque de 12 meses. Este procedimiento permite seguir obteniendo variaciones intermensuales aleatorias en los mismos meses de ocurrencia, pero manteniendo la estructura de autocorrelación individual en la mayoría de las series de tiempo al utilizar la variante de *nonoverlapping block bootstrap*. 
+- **Cambio en la forma de muestreo utilizando *block bootstrap***: se comparan resultados del escenario base con los resultados obtenidos al utilizar la técnica de muestreo de *bootstrap* de bloque en las variaciones intermensuales de cada gasto básico en las bases del IPC, utilizando un largo de bloque de 12 meses. Este procedimiento permite seguir obteniendo variaciones intermensuales aleatorias en los mismos meses de ocurrencia, pero manteniendo la estructura de autocorrelación individual en la mayoría de las series de tiempo al utilizar la variante de *nonoverlapping block bootstrap*. 
 
 - **Análisis de las distribuciones de simulación del estadístico de evaluación**: se analiza el comportamiento general del estadístico de simulación a través de la distribución de simulación obtenida del proceso de evaluación para comentar sobre las causas técnicas o coyunturales que hacen que exhiba determinada forma o valores de los siguientes estadísticos.
     - Promedio.

@@ -1,10 +1,10 @@
 # Calibración de varianza del proceso de caminata aleatoria del EMI
 
-Se describe a continuación la propuesta de calibración de caminata aleatoria planteada por Juan Carlos Castañeda para la tendencia de caminata aleatoria del proceso de evaluación de medidas de inflación.
+Se describe a continuación la propuesta de calibración de caminata aleatoria para la tendencia de caminata aleatoria del proceso de evaluación de medidas de inflación.
 
-## Propuesta de modelado de caminata aleatoria
+## Modelado de caminata aleatoria
 
-Se propone que la tendencia estocástica de la inflación, en la EMI, sea aditiva (en vez de multiplicativa).  El propósito de hacer dicha tendencia aditiva es que haya continuidad en su dirección cuando la inflación intermensual (poblacional o muestral) cambie de signo.  
+Se propone que la tendencia estocástica de la inflación, en la EMI, sea aditiva (en vez de multiplicativa). El propósito de hacer dicha tendencia aditiva es que haya continuidad en su dirección cuando la inflación intermensual (poblacional o muestral) cambie de signo.  
 
 Por ejemplo, si la tendencia estocástica de la inflación (en la forma de una caminata aleatoria que implica la existencia de persistencia serial positiva) es multiplicativa y mayor que uno, cuando la inflación intermensual pasa de ser positiva a ser negativa, entonces el valor grande de la tendencia estocástica hace que se pase de una inflación positiva grande a una inflación negativa grande, perdiéndose continuidad en la persistencia serial positiva que se pretende modelar con la caminata aleatoria.  
 

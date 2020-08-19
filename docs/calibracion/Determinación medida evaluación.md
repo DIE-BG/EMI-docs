@@ -1,6 +1,6 @@
 # Determinación de la medida de evaluación
-- A continuación, se exponen diferentes propuestas para el puntaje final de evaluación de las medidas de inflación. 
 
+- A continuación, se exponen diferentes propuestas para el puntaje final de evaluación de las medidas de inflación. 
 
  
 ## Índice de error muestral en la medida de evaluación
@@ -28,7 +28,8 @@ $$ \text{MSE}(\hat{\theta}) = \text{E}\left[ (\hat{\theta}-\theta)^2 \right] = \
 
  
 
-- Adicionalmente, esto se puede expresar como (ver documento anexo FMI): 
+- Adicionalmente, esto se puede expresar como 
+<!-- - (ver documento anexo FMI):  -->
 $$ \text{MSE}(\hat{\theta}) = \text{Sesgo}^2(\hat{\theta}, \theta) + (s_\theta - s_{\hat{\theta}})^2 + 2(1-r) s_\theta s_{\hat{\theta}} $$ 
 - en donde: 
     - $s_\theta$ es el error estándar del parámetro (a través del tiempo). 
@@ -36,7 +37,6 @@ $$ \text{MSE}(\hat{\theta}) = \text{Sesgo}^2(\hat{\theta}, \theta) + (s_\theta -
     - $r$ representa el coeficiente de correlación muestral entre parámetro y estimador.  
 
 - Esto significa que el MSE representa una medida completa de eficiencia de un estimador, que relaciona la variabilidad, el sesgo y la correlación entre parámetro y estimador. 
-
 
 
 ### Utilizar el MSE directamente
@@ -63,13 +63,13 @@ $$ \text{MSE}(\hat{\theta}) = \text{Sesgo}^2(\hat{\theta}, \theta) + (s_\theta -
   
 > In general, since MSE is a function of the parameter, there will be not one "best" estimator". Often, the MSEs of two estimators will cross each other, showing that each estimator is better (with respect to the other) in only a portion of the parameter space. However, even this partial information can sometimes provide guidelines for choosing between estimators.
 
-- Si utilizamos el MSE para comparar, en general vamos a tener que realizar más simulaciones, ya que la distribución de esta medida de error es la más **volátil** (por el castigo cuadrático que pone a las desviaciones respecto al parámetro poblacional).
+- Al utilizar el MSE para comparar el desempeño de las medidas de inflación, en general, se tienen que realizar más simulaciones que con un estadístico como el error absoluto medio, ya que la distribución de esta medida de error es la más **volátil** (por el castigo cuadrático que pone a las desviaciones respecto al parámetro poblacional).
 
-## Propuesta para la medida de evaluación
+<!-- ## Propuesta para la medida de evaluación
 
 - Se propone considerar el siguiente índice final de evaluación:  
 
 $$ \text{IEM}_j = \overline{\text{MAE}}_j + |\overline{\text{ME}}_j| + (1- \bar{\rho}_j)$$
 
 - Al final, es un índice final con una interpretación sencilla.  
-- Se considera el $\overline{\text{MAE}}_j$ en lugar del $\overline{\text{RMSE}}_j$ debido a que también es un indicador de eficiencia, que no se tiende a sesgar ante el efecto de *outliers* (Véase Walther y Moore (2005)).  
+- Se considera el $\overline{\text{MAE}}_j$ en lugar del $\overline{\text{RMSE}}_j$ debido a que también es un indicador de eficiencia, que no se tiende a sesgar ante el efecto de *outliers* (Véase Walther y Moore (2005)).   -->

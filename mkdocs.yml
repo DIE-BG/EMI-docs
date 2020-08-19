@@ -8,7 +8,7 @@ nav:
         - Introducción: cuerpo/introduccion.md
         - Justificación: cuerpo/justificacion.md
     - Calibración: 
-        - Determinación del proceso de caminata aleatoria: calibracion/Determinación proceso caminata aleatoria.md
+        # - Determinación del proceso de caminata aleatoria: calibracion/Determinación proceso caminata aleatoria.md
         - Calibración de varianza del proceso de caminata aleatoria: calibracion/Calibración varianza RW.md
         - Selección del número de simulaciones: calibracion/Selección simulaciones.md
         - Selección de la medida de evaluación: calibracion/Determinación medida evaluación.md

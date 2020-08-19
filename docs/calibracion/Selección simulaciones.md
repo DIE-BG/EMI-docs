@@ -6,7 +6,7 @@
 
  
 ## Búsqueda en foros en línea
-Consulta en foros de estadística: [StackExchange: Rule of thumb for number of bootstrap samples](https://stats.stackexchange.com/questions/86040/rule-of-thumb-for-number-of-bootstrap-samples). Algunos comentarios:
+Consulta en foros de estadística: [StackExchange: Rule of thumb for number of bootstrap samples](https://stats.stackexchange.com/questions/86040/rule-of-thumb-for-number-of-bootstrap-samples). Algunos comentarios mencionan algunas alternativas:
 
 - Utilizar tantas como sean posibles, con límite en 1 millón.
 - Correr varias veces la simulación con un número inicial considerado como suficiente y ver la variación en los estimadores de *bootstrap*. Si las estimaciones repetidas no varían mucho, el número de simulaciones es adecuado. 
@@ -18,9 +18,9 @@ Consulta en foros de estadística: [StackExchange: Rule of thumb for number of b
 ## Revisión de papers de inflación
 - Haciendo una revisión de los papers principales con metodología similar a la adoptada por el EMI tenemos: 
 
-  - Bryan, Cecchetti y Wiggings (1997) *Efficient Inflation Estimation*: procedimiento de *bootstrap* similar. Se considera un número de simulaciones igual a 10,000 sin justificación cuantitativa. Utilizan menos categorías del IPC y del IPP.
+  - Bryan, Cecchetti y Wiggings (1997) *Efficient Inflation Estimation*: procedimiento de *bootstrap* similar. Se considera un número de simulaciones igual a 10,000 sin mecionar alguna justificación cuantitativa. Sin embargo, en su ejercicio de simulación utilizan menos categorías del IPC y del IPP.
 
-  - Roger (1997) *A robust measure of core inflation in New Zealand, 1949-96*: se evalúa un percentil óptimo para NZ sin técnicas de simulación. La evaluación se hace obteniendo el percentil de la media y tomando un promedio para diferentes períodos. 
+  - Roger (1997) *A robust measure of core inflation in New Zealand, 1949-96*: se evalúa un percentil óptimo para Nueva Zelanda, pero sin técnicas de simulación. La evaluación se hace obteniendo el percentil de la media y tomando un promedio para diferentes períodos. 
 
 
 
@@ -44,10 +44,10 @@ Of course, this basic result is well known and has been applied for many years t
 
 - Esto da indicios de un criterio práctico (*ad hoc*) dependiendo de la aplicación y la confianza en la simulación.
 
-- Más adelante se discuten, principalmente, algunos **métodos de reducción de varianza**.
+- Más adelante en el libro se discuten, principalmente, algunos **métodos de reducción de varianza**, que permiten diseñar el experimento de tal forma que se limite la aleatoriedad inherente al mismo, lo cual puede reducir en sí mismo el número de simulaciones.
 
  
-### DeGroot y Schervish (4ta ed.) versión con estimador normal
+### DeGroot y Schervish, versión con estimador normal
 - Se supone un estimador de Monte Carlo $Z$ de un parámetro $\theta$, basado en $v$ simulaciones, siendo $Z$ un promedio (estimador de la media poblacional), entonces $Z$ tiene aproximadamente distribución normal con media $\theta$ y varianza $\sigma^2/v$, en donde $\sigma^2$ no depende del tamaño de la simulación. Entonces, para cada $\epsilon > 0$: 
 $$ Pr(|Z-\theta| \leq \epsilon) \approx 2\Phi(\epsilon v^{1/2} / \sigma) -1 $$
 
@@ -55,25 +55,26 @@ $$ Pr(|Z-\theta| \leq \epsilon) \approx 2\Phi(\epsilon v^{1/2} / \sigma) -1 $$
 $$ v = \left[ \Phi^{-1}\left( \frac{1+\gamma}{2} \right) \frac{\hat{\sigma}}{\epsilon} \right]^2 $$
 
  
-### DeGroot y Schervish (4ta ed.) versión Chebyshev
+### DeGroot y Schervish, versión con el teorema de Chebyshev
 - Si la aproximación normal de $Z$ resulta poco confiable, se puede utilizar una aproximación de Chebyshev, tal que si: 
 $$ v = \frac{\sigma^2}{\epsilon^2 (1-\gamma)} $$
 - La desigualdad de Chebyshev garantiza que $Pr(|Z-\theta| \leq \epsilon) \geq \gamma$
 - Este es un criterio más riguroso, pero eleva significativamente el número de simulaciones a realizar. 
 
-## Número de simulaciones con diferentes estadísticos 
+
+<!-- ## Número de simulaciones con diferentes estadísticos 
 
 ### Número de simulaciones RMSE
 - Utilizando el RMSE, $Z=\overline{\text{RMSE}} = 1.62$ de la variación interanual del IPC.
 
 | $\gamma$ | $\hat{\sigma}$ | $\epsilon$ | $v$ (normal) | $v$ (Chebyshev) |
-|:|:|--:|-:|-:|
-|      0.9 |          1.582 |       0.05 |     2,708.49 |       10,010.90 |
-|      0.9 |          1.582 |       0.01 |    67,712.29 |      250,272.40 |
-|     0.95 |          1.582 |       0.05 |     3,845.64 |       20,021.79 |
-|     0.95 |          1.582 |       0.01 |    96,141.11 |      500,544.80 |
-|     0.99 |          1.582 |       0.05 |     6,642.13 |      100,108.96 |
-|     0.99 |          1.582 |       0.01 |   166,053.15 |    2,502,724.00 |
+|:--------:|:--------------:|-----------:|-------------:|----------------:|
+|   0.9    |     1.582      |       0.05 |     2,708.49 |       10,010.90 |
+|   0.9    |     1.582      |       0.01 |    67,712.29 |      250,272.40 |
+|   0.95   |     1.582      |       0.05 |     3,845.64 |       20,021.79 |
+|   0.95   |     1.582      |       0.01 |    96,141.11 |      500,544.80 |
+|   0.99   |     1.582      |       0.05 |     6,642.13 |      100,108.96 |
+|   0.99   |     1.582      |       0.01 |   166,053.15 |    2,502,724.00 |
 
  
 
@@ -81,13 +82,13 @@ $$ v = \frac{\sigma^2}{\epsilon^2 (1-\gamma)} $$
 - Utilizando el MAE, $Z=\overline{\text{MAE}} = 1.17$ de la variación interanual del IPC.
 
 | $\gamma$ | $\hat{\sigma}$ | $\epsilon$ | $v$ (normal) | $v$ (Chebyshev) |
-|:|:|--:|-:|-:|
-|      0.9 |          0.973 |       0.05 |     1,024.57 |        3,786.92 |
-|      0.9 |          0.973 |       0.01 |    25,614.16 |       94,672.90 |
-|     0.95 |          0.973 |       0.05 |     1,454.73 |        7,573.83 |
-|     0.95 |          0.973 |       0.01 |    36,368.20 |      189,345.80 |
-|     0.99 |          0.973 |       0.05 |     2,512.58 |       37,869.16 |
-|     0.99 |          0.973 |       0.01 |    62,814.49 |      946,729.00 |
+|:--------:|:--------------:|-----------:|-------------:|----------------:|
+|   0.9    |     0.973      |       0.05 |     1,024.57 |        3,786.92 |
+|   0.9    |     0.973      |       0.01 |    25,614.16 |       94,672.90 |
+|   0.95   |     0.973      |       0.05 |     1,454.73 |        7,573.83 |
+|   0.95   |     0.973      |       0.01 |    36,368.20 |      189,345.80 |
+|   0.99   |     0.973      |       0.05 |     2,512.58 |       37,869.16 |
+|   0.99   |     0.973      |       0.01 |    62,814.49 |      946,729.00 |
 
  
 
@@ -95,29 +96,30 @@ $$ v = \frac{\sigma^2}{\epsilon^2 (1-\gamma)} $$
 - Utilizando el MSE, $Z=\overline{\text{MSE}} = 5.14$ de la variación interanual del IPC.
 
 | $\gamma$ | $\hat{\sigma}$ | $\epsilon$ |  $v$ (normal) | $v$ (Chebyshev) |
-|:|:|--:|--:|-:|
-|      0.9 |          27.92 |       0.05 |    843,617.02 |    3,118,105.60 |
-|      0.9 |          27.92 |       0.01 | 21,090,425.49 |   77,952,640.00 |
-|     0.95 |          27.92 |       0.05 |  1,197,807.43 |    6,236,211.20 |
-|     0.95 |          27.92 |       0.01 | 29,945,185.65 |  155,905,280.00 |
-|     0.99 |          27.92 |       0.05 |  2,068,830.82 |   31,181,056.00 |
-|     0.99 |          27.92 |       0.01 | 51,720,770.62 |  779,526,400.00 |
+|:--------:|:--------------:|-----------:|--------------:|----------------:|
+|   0.9    |     27.92      |       0.05 |    843,617.02 |    3,118,105.60 |
+|   0.9    |     27.92      |       0.01 | 21,090,425.49 |   77,952,640.00 |
+|   0.95   |     27.92      |       0.05 |  1,197,807.43 |    6,236,211.20 |
+|   0.95   |     27.92      |       0.01 | 29,945,185.65 |  155,905,280.00 |
+|   0.99   |     27.92      |       0.05 |  2,068,830.82 |   31,181,056.00 |
+|   0.99   |     27.92      |       0.01 | 51,720,770.62 |  779,526,400.00 | -->
 
 
 
  
-## Propuesta definitiva
-- Utilizar la aproximación normal $Z$ de la media del estadístico de precisión y computar $\epsilon = 0.01|Z|$. Es decir, se permite una distancia del 1% del valor del estadístico $Z$ y el parámetro estimado.
+## Propuesta para definir el número de simulaciones
+- Utilizar la aproximación normal $Z$ de la media del estadístico de precisión y computar $\epsilon = 0.05|Z|$. Es decir, se permite una distancia del 5% del valor del estadístico $Z$ y el parámetro estimado.
 - Utilizar $\gamma = 0.95$, es decir, que la probabilidad del intervalo de confianza sea del 95%.
-- Fijar el número de simulaciones al número requerido por la medida denominada **"Variación interanual del IPC"**, ya que es la que mayor varianza presenta en sus distribuciones.  
-- En este caso, tendríamos el número de simulaciones dado por:
+- Fijar el número de simulaciones al número requerido por la medida de evaluación para la medida de inflación denominada **"Variación interanual del IPC"**, ya que es la que mayor varianza presenta en sus distribuciones.  
+- En este caso, el número de simulaciones estaría dado por:
 $$ v = (10,000)\frac{\sigma^2}{Z^2}\left[ \Phi^{-1}\left( \frac{1+\gamma}{2} \right) \right]^2 $$
 - Ventajas: 
-  - Criterio cuantitativo bien definido, factible y no tan estricto (pero con una alta probabilidad para el intervalo de confianza). 
-  - Número de simulaciones en función del coeficiente de variación (mayor dispersión relativa, más simulaciones). 
+  - Criterio cuantitativo bien definido, factible y no tan estricto (pero que permite alcanzar una alta probabilidad para el intervalo de confianza). 
+  - El número de simulaciones está en función del coeficiente de variación de la medida de evaluación (mayor dispersión relativa, más simulaciones). 
 
 
  
+<!--  Estos números corresponden a los obtenidos con los estadísticos de la variación interanual del IPC utilizando la caminata aleatoria con factor multiplicativo
 
 ### Número de simulaciones MAE
 - Utilizando el MAE, $Z=1.77$ y $\epsilon=cZ$, $c \in \lbrace0.05, 0.025, 0.01\rbrace$
@@ -140,7 +142,7 @@ $$ v = (10,000)\frac{\sigma^2}{Z^2}\left[ \Phi^{-1}\left( \frac{1+\gamma}{2} \ri
 |     0.95 |          1.582 |       0.04 |  **5,861.37** |       30,516.37 |
 |     0.95 |          1.582 |       0.02 | **36,633.56** |      190,727.33 |
 
- 
+
 
 ### Número de simulaciones MSE
 - Utilizando el MSE, $Z=5.14$ y $\epsilon=cZ$, $c \in \lbrace0.05, 0.025, 0.01\rbrace$
@@ -151,7 +153,24 @@ $$ v = (10,000)\frac{\sigma^2}{Z^2}\left[ \Phi^{-1}\left( \frac{1+\gamma}{2} \ri
 |     0.95 |          27.92 |       0.13 |   **181,351.33** |      944,179.50 |
 |     0.95 |          27.92 |       0.05 | **1,133,445.84** |    5,901,121.89 |
 
+-->
 
+### Número de simulaciones MSE
+- Utilizando el MSE de la variación interanual del IPC con la calibración de tendencia de caminata aleatoria, $Z=\overline{\text{MSE}} = 28.858$ y $\epsilon=cZ$, $c \in \lbrace0.05, 0.025, 0.01\rbrace$. 
+- La desviación estándar en la distribución de simulación del MSE es $\hat{\sigma} =236.219 $. 
+- Por lo tanto, para los diferentes niveles de confianza $\gamma$ y desviación absoluta $\epsilon$ admisible tenemos: 
+
+| $\gamma$ | $\hat{\sigma}$ | $\epsilon$ | $v$ (normal) | $v$ (Chebyshev) |
+|:--------:|:--------------:|-----------:|-------------:|----------------:|
+|   0.90   |    236.2194    |   1.442929 |    72,509.62 |       268,003.9 |
+|   0.90   |    236.2194    |  0.7214647 |    290,038.5 |       1,072,016 |
+|   0.90   |    236.2194    |  0.2885859 |    1,812,740 |       6,700,097 |
+|   0.95   |    236.2194    |   1.442929 |    102,952.6 |       536,007.8 |
+|   0.95   |    236.2194    |  0.7214647 |    411,810.3 |       2,144,031 |
+|   0.95   |    236.2194    |  0.2885859 |    2,573,815 |   13,400,194.00 |
+|   0.99   |    236.2194    |   1.442929 |    177,817.8 |       2,680,039 |
+|   0.99   |    236.2194    |  0.7214647 |    711,271.2 |   10,720,155.00 |
+|   0.99   |    236.2194    |  0.2885859 |    4,445,445 |   67,000,968.00 |
 
 # Referencias
 
