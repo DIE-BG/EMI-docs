@@ -64,24 +64,24 @@ En la siguiente figura se aprecia los diferentes factores multiplicativos de ten
 
 <!-- ![Componentes tendencia](images/calibracion-varianza/Calibraci%C3%B3n%20varianza%20RW_2020-07-16_161402.png)   -->
 
-![Componentes tendencia](images/2020-09-08-14-26-28.png)
+![Componentes tendencia](images/calibracion-varianza/2020-09-08-14-26-28.png)
 
 Como referencia, se muestran las trayectorias de inflación paramétrica sin tendencia.  
 
 <!-- ![Trayectorias paramétricas sin tendencia](images/calibracion-varianza/Calibraci%C3%B3n%20varianza%20RW_2020-07-16_160221.png)   -->
 
-![Trayectorias paramétricas sin tendencia SN](images/2020-09-08-14-27-54.png)
+![Trayectorias paramétricas sin tendencia SN](images/calibracion-varianza/2020-09-08-14-27-54.png)
 
 Se muestran las trayectorias de inflación paramétrica utilizando la componente multiplicativa de tendencia de caminata aleatoria que se muestra en color morado en la figura anterior de componentes de tendencia.  
 
 <!-- ![Trayectorias paramétricas tendencia multiplicativa](images/calibracion-varianza/Calibraci%C3%B3n%20varianza%20RW_2020-07-16_160236.png)   -->
 
-![Trayectorias paramétricas tendencia multiplicativa RW](images/2020-09-08-14-28-19.png)
+![Trayectorias paramétricas tendencia multiplicativa RW](images/calibracion-varianza/2020-09-08-14-28-19.png)
 
 Como se observa, se obtienen trayectorias de inflación paramétrica con tendencia estocástica y moderada volatilidad, por lo que el método de calibración podría considerarse adecuadamente escalado para modelar la varianza del proceso de caminata aleatoria de la tendencia.  
 
 Finalmente, se muestran las trayectorias de inflación paramétrica utilizando la componente multiplicativa de tendencia de factor exponencial que se muestra en color azul en la figura anterior de componentes de tendencia.  
 
-![Trayectorias paramétricas tendencia multiplicativa EXP](images/2020-09-08-14-29-00.png)
+![Trayectorias paramétricas tendencia multiplicativa EXP](images/calibracion-varianza/2020-09-08-14-29-00.png)
 
 
