@@ -14,10 +14,13 @@ en donde $z_{i,t}$ representa la variación intermensual del índice de precios 
 
 
 La tendencia estocástica multiplicativa es una función exponencial (cuando la variación intermensual del índice de precios del gasto básico, sin tendencia estocástica, es positiva) o es una constante igual a uno (cuando la variación intermensual del índice de precios del gasto básico, sin tendencia estocástica, es no positiva). En particular: 
-$$ y_t = \begin{cases}
-e^{\rho_t} &  \text{ si } x_{i,t} > 0 \\
-1 &  \text{ si } x_{i,t} \leq 0
-\end{cases} $$ 
+
+$$ y_t = \left\lbrace
+\begin{array}{cc}
+  e^{\rho_t} & \text{ si } x_{i,t} > 0 \\
+  1 & \text{ si } x_{i,t} \leq 0
+\end{array}
+\right. $$
 
 En donde $\rho_t$ tiene la especificación de una caminata aleatoria: 
 $$ \rho_t = \rho_{t-1} + \varepsilon_t, \quad \rho_0 = 0, \quad \varepsilon_t\sim N(0, \sigma_\varepsilon^2) $$
@@ -53,28 +56,23 @@ Como se puede observar, la volatilidad de la señal de ruido blanco utilizando l
 
 A continuación se procederá a utilizar la señal de ruido blanco del período completo para computar las trayectorias paramétricas de inflación. Esto permitirá evaluar si la volatilidad calibrada a través de este procedimiento es adecuada, es decir, si permite que la evolución de la tendencia estocástica genere cambios significativos, pero no muy grandes, en la trayectoria de la inflación interanual.
 
-## Tendencia estocástica en las trayectorias de inflación paramétrica
+## Tendencia en las trayectorias de inflación 
 
 En esta sección se describe cómo quedan los parámetros poblacionales de inflación resultantes al utilizar tres tipos de tendencia multiplicativa.
-- Componente nulo, que anula el efecto de tendencia multiplicativo. Es equivalente a un factor igual a uno. 
+
+- Una componente de tendencia que anula el efecto de tendencia multiplicativo. Es equivalente a un factor igual a uno. 
 - La señal de ruido blanco calibrada con las variaciones intermensuales del IPC.
 - Una componente de crecimiento exponencial, calibrada para reflejar factores de crecimiento del 2% interanual. 
 
 En la siguiente figura se aprecia los diferentes factores multiplicativos de tendencia en el proceso de cómputo de inflación paramétrica y en el remuestreo.  
 
-<!-- ![Componentes tendencia](images/calibracion-varianza/Calibraci%C3%B3n%20varianza%20RW_2020-07-16_161402.png)   -->
-
 ![Componentes tendencia](images/calibracion-varianza/2020-09-08-14-26-28.png)
 
 Como referencia, se muestran las trayectorias de inflación paramétrica sin tendencia.  
 
-<!-- ![Trayectorias paramétricas sin tendencia](images/calibracion-varianza/Calibraci%C3%B3n%20varianza%20RW_2020-07-16_160221.png)   -->
-
 ![Trayectorias paramétricas sin tendencia SN](images/calibracion-varianza/2020-09-08-14-27-54.png)
 
 Se muestran las trayectorias de inflación paramétrica utilizando la componente multiplicativa de tendencia de caminata aleatoria que se muestra en color morado en la figura anterior de componentes de tendencia.  
-
-<!-- ![Trayectorias paramétricas tendencia multiplicativa](images/calibracion-varianza/Calibraci%C3%B3n%20varianza%20RW_2020-07-16_160236.png)   -->
 
 ![Trayectorias paramétricas tendencia multiplicativa RW](images/calibracion-varianza/2020-09-08-14-28-19.png)
 
