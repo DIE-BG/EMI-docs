@@ -10,7 +10,7 @@ Estos criterios de evaluación corresponden a la evaluación de un escenario "ba
 
 - **Estadístico de evaluación**: se determinó que el estadístico de error cuadrático medio (MSE) y la media muestral de su distribución de simulación son los adecuados para evaluar el desempeño de las medidas de inflación, ya que permiten resumir el sesgo y la precisión en un único valor, comparable entre diferentes medidas de inflación. 
 
-- **Número de simulaciones**: se escoge de acuerdo con la propuesta de utilizar $\epsilon=0.05\bar{Z}$ y la aproximación normal para el cómputo del número de simulaciones. Inicialmente, se corre una simulación de $50,000$ realizaciones de inflación total (variación interanual del IPC) y se determinó que su MSE promedio fue de $\bar{Z} = 28.86$. Con esto, se requieren un total de $102,952.6$ simulaciones para una probabilidad del $95\%$ de que nuestra estimación no se aleje en más de $\epsilon = (0.05)(28.66) = 1.44$ de la verdadera media de la distribución del MSE. Por lo que el número de simulaciones se fijará en $110,000$ para todas las simulaciones en el escenario base.
+- **Número de simulaciones**: se escoge de acuerdo con la propuesta de utilizar $\epsilon=0.05\bar{Z}$ y la aproximación normal para el cómputo del número de simulaciones. Inicialmente, se corre una simulación de $110,000$ realizaciones de inflación total (variación interanual del IPC) y se determinó que su MSE promedio fue de $\bar{Z}_{\text{MSE}} = 77.48$, con una desviación estándar de $\hat{\sigma}_{\text{MSE}} = 698.63$. Con esto, se requieren un total de $124,942.5$ simulaciones para una probabilidad del $95\%$ de que nuestra estimación no se aleje en más de $\epsilon = (0.05)(77.48) = 3.87$ de la verdadera media de la distribución del MSE. Por lo que el número de simulaciones se fijará en $125,000$ para todas las simulaciones en el escenario base.
 
 - **Función de tendencia**: se escoge utilizar una componente aditiva de tendencia generalizada de inflación utilizando un modelo de caminata aleatoria, tanto para las trayectorias paramétricas, como para las realizaciones de las trayectorias muestrales de inflación, que represente lo mejor posible la estocasticidad que, en cierta forma, puede observarse en el comportamiento generalizado de la inflación (períodos de expansión y contracción en el comportamiento de los precios). La calibración de los parámetros de esta componente se detalla en el apartado de [calibración del proceso de caminata aleatoria](../calibracion/Calibración%20varianza%20RW.md). 
 
@@ -24,7 +24,7 @@ Finalmente, se presenta un resumen de los criterios de evaluación del escenario
 | Período de evaluación                | completo                                         |
 | Período final de evaluación          | diciembre de 2019                                |
 | Estadístico de evaluación            | MSE                                              |
-| Número de simulaciones               | 110,000                                          |
+| Número de simulaciones               | 125,000                                          |
 | Función de tendencia                 | Caminata aleatoria calibrada                     |
 | Trayectoria de inflación paramétrica | Variación interanual del IPC con cambios de base |
 
@@ -46,7 +46,7 @@ Para evaluar la robustez de los resultados obtenidos con los criterios de evalua
     - Período de transición de la base 2000 a la base 2010 del IPC: comprendido por las observaciones entre enero de 2011 y noviembre de 2011.
     - Período de la base 2010 del IPC: comprendido por las observaciones a partir de diciembre de 2011 a diciembre de 2019.
 
-- **Cambio en el número de simulaciones**: se considera un cambio en el parámetro $\epsilon$ de tal forma que $\epsilon=0.025\bar{Z}$, es decir, que la estimación del promedio del estadístico de evaluación no esté más allá de un $2.5\%$ del valor verdadero. Este cambio conlleva realizar $411,810.3$ simulaciones, por lo que se realizará un análisis de sensibilidad de los resultados de simulación que utilice $420,000$ realizaciones para asegurar que el número de simulaciones sea suficiente para tener la mínima variabilidad en las estimaciones.
+- **Cambio en el número de simulaciones**: se considera un cambio en el parámetro $\epsilon$ de tal forma que $\epsilon=0.025\bar{Z}$, es decir, que la estimación del promedio del estadístico de evaluación no esté más allá de un $2.5\%$ del valor verdadero. Este cambio conlleva realizar $499,771$ simulaciones, por lo que se realizará un análisis de sensibilidad de los resultados de simulación que utilice $500,000$ realizaciones para asegurar que el número de simulaciones sea suficiente para tener la mínima variabilidad en las estimaciones.
 
 - **Cambio en la componente de tendencia**: se consideran dos escenarios adicionales de la componente aditiva de tendencia.  
     - Sin tendencia: se agrega una componente aditiva igual a cero. Es decir, en este escenario se considera únicamente el comportamiento promedio en el muestreo de las variaciones intermensuales de los gastos básicos, y no el de una componente generalizada que inyecta tendencia en el comportamiento promedio. 
