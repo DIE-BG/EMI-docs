@@ -24,7 +24,7 @@ $$ y_t = \left\lbrace
 En donde $\rho_t$ tiene la especificación de una caminata aleatoria: 
 $$ \rho_t = \rho_{t-1} + \varepsilon_t, \quad \rho_0 = 0, \quad \varepsilon_t\sim N(0, \sigma_\varepsilon^2) $$
 
-## Calibración de la varianza del ruido blanco $\varepsilon_t$
+## Calibración de la varianza del ruido blanco
 
 Para generar las series de tiempo correspondientes al parámetro poblacional y a las simulaciones muestrales, la variable $\rho_t$ tiene valor inicial cero y luego evoluciona de acuerdo con su ley de movimiento (caminata aleatoria).  Para este propósito, los valores de los choques estocásticos $t$ se extraen de una distribución normal con media cero y con varianza $\sigma_\varepsilon^2$.
 

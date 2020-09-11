@@ -1,12 +1,10 @@
 # Evaluación con **block bootstrap**
 
-- Anteriormente, una crítica del trabajo ha sido que el proceso de muestreo del experimento puede violar la autocorrelación en las series de tiempo de variaciones intermensuales de los índices de precios de los gastos básicos.
+- En ocasiones anteriores, una crítica del trabajo ha sido que el proceso de muestreo del experimento puede violar la autocorrelación en las series de tiempo de variaciones intermensuales de los índices de precios de los gastos básicos.
+
 - Esto debido a que se *desarma* la serie de tiempo y se combina una nueva serie de tiempo de variaciones intermensuales utilizando un criterio de estacionalidad, es decir, conservando las variaciones intermensuales observadas en los mismos meses de ocurrencia, aunque puedan repetirse en diferentes años.
   - Este procedimiento ayuda eficazmente a reducir la varianza del experimento, ya que solo se permiten ciertas variaciones intermensuales en cada mes. 
 
-## Posible solución 
-
-<!-- - Un investigador de República Dominicana, durante la reunión de investigadores de bancos centrales, expuso que -->
 - Una forma de controlar este efecto es el de utilizar una variante de *bootstrap* denominada *block bootstrap*, que se utiliza, bajos ciertos supuestos, para realizar remuestreos cuando la muestra no es iid (independiente e idénticamente distribuida), como en el caso de datos series de tiempo.  
 
 - En particular, si la serie de tiempo es estacionaria y se asume una **dependencia débil en covarianza**, entonces, las observaciones pierden dependencia de sus rezagos eventualmente (el proceso es dependiente solamentede sus primeros rezagos). 
@@ -33,12 +31,5 @@
 ## Propuesta para un análisis de sensibilidad
 
 - Generar un conjunto de resultados que tome en cuenta un procedimiento de *block bootstrap*.
-
-<!-- 
-Esto ya no fue necesario, ya que el remuestreo al hacerse en múltiplos de 12 meses, en promedio, se está muestreando también el promedio aritmético de cada uno de los meses y de cada uno de los gastos básicos.
-- En este caso, el parámetro poblacional se debería de construir con el promedio de cada uno de los bloques.
-  - Habría que experimentar cómo obtenerlo de tal forma que en muchas muestras, el estimador muestral sea insesgado.  -->
-
-<!-- - Experimentar con el tamaño del bloque.  -->
 
 - Se plantea esta propuesta para darle **robustez al procedimiento estadístico de simulación**, ya el procedimiento de evaluación depende críticamente del tipo de muestreo realizado en las variaciones intermensuales de los gastos básicos.

@@ -2,43 +2,36 @@
 
 - A continuación, se presentan algunas referencias para definir el número de simulaciones a realizar.
 
-- Posteriormente, se presenta la propuesta final para el esquema de evaluación de medidas de inflación.
+- Posteriormente, se presenta la propuesta final para la herramienta de evaluación de medidas de inflación.
 
  
 ## Búsqueda en foros en línea
 Consulta en foros de estadística: [StackExchange: Rule of thumb for number of bootstrap samples](https://stats.stackexchange.com/questions/86040/rule-of-thumb-for-number-of-bootstrap-samples). Algunos comentarios mencionan algunas alternativas:
 
-- Utilizar tantas como sean posibles, con límite en 1 millón.
+- Utilizar tantas como sean posibles, con límite superior en un millón.
 - Correr varias veces la simulación con un número inicial considerado como suficiente y ver la variación en los estimadores de *bootstrap*. Si las estimaciones repetidas no varían mucho, el número de simulaciones es adecuado. 
 - Utilizar 10,000 simulaciones para experimentos propios y hasta 100,000 simulaciones cuando se comparten resultados con otros (con conjuntos de datos pequeños).
 
 
-
-
 ## Revisión de papers de inflación
-- Haciendo una revisión de los papers principales con metodología similar a la adoptada por el EMI tenemos: 
+- Haciendo una revisión de los papers principales con metodología similar a la aplicada en la HEMI tenemos: 
 
   - Bryan, Cecchetti y Wiggings (1997) *Efficient Inflation Estimation*: procedimiento de *bootstrap* similar. Se considera un número de simulaciones igual a 10,000 sin mecionar alguna justificación cuantitativa. Sin embargo, en su ejercicio de simulación utilizan menos categorías del IPC y del IPP.
 
   - Roger (1997) *A robust measure of core inflation in New Zealand, 1949-96*: se evalúa un percentil óptimo para Nueva Zelanda, pero sin técnicas de simulación. La evaluación se hace obteniendo el percentil de la media y tomando un promedio para diferentes períodos. 
 
 
-
-<!-- 
-_footer: ''
--->
-
 ## Literatura académica
 
-- En Chernick, 2da. ed. (2011) *Bootstrap methods : a guide for practitioners and researchers* se discute: 
+- En Chernick (2011) *Bootstrap methods : a guide for practitioners and researchers* se discute: 
 
 > Let $B$ be the number of bootstrap replications in a uniform resampling. Let $\sigma_{B}^2$ be the variance of a single bootstrap resample estimate of the parameter. Since the Monte Carlo approximation to the bootstrap estimate is an average of $B$ such estimates independently drawn, the variance of the Monte Carlo approximation is just $\sigma_{B}^2/B$. 
 Of course, this basic result is well known and has been applied for many years to judge how many replications to take in a simulation. There is nothing new here with the bootstrap. For the bootstrap, the particular distribution being sampled is the empirical distribution, but otherwise nothing is different.
 
-- Esta aseveración se formaliza aún más en DeGroot y Schervish, 4ta. ed. (2012) *Probability and Statistics*.
+- Esta aseveración se formaliza aún más en DeGroot y Schervish, (2012) *Probability and Statistics*.
 
  
-### Chernick, (2da. ed.)
+### Chernick
 - Más adelante se tiene: 
 >  The practitioner chooses $B$ to make the variance sufficiently small, ensuring that the bootstrap approximation is close to the actual bootstrap estimate. Note that the accuracy of this approximation depends on $B$ and not $n$ (sample size). It only expresses how close the approximation is to the bootstrap estimate and does not express how close the bootstrap estimate is to the true parameter value!
 
@@ -48,10 +41,14 @@ Of course, this basic result is well known and has been applied for many years t
 
  
 ### DeGroot y Schervish, versión con estimador normal
-- Se supone un estimador de Monte Carlo $Z$ de un parámetro $\theta$, basado en $v$ simulaciones, siendo $Z$ un promedio (estimador de la media poblacional), entonces $Z$ tiene aproximadamente distribución normal con media $\theta$ y varianza $\sigma^2/v$, en donde $\sigma^2$ no depende del tamaño de la simulación. Entonces, para cada $\epsilon > 0$: 
+- Se supone un estimador de Monte Carlo $Z$ de un parámetro $\theta$, basado en $v$ simulaciones, siendo $Z$ un promedio[^1] (estimador de la media poblacional), entonces $Z$ tiene aproximadamente distribución normal con media $\theta$ y varianza $\sigma^2/v$, en donde $\sigma^2$ no depende del tamaño de la simulación. Entonces, para cada $\epsilon > 0$: 
 $$ Pr(|Z-\theta| \leq \epsilon) \approx 2\Phi(\epsilon v^{1/2} / \sigma) -1 $$
+en donde $\Phi(\cdot)$ representa la función de distribución acumulada de la distribución normal estándar.
 
-- A partir de esto, podemos fijar esta probabilidad como $\gamma$ y escoger $v$ a partir de dicha ecuación: 
+[^1]: En el caso de la HEMI, $Z$ es el promedio empírico de los errores cuadráticos medios de las $v$ simulaciones correspondientes a la medida de inflación $j$. Es decir, $Z$ es el estimador $\overline{\text{MSE}}_{j}$, en tanto que $\theta$ es el parámetro $\text{MSE}_{j}$.
+
+- Ya que, usualmente, la desviación estándar $\sigma$ no es conocida, esta se estima a través de un número inicial de simulaciones.
+- A partir de esto, podemos se tiene la probabilidad $\gamma = Pr(|Z-\theta| \leq \epsilon)$ y se escoge $v$ a partir de dicha ecuación: 
 $$ v = \left[ \Phi^{-1}\left( \frac{1+\gamma}{2} \right) \frac{\hat{\sigma}}{\epsilon} \right]^2 $$
 
  
@@ -62,11 +59,11 @@ $$ v = \frac{\sigma^2}{\epsilon^2 (1-\gamma)} $$
 - Este es un criterio más riguroso, pero eleva significativamente el número de simulaciones a realizar. 
 
 ## Propuesta para definir el número de simulaciones
-- Utilizar la aproximación normal $Z$ de la media del estadístico de precisión y computar $\epsilon = 0.05|Z|$. Es decir, se permite una distancia del 5% del valor del estadístico $Z$ y el parámetro estimado.
+- Utilizar el hecho de que la distribución de $Z$ (de la media $\overline{\text{MSE}}_{j}$ del estadístico de error cuadrático medio $\text{MSE}_{j}$ de la medida de inflación $j$) se aproxima a la distribución normal y computar $\epsilon = 0.05|Z|$. Es decir, se permite una distancia del 5% del valor del estadístico $Z$ entre éste y el parámetro estimado.
 - Utilizar $\gamma = 0.95$, es decir, que la probabilidad del intervalo de confianza sea del 95%.
-- Fijar el número de simulaciones al número requerido por la medida de evaluación para la medida de inflación denominada **"Variación interanual del IPC"**, ya que es la que mayor varianza presenta en sus distribuciones.  
+- Fijar el número de simulaciones al número requerido por la medida de evaluación para la medida de inflación denominada **"Variación interanual del IPC"**, ya que es la que mayor varianza presenta en las distribuciones de sus estadísticos de error.  
 - En este caso, el número de simulaciones estaría dado por:
-$$ v = (400) \frac{\sigma^2}{Z^2} \left[ \Phi^{-1}\left( \frac{1+\gamma}{2} \right) \right]^2 $$
+$$ v = (400) \left[ \Phi^{-1}\left( \frac{1.95}{2} \right) \right]^2 \frac{\sigma^2}{Z^2}$$
 - Ventajas: 
   - Criterio cuantitativo bien definido, factible y no tan estricto (pero que permite alcanzar una alta probabilidad para el intervalo de confianza). 
   - El número de simulaciones está en función del coeficiente de variación de la medida de evaluación (mayor dispersión relativa, más simulaciones). 
@@ -74,7 +71,7 @@ $$ v = (400) \frac{\sigma^2}{Z^2} \left[ \Phi^{-1}\left( \frac{1+\gamma}{2} \rig
 
 ### Número de simulaciones con base en el MSE
 - Utilizando el MSE de la variación interanual del IPC con la calibración de tendencia de caminata aleatoria, $Z=\overline{\text{MSE}} = 77.48$ y $\epsilon=cZ$, $c \in \lbrace0.05, 0.025, 0.01\rbrace$. 
-- La desviación estándar en la distribución de simulación del MSE es $\hat{\sigma} = 698.63$. 
+- Con una simulación inicial de 110,000 realizaciones, la desviación estándar en la distribución de simulación del MSE es $\hat{\sigma} = 698.63$. 
 - Por lo tanto, para los diferentes niveles de confianza $\gamma$ y desviación absoluta $\epsilon$ admisible tenemos: 
 
 | $\gamma$ | $\bar{Z}$ | $\hat{\sigma}$ | $c$ | $\epsilon$ | $v$ (normal) | $v$ (Chebyshev) |
@@ -90,6 +87,7 @@ $$ v = (400) \frac{\sigma^2}{Z^2} \left[ \Phi^{-1}\left( \frac{1+\gamma}{2} \rig
 |0.99|77.48|698.63|0.01|0.77|5,394,961.00|81,311,904.00|
 
 - Se utilizan 125,000 simulaciones para el escenario base de evaluación y 500,000 simulaciones para el análisis de sensbilidad.
+  
 <!-- Resultados anteriores con tendencia aditiva RW -->
 <!-- | $\gamma$ | $\hat{\sigma}$ | $\epsilon$ | $v$ (normal) | $v$ (Chebyshev) |
 |:--------:|:--------------:|-----------:|-------------:|----------------:|

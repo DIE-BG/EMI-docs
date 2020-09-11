@@ -1,6 +1,6 @@
 # Determinación de la medida de evaluación
 
-- A continuación, se exponen diferentes propuestas para el puntaje final de evaluación de las medidas de inflación. 
+- A continuación, se exponen diferentes propuestas para la métrica básica del proceso de evaluación de las medidas de inflación. 
 
  
 ## Índice de error muestral en la medida de evaluación
@@ -13,21 +13,21 @@ $$ \text{IEM}_j = \overline{\text{RMSE}}_j + |\overline{\text{ME}}_j| + (1- \bar
   - $\bar{\rho}_j$ es el promedio en el muestreo del coeficiente de correlación lineal de la medida de inflación $j$ con el parámetro poblacional.
 
  
-## Ventajas y desventajas
+### Ventajas y desventajas
 - Es un punteo aditivo simple, mientras más pequeño su valor, mejor.
 - Sin embargo, aunque el $\overline{\text{RMSE}}_j$ y el $|\overline{\text{ME}}_j|$ están en una escala similar (puntos porcentuales), el término de correlación no tiene unidades y podría no variar en la misma proporción que los otros.
 - Una opción, podría ser generar un punteo dependiente y multiplicativo, por ejemplo $\text{IEM}_j = \overline{\text{RMSE}}_j * |\overline{\text{ME}}_j| * (1 - \bar{\rho}_j)$
 - Podrían agregarse coeficientes de ponderación, pero nuevamente, serían subjetivos. 
 
 
-## Otra posibilidad: utilizar el MSE directamente
-- El MSE de un estimador se puede descomponer en una medida de varianza y sesgo: 
+## Error cuadrático medio
+- El error cuadrático medio (MSE) de un estimador se puede descomponer en una medida de varianza y sesgo: 
 $$ \text{MSE}(\hat{\theta}) = \text{E}\left[ (\hat{\theta}-\theta)^2 \right] = \text{Var}(\hat{\theta}) + \text{Sesgo}^2(\hat{\theta}, \theta) $$
 - Véase Casella y Berger (2002, pág. 330) para una derivación de este resultado.
 - Casella y Berger indican (ibíd.) que es una medida razonable para el desempeño de un estimador puntual y tiene la ventaja de interpretarse como la combinación de varianza y sesgo descrita arriba.
 
- 
 
+#### Descomposición aditiva del MSE
 - Adicionalmente, esto se puede expresar como 
 <!-- - (ver documento anexo FMI):  -->
 $$ \text{MSE}(\hat{\theta}) = \text{Sesgo}^2(\hat{\theta}, \theta) + (s_\theta - s_{\hat{\theta}})^2 + 2(1-r) s_\theta s_{\hat{\theta}} $$ 
@@ -38,9 +38,7 @@ $$ \text{MSE}(\hat{\theta}) = \text{Sesgo}^2(\hat{\theta}, \theta) + (s_\theta -
 
 - Esto significa que el MSE representa una medida completa de eficiencia de un estimador, que relaciona la variabilidad, el sesgo y la correlación entre parámetro y estimador. 
 
-
-### Utilizar el MSE directamente
-
+### Consideraciones de sesgo
 - En la literatura se menciona que estimadores sesgados pueden presentar valores bajos de MSE.
 
 - Casella y Berger, 2002, pág. 331
@@ -59,17 +57,13 @@ $$ \text{MSE}(\hat{\theta}) = \text{Sesgo}^2(\hat{\theta}, \theta) + (s_\theta -
 
 ### Implicaciones para el proceso de simulación
 
-- En Casella y Berger, 2002, pág. 332:  
-  
+- En Casella y Berger (2002)[^1]: 
+[^1]: Casella y Berger (2002), página 332.
+
 > In general, since MSE is a function of the parameter, there will be not one "best" estimator". Often, the MSEs of two estimators will cross each other, showing that each estimator is better (with respect to the other) in only a portion of the parameter space. However, even this partial information can sometimes provide guidelines for choosing between estimators.
 
 - Al utilizar el MSE para comparar el desempeño de las medidas de inflación, en general, se tienen que realizar más simulaciones que con un estadístico como el error absoluto medio, ya que la distribución de esta medida de error es la más **volátil** (por el castigo cuadrático que pone a las desviaciones respecto al parámetro poblacional).
 
-<!-- ## Propuesta para la medida de evaluación
+## Propuesta para la métrica de evaluación básica
 
-- Se propone considerar el siguiente índice final de evaluación:  
-
-$$ \text{IEM}_j = \overline{\text{MAE}}_j + |\overline{\text{ME}}_j| + (1- \bar{\rho}_j)$$
-
-- Al final, es un índice final con una interpretación sencilla.  
-- Se considera el $\overline{\text{MAE}}_j$ en lugar del $\overline{\text{RMSE}}_j$ debido a que también es un indicador de eficiencia, que no se tiende a sesgar ante el efecto de *outliers* (Véase Walther y Moore (2005)).   -->
+- Se propone utilizar el MSE como métrica de evaluación básica debido a que representa una medida integral de eficiencia que pueede descomponerse en términos del sesgo, varianza y covarianza entre parámetros de inflación y sus diferentes estimadores muestrales. 
