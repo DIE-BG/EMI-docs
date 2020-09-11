@@ -74,7 +74,7 @@ $$ v = (400) \frac{\sigma^2}{Z^2} \left[ \Phi^{-1}\left( \frac{1+\gamma}{2} \rig
 
 ### Número de simulaciones con base en el MSE
 - Utilizando el MSE de la variación interanual del IPC con la calibración de tendencia de caminata aleatoria, $Z=\overline{\text{MSE}} = 77.48$ y $\epsilon=cZ$, $c \in \lbrace0.05, 0.025, 0.01\rbrace$. 
-- La desviación estándar en la distribución de simulación del MSE es $\hat{\sigma} = 698.63 $. 
+- La desviación estándar en la distribución de simulación del MSE es $\hat{\sigma} = 698.63$. 
 - Por lo tanto, para los diferentes niveles de confianza $\gamma$ y desviación absoluta $\epsilon$ admisible tenemos: 
 
 | $\gamma$ | $\bar{Z}$ | $\hat{\sigma}$ | $c$ | $\epsilon$ | $v$ (normal) | $v$ (Chebyshev) |

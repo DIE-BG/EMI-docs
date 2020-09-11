@@ -1,15 +1,14 @@
-site_name: EMI
+site_name: HEMI
 site_description: Proyecto de evaluación de medidas de inflación en MATLAB. Realizado por el Departamento de Investigaciones Económicas del Banco de Guatemala.
-repo_url: https://github.com/DIE-BANGUAT/EMI-mkdocs
+repo_url: https://github.com/DIE-BANGUAT/EMI-docs
 nav:
-    - EMI: 
+    - HEMI: 
         - index.md
     - Principal:
         - Introducción: cuerpo/introduccion.md
         - Justificación: cuerpo/justificacion.md
     - Calibración: 
-        # - Determinación del proceso de caminata aleatoria: calibracion/Determinación proceso caminata aleatoria.md
-        - Calibración de varianza del proceso de caminata aleatoria: calibracion/Calibración varianza RW.md
+        - Especificación y calibración del factor de tendencia estocástica : calibracion/Calibración varianza RW.md
         - Selección del número de simulaciones: calibracion/Selección simulaciones.md
         - Selección de la medida de evaluación: calibracion/Determinación medida evaluación.md
         - Remuestreo con block bootstrap: calibracion/Remuestreo block bootstrap.md
@@ -26,6 +25,7 @@ theme:
         - python
 
 markdown_extensions:
+    - footnotes
     - pymdownx.arithmatex
     - toc:
         baselevel: 2
