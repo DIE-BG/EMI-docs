@@ -64,15 +64,15 @@ A continuación se presenta los resultados correspondientes sobre la base 2000.
 **Figura.** *Optimización exploratoria para la base 2000, utilizando el criterio de exclusión de desviación estándar. Todos los gastos básicos y extracto de los primeros 25.*
 
 
-![](images/optim00/Expo_std.png)
-![](images/optim00/Expo_reduce_std.png)
+![](images/exclusion-fija/optim00/Expo_std.png)
+![](images/exclusion-fija/optim00/Expo_reduce_std.png)
 
 En la figura del lado izquierdo, se puede observar que la exclusión de los dos primeros gastos básicos (respecto al orden impuesto) generan la mayor ganancia en términos de disminución del MSE promedio en la evaluación.
 
 La figura derecha es una vista rotada de la exposición con todos los gastos básicos, seleccionando los primero 25 gastos básicos ordenados según el criterio de desviación estándar. En dicha gráfica se observa una caída abrupta del MSE promedio en la posición 3, siendo la medida que excluye a la cebolla y el tomate, los cuales tienen la mayor volatilidad en toda la base 2000. También se observa que se alcanza el mínimo MSE promedio en la posición 15, la cual corresponde a la medida de inflación que excluye las primeros 14 gastos básicos. 
 
 **Figura.** *Optimización definitiva para la base 2000, utilizando el criterio de exclusión de desviación estándar. Gastos básicos de la posición 5 a 25 según criterio de desviación estándar.*
-![](images/optim00/Optim_std.png)
+![](images/exclusion-fija/optim00/Optim_std.png)
 
 Tal como se expuso en los pasos para realizar la optimización, dado que la posición 15 en la optimización exploratoria tiene el menor MSE promedio, se selecciona las posiciones de la 5 a la 25 para ser evaluadas con 250,000 simulaciones, confirmando de este modo que las exclusión óptima se da en la posición 15. 
 
@@ -81,13 +81,13 @@ Por medio del mismo procedimiento, se procede a determinar la exclusión óptima
 
 **Figura.** *Optimización exploratoria para la base 2010, utilizando el criterio de exclusión de desviación estándar. Todos los gastos básicos y extracto de los primeros 28.*
 
-![](images/optim10/Expo_std.png)
-![](images/optim10/Expo_reduce_std.png)
+![](images/exclusion-fija/optim10/Expo_std.png)
+![](images/exclusion-fija/optim10/Expo_reduce_std.png)
 
 En el caso de la base 2010, se observa que la exclusión del gasto básico en la posición 1, correspondiente al tomate, provoca una caída abrupta en el MSE promedio respecto a la evaluación con la medida de inflación total. Además, se observa que los gástos básicos excluídos que dan origen a la medida óptima, pertenecen a los grupos de alimentos, combustibles y transporte.
 
 **Figura.** *Optimización definitiva para la base 2010, utilizando el criterio de exclusión de desviación estándar. Gastos básicos de la posición 8 a 28 según criterio de desviación estándar.*
-![](images/optim10/Optim_std.png)
+![](images/exclusion-fija/optim10/Optim_std.png)
 
 
 #### Criterio de correlación respecto a la inflación interanual percentil 72 equiponderado
@@ -97,7 +97,7 @@ El criterio de correlación respecto a la inflación interanual percentil 72 equ
 
 **Figura.** *Optimización exploratoria para la base 2000, utilizando el criterio de correlación respecto percentil 72 equiponderado. Todos los gastos básicos.*
 
-![](images/optim00/Expo_cor.png)
+![](images/exclusion-fija/optim00/Expo_cor.png)
 
 
 En la optimización exploratoria para la base 2000 se observa que la exclusión de los gástos básicos con correlación no disminuye el MSE promedio de la respectiva medida de exclusión. Se hace notar que la caía del MSE promedio se debe a la exclusión de la cebolla y el tomate. 
@@ -105,20 +105,20 @@ En la optimización exploratoria para la base 2000 se observa que la exclusión 
 
 **Figura.** *Optimización definitiva para la base 2000, utilizando el criterio de correlación respecto percentil 72 equiponderado. Gastos básicos de la posición 65 a 85 según criterio de correlación respecto percentil 72 equiponderado.*
 
-![](images/optim00/Optim_cor.png)
+![](images/exclusion-fija/optim00/Optim_cor.png)
 
 Se puede notar que la medida de exclusión óptima utilizando el criterio de correlación respecto percentil no excluye de forma eficiente los gástos básicos dentro de la base. Esto se hace notar debido a que la medida de exclusión con menor MSE promedio requiere la exclusión de 74 gastos básicos, además que esta medida tiene un MSE promedio mayor a la obtenida utilizando el criterio de desviación estándar sobre la misma base.
 
 
 **Figura.** *Optimización exploratoria para la base 2010, utilizando el criterio de correlación respecto percentil 72 equiponderado. Todos los gastos básicos.*
 
-![](images/optim10/Expo_cor.png)
+![](images/exclusion-fija/optim10/Expo_cor.png)
 
 Del mismo modo que ocurre en la base 2000, el criterio de optimización en la base 2010 no es eficiente en la exclusión de gastos básicos, esto debido a que la correlación no permite descartar de forma temprana aquellos gastos básicos que introducen más ruido a la medida de exclusión.
 
 **Figura.** *Optimización definitiva para la base 2010, utilizando el criterio de correlación respecto percentil 72 equiponderado. Gastos básicos de la posición 65 a 85 según criterio de correlación respecto percentil 72 equiponderado.*
 
-![](images/optim10/Optim_cor.png)
+![](images/exclusion-fija/optim10/Optim_cor.png)
 
 
 #### Criterio de MSE respecto a la inflación interanual percentil 72 equiponderado
@@ -128,25 +128,25 @@ El criterio de MSE respecto a la inflación interanual percentil 72 equiponderad
 
 **Figura.** *Optimización exploratoria para la base 2000, utilizando el criterio de MSE respecto a la inflación interanual percentil 72 equiponderado. Todos los gastos básicos.*
 
-![](images/optim00/Expo_mse.png)
+![](images/exclusion-fija/optim00/Expo_mse.png)
 
 Del mismo modo que ocurre con el criterio de desviación estándar, el criterio de MSE respecto a la inflación interanual percentil 72 equiponderado es eficiente identificando aquellos gastos básico que introducen más ruido a la medida de inflación y, por lo tanto, implica una MSE promedio de evaluación más alto. 
 
 **Figura.** *Optimización definitiva para la base 2000, utilizando el criterio de MSE respecto a la inflación interanual percentil 72 equiponderado. Gastos básicos de la posición 5 a 25 según criterio de MSE respecto a la inflación interanual percentil 72 equiponderado.*
 
-![](images/optim00/Optim_mse.png)
+![](images/exclusion-fija/optim00/Optim_mse.png)
 
 La observa que la medida óptima se encuentra en la posición 15, destacando el hecho que los gastos básicos descartados corresponden principalmente a los grupo de alimentos y combustibles.
 
 **Figura.** *Optimización exploratoria para la base 2010, utilizando el criterio de MSE respecto a la inflación interanual percentil 72 equiponderado. Todos los gastos básicos.*
 
-![](images/optim10/Expo_mse.png)
+![](images/exclusion-fija/optim10/Expo_mse.png)
 
 Tal y como se observa en el resultado exploratorio aplicado sobre la base 2000, la exclusión de los primeros gastos básicos (respecto a este ordenamiento) generan las mayores ganancias en cuanto a reducción del MSE. Estos gastos básicos corresponde a la cebolla y el tomate, tanto en la base 2000 como 2010. 
 
 **Figura.** *Optimización definitiva para la base 2010, utilizando el criterio de MSE respecto a la inflación interanual percentil 72 equiponderado. Gastos básicos de la posición 5 a 25 según criterio de MSE respecto a la inflación interanual percentil 72 equiponderado.*
 
-![](images/optim10/Optim_mse.png)
+![](images/exclusion-fija/optim10/Optim_mse.png)
 
 En el caso de la base 2010 y bajo este criterio de exclusión, solamente es necesaria la exclusión de 9 gastos básicos para obtener la medida con el MSE promedio de evaluación más bajo. 
 
@@ -275,14 +275,14 @@ Dicha evaluación se llevó a cabo utilizando los criterios básicos, aplicados 
 
 **Figura.** *Resultado de la evaluación con criterios básicos*
 
-![](images/result/Promedio-dash.png)
+![](images/exclusion-fija/result/Promedio-dash.png)
 
 Se puede observar que, en primer lugar, la medida de exclusión fija que únicamente descarta los gastos básico del grupo de combustibles, presenta el mayor error estándar. Esto se debe a que los gástos básico con mayor volatilidad se encuentran dentro del grupo de los alimentos. En segundo lugar, se destaca que la medida de inflación que descarta todos los alimentos y energéticos posee un MSE promedio mayor a la medida que descarta algunos alimentos y energético y a la medida de exclusión óptima. Esto quiere decir algunos gastos básicos y energéticos aportan información de tal modo que la medida de exclusión se acerca más a la inflación paramétrica.En tercer lugar y, aunque descartar algunos gastos básicos de los grupo de alimentos y energéticos producen una medida mejor evaluada, el procedimiento de optimización junto a un criterio adecuado puede derivar en una medida mejor evaluada, tal es el caso de la medida de exclusión óptima en contra de la medida que excluye alimentos y energéticos seleccionados.
 
 
 **Figura.** *Resultado de la evaluación con criterios básicos. Descomposición del MSE*
 
-![](images/result/desc-mse-dash.png)
+![](images/exclusion-fija/result/desc-mse-dash.png)
 
 La gráfica anterior muestra la descomposición aditiva del error cuadrático medio en sus componentes de sesgo, varianza o precisión y correlación, con respecto a la trayectoria de inflación paramétrica, al utilizar los criterios básicos de evaluación. Se puede observar que la inflación que excluye únicamente los gástos básicos del grupo de combustibles es la que presenta los mayores componentes, destacando el componente de varianza, esto debido a que dentro del grupo de alimentos se encuentran los gastos básicos con mayor volatilidad. Se observa que en términos de componentes, la medida que excluye algunos alimento y energéticos y la medida de exclusión óptima presentan similares componentes de sesgo y varianza, siendo en el componente de correlación en el que se observa la diferencia más sustancial. 
 
@@ -297,7 +297,7 @@ Debido a que se considera el período completo de evaluación hasta diciembre de
 
 **Figura** *Análisis de sensibilidad respecto a periodo de finalización de evaluación.*
 
-![](images/result/final-sens-dash.png)
+![](images/exclusion-fija/result/final-sens-dash.png)
 
 Como se puede observar, en todos los períodos finales considerados,la medida de exclusión óptima resulta invariantemente óptima en términos del MSE de evaluación. Estos resultados muestran que dicha medida óptima no es sensible a cambios en los períodos finales de evaluación que están separados entre 6 meses y un año.
 
@@ -307,7 +307,7 @@ Considerando los estadísticos de evaluación alternativos, se construye una gr�
 
 **Figura** *Análisis de sensibilidad respecto al cambio en la medida de evaluación.*
 
-![](images/result/Medidas-sens-dash.png)
+![](images/exclusion-fija/result/Medidas-sens-dash.png)
 
 Se puede observar que la medida de exclusión óptima es la que obtiene las mejores evaluaciones, sin importar el estadístico utilizado. Cabe destacar que la medida de exclusión de alimentos y energéticos seleccionados se encuentra cercana a los resultados obtenidos a la medida de exclusión óptima. 
 
@@ -317,7 +317,7 @@ A continuación, se presenta un análisis de sensibilidad de la evaluación al c
 
 **Figura** *Análisis de sensibilidad ante cambios en el subperíodo de evaluación.*
 
-![](images/result/eval-sens-dash.png)
+![](images/exclusion-fija/result/eval-sens-dash.png)
 
 Se puede observar que la medida de exclusión óptima es la que obtiene las mejores evaluaciones, sin importar el periodo de evaluación utilizado. Se destaca que en el periodo de transición *2000-2010* se encuentran los mayores MSE promedio, derivado de la alta volatilidad en este periodo. Además, se observa que descarta únicamente algunos energéticos seleccionado posee los mayores MSE promedio.
 
@@ -328,7 +328,7 @@ A continuación, se presenta un análisis de sensibilidad de la evaluación al c
 
 **Figura** *Análisis de sensibilidad ante cambios en la componente de tendencia.*
 
-![](images/result/tend-sens-dash.png)
+![](images/exclusion-fija/result/tend-sens-dash.png)
 
 Se puede observar que la medida de exclusión óptima es la que obtiene las mejores evaluaciones, sin importar la tendencia aplicada. Se destaca que la aplicación de tendencia siempre deriva en una MSE promedio mayor en todas las medidas, y que la componente exponencial es la que introduce más volatilidad e induce mayores errores estándares.
 
@@ -338,7 +338,7 @@ Ahora se presenta un análisis de sensibilidad de la evaluación al considerar u
 
 **Figura** *Análisis de sensibilidad ante cambios en la trayectoria de inflación paramétrica.*
 
-![](images/result/param-sens-dash.png)
+![](images/exclusion-fija/result/param-sens-dash.png)
 
 Se puede observar que la medida de exclusión óptima es la que obtiene las mejores evaluaciones, sin importar el parámetro contra quien se esté evaluando. 
 
@@ -350,7 +350,7 @@ Como se muestra en la gráfica siguiente, los resultados coinciden sin mayor var
 
 **Figura** *Análisis de sensibilidad ante cambios en el número de simulaciones.*
 
-![](images/result/numSim-sens-dash.png)
+![](images/exclusion-fija/result/numSim-sens-dash.png)
 
 ### Análisis de sensibilidad ante cambios en el muestreo
 
@@ -358,7 +358,7 @@ Se realiza una prueba de sensibilidad utilizando como técnica de remuestreo la 
 
 **Figura** *Análisis de sensibilidad ante cambios en el muestreo.*
 
-![](images/result/sample-sens-dash.png)
+![](images/exclusion-fija/result/sample-sens-dash.png)
 
 Se destaca la disminución en el MSE promedio de la medida de inflación que excluye algunos energéticos. Esta reducción se justifica en la estructura de años completo de los datos contra la estructura mensual, dado que en el muestreo por bloque es menos frecuente la selección de aquellas variaciones intermensuales atípicamente altas o bajas.
 
@@ -366,21 +366,21 @@ Se destaca la disminución en el MSE promedio de la medida de inflación que exc
 
 A continuación, se presentan gráficas de las distribuciones de simulación del MSE en el escenario base. Esta gráfica permite observar el rango, o amplitud, de la distribución de simulación del estadístico de evaluación a través de la gráfica de la distribución acumulada.
 
-![](images/result/mse-dist-dash.png)
+![](images/exclusion-fija/result/mse-dist-dash.png)
 
 Se puede observar que la medida *Energéticos seleccionados* presenta la distribución de MSE promedio con mayor desviación estándar, asimetría y curtosis. Por el contrario, la medida denominada *Exclusión óptima* es la que presenta la menor curtosis y asimetría. 
 
 A continuación, se muestra una gráfica similar, en la que se compara la amplitud de las distribuciones de simulación respecto al tipo de tendencia. Nuevamente, se observa que con cualquiera de los tres tipos de componentes de tendencia, se tienen distribuciones con mayor desviación estándar en la medida que solamente excluye alguno gastos básicos relacionado a energéticos.
 
-![](images/result/trend-sens.png)
+![](images/exclusion-fija/result/trend-sens.png)
 
 En la siguiente gráfica, se compara la amplitud de las distribuciones de simulación en los diferentes períodos de evaluación. En este caso, se observa que las distribuciones con mayor rango son las del período de transición, en cualquiera de los escenarios de tendencia. Además, se hace notar que al tendencia exponencial es la que produce una mayor amplitud en los rangos de MSE en todas las medidas de exclusión fija, así como cualquier periodo de evaluación. 
 
-![](images/result/trend-date-sens-dash.png)
+![](images/exclusion-fija/result/trend-date-sens-dash.png)
 
 ## Análisis de trayectorias para los datos históricamente observados
 
 A continuación, se presenta una gráfica del comportamiento históricamente observado de las diferentes medidas de exclusión evaluadas, comparándolas con la variación interanual del IPC, en el período de diciembre de 2001 a diciembre de 2019. Como se observa, en el período de la base 2000 del IPC, todas las medidas, excepto aquella que excluye todos los gastos básicos de los grupos de combustibles y alimentos, tienden a seguir el comportamiento de la inflación total con niveles cercanos y usualmente menores. Similarmente, se observa el mismo comportamiento en el periodo que comprende a la base 2010 del IPC. Se observa que la medida de inflación que excluye todos los alimentos y combustibles es la que mantiene el menor nivel en todos los periodos, así como una volatilidad reducida. 
 
 
-![](images/result/trayectoria-dash.png)
+![](images/exclusion-fija/result/trayectoria-dash.png)
