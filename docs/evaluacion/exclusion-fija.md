@@ -1,35 +1,43 @@
 # Evaluación de medidas de inflación basadas en la exclusión de gastos básicos
 
-En esta sección se documentan los resultados del proceso de evaluación de las medidas de inflación interanual basadas en la exclusión fija de algunos gástos básicos que componen el índice total de precios.
+En esta sección se documentan los resultados del proceso de evaluación de las medidas de inflación interanual basadas en la exclusión fija de algunos gástos básicos que componen el Índice de Precios al Consumidor. Además de esto, se expone un procedimiento por el cuál se optimiza la exclusión de gastos básicos, a través de la aplicación de la HEMI y diferentes criterios de descarte de los mismos.
 
-Además de esto, se expone un procedimiento por el cuál se optimiza la exclusión de gastos básicos, a través de la aplicación de la HEMI y un criterio de descarte de los mismos
+Las medidas evaluadas en en la presente sección son las siguientes:
 
-las medidas evaluadas en en la presente sección son las siguientes:
+1. Medida de inflación subyacente de exclusión fija de alimentos y energéticos, la cual forma parte del conjunto de medidas de inflación subyacente que integran la medida de inflación subyacente oficial, actualmente vigente en el Banco de Guatemala.
 
-1. Medida de inflación subyacente de exclusión fija de alimentos y energéticos, la cual forma parte del conjunto de medidas de inflación subyacente que integran la medida de Inflación Subyacente Oficial, actualmente vigente en el Banco de Guatemala.
-
-2.	Medida de inflación subyacente de exclusión fija de energéticos, la cual forma parte del conjunto de medidas de inflación subyacente que integran la medida de Inflación Subyacente Oficial, actualmente vigente en el Banco de Guatemala.
+2.	Medida de inflación subyacente de exclusión fija de energéticos, la cual forma parte del conjunto de medidas de inflación subyacente que integran la medida de inflación subyacente oficial, actualmente vigente en el Banco de Guatemala.
 
 3.	Medida de inflación subyacente de exclusión fija de alimentos y energéticos, en la cual queden excluidos todos los alimentos y todos los productos energéticos que forman parte del IPC de Guatemala.
 
-4. Medida de exclusión óptima, la cual es seleccionada a través del proceso de optimización del MSE promedio, al aplicar la HEMI con criterios básicos sobre una lista de medidas de exclusión formada a través de un criterio de orden. Este proceso será detallado en secciones posteriores. 
+4. Medida de exclusión óptima, la cual es seleccionada a través del proceso de optimización del MSE promedio, al aplicar la HEMI con criterios básicos sobre una lista de medidas de exclusión formada utilizando un criterio de ordenamiento de gastos básicos para su exclusión. Esta medida es la que presenta menor MSE a través de los diferentes criterios de ordenamiento. Este proceso será detallado en secciones posteriores. 
 
 Además, se añade un análisis de sensibilidad el cual se efectúa alterando algunos parámetros respecto a los supuestos básicos.
 
 ## Cómputo de la medida de exclusión óptima
 
-La medida de exclusión óptima es una medida de inflación subyacente de exclusión fija, en donde los gastos básicos excluidos son seleccionados a través de la aplicación sucesiva de la HEMI, sobre un conjunto de posibles exclusiones, siendo seleccionada aquella que optimice el estadístico deseado. En ete trabajo se ha optado por utilizar los criterios básicos de evaluación, en donde se busca minimizar el MSE promedio, resultado de la aplicación sucesiva antes mencionada. 
+La medida de exclusión óptima es una medida de inflación subyacente de exclusión fija, en donde los gastos básicos excluidos son seleccionados a través de la aplicación sucesiva de la HEMI, sobre un conjunto de posibles exclusiones, siendo seleccionada aquella que optimice el estadístico deseado. En este trabajo se ha optado por utilizar los criterios básicos de evaluación, en donde se busca minimizar el MSE promedio, resultado de la aplicación sucesiva antes mencionada. 
+
+Para el cómputo de las medidas óptimas de exclusión fija, se utilizaron los siguientes criterios de ordenamiento:
+
+* Desviación estándar de los gastos básicos, ordenado de forma descendente.
+* Correlación de la variación interanual de los gastos básicos respecto a la inflación interanual calculada a través del percentil 72 equiponderado de los gastos básicos, ordenado de forma ascendente.
+* MSE de la variación interanual de los gastos básicos respecto a la inflación interanual calculada a través del percentil 72 equiponderado de los gastos básicos, ordenado de forma descendente.
+
+Cada uno de los diferentes criterios fue aplicado tanto en la base 2000 como en la base 2010. La primera aplicando la HEMI con periodo de evaluación que abarca únicamente la base 2000 y, la segunda, utilizando el periodo de evaluación completo. Dado que para evaluar la base 2010 se utiliza el periodo completo (que abarca ambas bases), se computa, en la porción correspondiente a la base 2000, la inflación de exclusión óptima calculada únicamente para esa base. 
+
+### Procedimiento general de optimización
 
 El procedimiento general de optimización consiste en los siguientes pasos: 
 
-1. Se toma una de las base de datos del ipc (base 2000 o 2010), la cual posee el índice, variación intermensual o interanual para cada uno de los gastos básico en dicha base en un periodo de de tiempo. 
+1. Se toma una de las base de datos del IPC (base 2000 o 2010), la cual posee el índice, la variación intermensual o interanual de cada uno de los gastos básico en dicha base en un periodo de de tiempo. 
 
 2. Se computa un estadístico para cada gasto básico, utilizando toda la información disponible en la base antes seleccionada.
 
-3. Se ordenan los gástos básicos por medio del estadístico computado, siendo ascendente o descendente según sea el caso. Por ejemplo, si se computa la desviación estándar de las variaciones intermensuales de los gatos básicos, se ordenarán de forma descendente, dado que volatilidades muy altas tienden a introducir ruido excesivo en las medidas de inflación.
+3. Se ordenan los gástos básicos por medio del estadístico computado, de forma ascendente o descendente, según sea el caso. Por ejemplo, si se computa la desviación estándar de las variaciones intermensuales de los gatos básicos, se ordenarán de forma descendente, dado que volatilidades muy altas tienden a introducir una proporción de ruido excesivo en las medidas de inflación.
 
 4. Se procede a realizar un procedimiento iterativo exploratorio, en donde se procede a aplicar la HEMI con 10,000 simulaciones del modo siguiente:
-   1. Se procede a realizar la evaluación $i = 1,2,...N$ siendo $N$ el número total de gastos básicos, en donde se excluyen todos los gastos básicos con índice (respecto al orden impuesto) menores a $i$. Es decir, en la iteración $i=5$, se excluyen los gastos básicos que estén en la posición $1,2,3,4$. El caso especial corresponde a un $i=1$, en donde no se excluirá ningún gastos básico. 
+   1. Se procede a realizar la evaluación $i = 1,2,...N$, siendo $N$ el número total de gastos básicos, en donde se excluyen todos los gastos básicos con índice (respecto al orden impuesto) menores a $i$. Es decir, en la iteración $i=5$, se excluyen los gastos básicos que estén en la posición $1,2,3,4$. El caso especial corresponde a un $i=1$, en donde no se excluirá ningún gasto básico. 
 
    2. Del proceso iterativo anterior, se busca la posición $i$ que tiene el menor MSE promedio. 
 
@@ -37,7 +45,7 @@ El procedimiento general de optimización consiste en los siguientes pasos:
 
 5. Se procede a realizar un procedimiento iterativo de optimización definitivo, en donde se procede a aplicar la HEMI con 125,000 simulaciones (definido en los criterios básicos) del modo siguiente:
 
-   1. Se procede a realizar la evaluación $i \in [i-k, i+k]$ siendo $N$ el número total de gastos básicos, en donde se excluyen todos los gastos básicos con índice (respecto al orden impuesto) menores a $i$. Es decir, en la iteración $i=i-k$, se excluyen los gastos básicos que estén en la posición $1,2,...,i-k-1$.
+   1. Se procede a realizar la evaluación $i \in [i-k, i+k]$, siendo $N$ el número total de gastos básicos, en donde se excluyen todos los gastos básicos con índices de orden (respecto al orden impuesto) menores a $i$. Es decir, en la iteración $i=i-k$, se excluyen los gastos básicos que estén en la posición $1,2,...,i-k-1$.
 
    2. Del proceso iterativo anterior, se busca la posición $i$ que tiene el menor MSE promedio. 
 
@@ -45,13 +53,7 @@ El procedimiento general de optimización consiste en los siguientes pasos:
 
 ### Resultados de la optimización de la medida de exclusión fija
 
-Para el cómputo de las medidas óptimas de exclusión fija, se utilizaron los criterios de orden siguientes:
-
-* Desviación estándar de los gastos básicos, ordenado de forma descendente.
-* Correlación de la variación interanual de los gastos básicos respecto a la inflación interanual calculada a través del percentil 72 equiponderado de los gastos básicos, ordenado de forma ascendente.
-* MSE de la variación interanual de los gastos básicos respecto a la inflación interanual calculada a través del percentil 72 equiponderado de los gastos básicos, ordenado de forma descendente.
-
-Cada uno de los diferentes criterios fue aplicado tanto en la base 2000 como en la base 2010.La primera aplicando la HEMI con periodo de evaluación que abarca únicamente la base 2000 y, la segunda, utilizando el periodo de evaluación completo. Dado que para evaluar la base 2010 se utiliza el periodo completo (que abarca ambas bases), se computa, en la porción correspondiente a la base 2000, la inflación de exclusión óptima calculada únicamente para esa base. 
+En esta sección, se documentan los resultados de la aplicación de la HEMI al utilizar diferentes criterios de ordenamiento de gastos básicos para su exclusión. 
 
 #### Criterio de desviación estándar
 
@@ -86,7 +88,6 @@ En el caso de la base 2010, se observa que la exclusión del gasto básico en la
 
 **Figura.** *Optimización definitiva para la base 2010, utilizando el criterio de exclusión de desviación estándar. Gastos básicos de la posición 8 a 28 según criterio de desviación estándar.*
 ![](images/optim10/Optim_std.png)
-
 
 
 #### Criterio de correlación respecto a la inflación interanual percentil 72 equiponderado
@@ -151,7 +152,7 @@ En el caso de la base 2010 y bajo este criterio de exclusión, solamente es nece
 
 #### Selección de criterio de exclusión para la aplicación en la evaluación de medidas
 
-Dado se que se poseen tres diferentes criterios de exclusión, es necesario elegir aquel que poseas las características más deseables, siendo la principal que obtenga el menor valor de MSE promedio de evaluación usando los criterios básicos. A continuación se presenta una tabla resumen de los diferentes resultados de la evaluación según cada criterio
+Dado que se poseen tres diferentes criterios de exclusión, es necesario elegir aquél que posea las características más deseables, siendo la principal característica la de obtener el menor valor de MSE promedio de evaluación usando los criterios básicos. A continuación se presenta una tabla resumen de los diferentes resultados de la evaluación según cada criterio
 
 **Tabla.** *Resumen de resultados de la aplicación de los diferentes criterios de exclusión. MSE promedio en las diferentes bases.*
 
@@ -231,7 +232,7 @@ Dado se que se poseen tres diferentes criterios de exclusión, es necesario eleg
 
 Dada la información resumida en las tablas, el criterio de exclusión basado en al desviación estándar es el que produce la medida óptima de exclusión con menos MSE promedio respecto a todos los criterios propuestos. Esta medida excluye los siguientes gastos básicos:
 
-* Para la base 2000
+* En la base 2000 del IPC se excluyen: 
    1. Cebolla
    2. Tomate
    3. Otras cuotas fijas y extraordinarias en la educaión preprimaria y primaria
@@ -247,7 +248,7 @@ Dada la información resumida en las tablas, el criterio de exclusión basado en
    13. Otras cuotas fijas y extraordinarios en la educación secundaria
    14. Transporte urbano
 
-* Para la base 2010
+* En la base 2010 del IPC se excluyen:
    1. Tomate
    2. Chile pimiento
    3. Gas propano
@@ -276,7 +277,7 @@ Dicha evaluación se llevó a cabo utilizando los criterios básicos, aplicados 
 
 ![](images/result/Promedio-dash.png)
 
-Se puede observar que, en primero lugar, la medida de exclusión fija que únicamente descarta los gastos básico del grupo de combustibles, presenta el mayor error estándar. Esto se debe a que los gástos básico con mayor volatilidad se encuentran dentro del grupo de los alimentos. En segundo lugar, se destaca que la medida de inflación que descarta todos los alimentos y energéticos posee un MSE promedio mayor a la medida que descarta algunos alimentos y energético y a la medida de exclusión óptima. Esto quiere decir algunos gastos básicos y energéticos aportan información de tal modo que la medida de exclusión se acerca más a la inflación paramétrica.En tercer lugar y, aunque descartar algunos gastos básicos de los grupo de alimentos y energéticos producen una medida mejor evaluada, el procedimiento de optimización junto a un criterio adecuado puede derivar en una medida mejor evaluada, tal es el caso de la medida de exclusión óptima en contra de la medida que excluye alimentos y energéticos seleccionados.
+Se puede observar que, en primer lugar, la medida de exclusión fija que únicamente descarta los gastos básico del grupo de combustibles, presenta el mayor error estándar. Esto se debe a que los gástos básico con mayor volatilidad se encuentran dentro del grupo de los alimentos. En segundo lugar, se destaca que la medida de inflación que descarta todos los alimentos y energéticos posee un MSE promedio mayor a la medida que descarta algunos alimentos y energético y a la medida de exclusión óptima. Esto quiere decir algunos gastos básicos y energéticos aportan información de tal modo que la medida de exclusión se acerca más a la inflación paramétrica.En tercer lugar y, aunque descartar algunos gastos básicos de los grupo de alimentos y energéticos producen una medida mejor evaluada, el procedimiento de optimización junto a un criterio adecuado puede derivar en una medida mejor evaluada, tal es el caso de la medida de exclusión óptima en contra de la medida que excluye alimentos y energéticos seleccionados.
 
 
 **Figura.** *Resultado de la evaluación con criterios básicos. Descomposición del MSE*
@@ -379,7 +380,7 @@ En la siguiente gráfica, se compara la amplitud de las distribuciones de simula
 
 ## Análisis de trayectorias para los datos históricamente observados
 
-A continuación, se presenta una gráfica del comportamiento históricamente observado de las diferentes medidas de exclusión evaluadas, comparándolas con la variación interanual del IPC, en el período de diciembre de 2001 a diciembre de 2019. Como se observa, en la porción de la base 2000 todas las medidas, excepto aquella que excluye todos los gastos de los grupos de combustibles y alimentos, tiendan a seguir el comportamiento de la inflación total con niveles cercanos y usualmente menores. Se observa el mismo comportamiento en el periodo que comprende a la base 2010. Se observa que la medida de inflación que excluye todos los alimento y combustibles es la que mantiene el menor nivel en todos los periodos, así como una volatilidad reducida. 
+A continuación, se presenta una gráfica del comportamiento históricamente observado de las diferentes medidas de exclusión evaluadas, comparándolas con la variación interanual del IPC, en el período de diciembre de 2001 a diciembre de 2019. Como se observa, en el período de la base 2000 del IPC, todas las medidas, excepto aquella que excluye todos los gastos básicos de los grupos de combustibles y alimentos, tienden a seguir el comportamiento de la inflación total con niveles cercanos y usualmente menores. Similarmente, se observa el mismo comportamiento en el periodo que comprende a la base 2010 del IPC. Se observa que la medida de inflación que excluye todos los alimentos y combustibles es la que mantiene el menor nivel en todos los periodos, así como una volatilidad reducida. 
 
 
 ![](images/result/trayectoria-dash.png)
