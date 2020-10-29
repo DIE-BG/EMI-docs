@@ -15,8 +15,9 @@ La siguiente gráfica muestra la descomposición aditiva del error cuadrático m
 
 A continuación, se presentan algunos análisis de sensibilidad respecto al escenario con los criterios básicos de evaluación.
 
+## Análisis de sensibilidad
 
-## Análisis de sensibilidad ante cambios en el período final de evaluación
+### Análisis de sensibilidad ante cambios en el período final de evaluación
 
 Debido a que se considera el período completo (hasta diciembre de 2019), como criterio básico de evaluación, a continuación se realiza un análisis de sensibilidad que considera los resultados ante un cambio en la fecha final del período de evaluación. Se consideran los siguientes períodos finales de evaluación:  
 
@@ -29,7 +30,7 @@ Los resultados se muestran en la gráfica que se muestra a continuación.
 
 Como se puede observar, en todos los períodos finales considerados, el **percentil equiponderado 72** y el **percentil ponderado 70** resultan invariantemente óptimos en términos del MSE de evaluación. Estos resultados muestran que el percentil óptimo, en ambos tipos de medidas de inflación, no es tan sensible a cambios en las fechas finales del período de evaluación que están separadas entre 6 meses y un año.  
 
-## Análisis de sensibilidad ante cambio en la medida de evaluación
+### Análisis de sensibilidad ante cambio en la medida de evaluación
 
 Considerando estadísticos de evaluación alternativos, se construye una gráfica que ilustra el desempeño de las medidas consideradas como óptimas al aplicar los criterios básicos de evaluación utilizando diferentes medidas de evaluación. Dicha gráfica se muestra a continuación.  
 
@@ -42,7 +43,7 @@ Respecto al grupo de percentiles ponderados, se observa que en términos de la r
 En general, se puede concluir que al considerar diferentes estadísticos de evaluación del desempeño de las medidas de inflación, las medidas de inflación consideradas como óptimas al aplicar los criterios básicos de evaluación, no presentan una gran variabilidad, excepto en el caso del coeficiente de correlación lineal. 
 
 
-## Análisis de sensibilidad ante cambios en el subperíodo de evaluación
+### Análisis de sensibilidad ante cambios en el subperíodo de evaluación
 
 A continuación, se presenta un análisis de sensibilidad de la evaluación al considerar un cambio en el período de evaluación. La siguiente gráfica ilustra la evaluación de los grupos de percentiles equiponderados y ponderados en los diferentes períodos de evaluación, mientras que el escenario con el criterio básico de evaluación observa en la última fila, correspondiente al período completo.  
 
@@ -55,7 +56,7 @@ Mientras tanto, en el grupo de los percentiles ponderados, se observa que existe
 De forma general, aunque se observan ligeras desviaciones a través de los períodos de evaluación, se puede observar que el percentil óptimo se encuentra, para cualquier subperíodo, entre los percentiles equiponderados 71 y 75 y entre los percentiles ponderados 69 y 73.
 
 
-## Análisis de sensibilidad ante cambios en la componente de tendencia
+### Análisis de sensibilidad ante cambios en la componente de tendencia
 
 A continuación, se presenta un análisis de sensibilidad de la evaluación al considerar un cambio en la componente aditiva de tendencia del procedimiento de evaluación. La siguiente gráfica ilustra la evaluación de los grupos de percentiles equiponderados y ponderados en tres escenarios de tendencia, siendo el criterio básico el que se observa en la primera fila, correspondiente a la componente de tendencia de caminata aleatoria. 
 
@@ -63,7 +64,7 @@ A continuación, se presenta un análisis de sensibilidad de la evaluación al c
 
 Como se puede observar, el percentil equiponderado 72 resulta el óptimo en los escenarios de tendencia de caminata aleatoria y sin tendencia, mientras que en el escenario de crecimiento exponencial, es el percentil equiponderado 73 el que resulta óptimo. A su vez, el percentil ponderado 70 resulta óptimo en el escenario de caminata aleatoria, mientras que en el escenario sin tendencia es el percentil ponderado 69 y en el escenario de crecimiento exponencial, es el percentil ponderado 71 el que resulta óptimo. Por lo tanto, nuevamente se observa poca variabilidad en los percentiles óptimos del criterio básico ante cambios en la componente de tendencia utilizada en la evaluación. 
 
-## Análisis de sensibilidad ante cambios en la trayectoria de inflación paramétrica
+### Análisis de sensibilidad ante cambios en la trayectoria de inflación paramétrica
 
 Ahora se presenta un análisis de sensibilidad de la evaluación al considerar un cambio en la trayectoria de inflación paramétrica del procedimiento de evaluación. La siguiente gráfica ilustra la evaluación de los grupos de percentiles equiponderados y ponderados utilizando tres diferentes parámetros de inflación, siendo el criterio básico de evaluación el que se observa en la primera fila, correspondiente a la evaluación respecto al parámetro de variación interanual del IPC con cambios de base.
 
@@ -76,7 +77,7 @@ Por su parte, respecto a los resultados de evaluación al utilizar la media pond
 En general, se puede concluir que aunque se observan ligeras desviaciones a través de los diferentes parámetros de inflación, se puede observar que el percentil óptimo se encuentra entre los percentiles equiponderados 71 y 77 y entre los percentiles ponderados 69 y 73.
 
 
-## Análisis de sensibilidad ante cambios en el número de simulaciones
+### Análisis de sensibilidad ante cambios en el número de simulaciones
 
 En este caso, se realiza una prueba de sensibilidad cambiando el número de simulaciones a 500,000 realizaciones de las trayectorias de inflación muestral. Este número de simulaciones es superior al que se obtendría dejando $\epsilon$ constante y cambiando de $\gamma=0.95$ a $\gamma=0.99$, el cual resulta en 215,799 realizaciones. 
 
@@ -84,7 +85,7 @@ Como se muestra en la gráfica siguiente, los resultados coinciden sin mayor var
 
 ![Evaluacion percentiles análisis sensibilidad simulaciones](images/percentiles/2020-10-05-15-47-33.png)
 
-## Análisis de sensibilidad ante cambios en el muestreo
+### Análisis de sensibilidad ante cambios en el muestreo
 
 Se realiza una prueba de sensibilidad utilizando como técnica de remuestreo la variante de *nonoverlapping block bootstrap* con bloques de 12 meses. El muestreo se realiza de forma independiente para cada unos de los gastos básicos en cada una de las bases del IPC. A continuación, se muestran los resultados en la gráfica siguiente.  
 
@@ -92,7 +93,7 @@ Se realiza una prueba de sensibilidad utilizando como técnica de remuestreo la 
 
 Como se puede observar, utilizando una variante de muestreo de *block bootstrap*, el **percentil equiponderado 72** y el **percentil ponderado 70** resultan ser nuevamente los estimadores muestrales que minimizan el MSE de evaluación en el período completo, con resultados hasta el período de diciembre de 2019. 
 
-## Distribuciones de simulación del MSE en las medidas óptimas
+### Distribuciones de simulación del MSE en las medidas óptimas
 
 A continuación, se presentan gráficas de las distribuciones de simulación del MSE aplicando los criterios básicos de evaluación. Esta gráfica permite observar el rango, o amplitud, de la distribución de simulación del estadístico de evaluación a través de la gráfica de la distribución acumulada.
 
