@@ -15,7 +15,7 @@ nav:
     - Evaluación: 
         - Criterios de evaluación y pruebas de sensibilidad: evaluacion/criterios-de-evaluacion.md 
         - Evaluación de las medidas basadas en percentiles: evaluacion/evaluacion-percentiles.md
-        - Evaluación de las medidas basadas en exclusión fija: evaluacion/exclusion-fija.md
+        - Evaluación de las medidas basadas en exclusión fija: evaluacion/evaluacion-exclusion-fija.md
 
 theme: 
     name: readthedocs
