@@ -13,7 +13,8 @@ nav:
         - Selección de la medida de evaluación: calibracion/Determinación medida evaluación.md
         - Remuestreo con block bootstrap: calibracion/Remuestreo block bootstrap.md
     - Evaluación: 
-        - Criterios de evaluación y pruebas de sensibilidad: evaluacion/criterios-de-evaluacion.md 
+        - Criterios de evaluación y pruebas de sensibilidad: evaluacion/criterios-de-evaluacion.md
+        - Evaluación de las madidas de inflación total: evaluacion/inflaciones-totales.md
         - Evaluación de las medidas basadas en percentiles: evaluacion/evaluacion-percentiles.md
         - Evaluación de las medidas basadas en exclusión fija: evaluacion/evaluacion-exclusion-fija.md
         - Evaluación de las medidas basadas en medias truncadas: evaluacion/evaluacion-medias-truncadas.md
