@@ -27,11 +27,11 @@ Respecto a la media ponderada, podemos notar que la media móvil de 8 meses es l
 
 Finalmente, si se compara se puede notar que la tanto la media ponderada sin media móvil, así como sus medias móviles, presentan un menor valor de MSE promedio respecto a la inflación total con media móvil de 12 meses, la cual es la mejor evaluada entre el conjunto de medidas basadas en la inflación total. 
 
-## Análisis de sensibilidad ****
+## Análisis de sensibilidad
 
-En esta sección se presentan los análisis de sensbilidad obtenidos en el ejercicio de evaluación de las medidas de inflación basadas en métodos de exclusión fija. 
+En esta sección se presentan los análisis de sensibilidad obtenidos en el ejercicio de evaluación de las medidas de inflación total, asi como las derivadas del cálculo de sus medias móviles.  
 
-### Análisis de sensibilidad ante cambios en el período final de evaluación ****
+### Análisis de sensibilidad ante cambios en el período final de evaluación 
 
 Debido a que se considera el período completo de evaluación hasta diciembre de 2019, se realiza un análisis de sensibilidad que considera los resultados ante un cambio en el período final de evaluación. Se consideran los siguientes períodos finales de evaluación:
 
@@ -39,88 +39,134 @@ Debido a que se considera el período completo de evaluación hasta diciembre de
 * Junio de 2019
 * Diciembre 2019
 
-**Figura.** *Análisis de sensibilidad respecto del período final considerado en la evaluación.*
-![](images/exclusion-fija/result/final-sens-dash.png)
+**Figura.** *Análisis de sensibilidad respecto del período final considerado en la evaluación. Inflación total CPI.*
+![](images/inflaciones-totales/final-cpidash.png)
 
-Como se puede observar, en todos los períodos finales considerados,la medida de exclusión óptima resulta invariantemente óptima en términos del MSE de evaluación. Estos resultados muestran que dicha medida óptima no es sensible a cambios en los períodos finales de evaluación que están separados entre 6 meses y un año.
+Como se puede observar, el valor del MSE promedio para la inflación total CPI es poco sensible ante cambios en el periodo final de evaluación. Además, se observa que la media móvil de 12 meses de dicha medida es la mejor evaluada sin importar el periodo final de evaluación.
 
-### Análisis de sensibilidad ante cambio en la medida de evaluación ****
+**Figura.** *Análisis de sensibilidad respecto del período final considerado en la evaluación. Media ponderada.*
+![](images/inflaciones-totales/final-mpadash.png)
 
-Considerando los estadísticos de evaluación alternativos, se construye una gráfica que ilustra el desempeño de las medidas consideradas, utilizando diferentes medidas de evaluación. Dicha gráfica se muestra a continuación.
-
-**Figura.** *Análisis de sensibilidad respecto al cambio en la medida de evaluación.*
-![](images/exclusion-fija/result/Medidas-sens-dash.png)
-
-Se puede observar que la medida de exclusión óptima es la que obtiene las mejores evaluaciones, sin importar el estadístico utilizado. Cabe destacar que la medida de exclusión de alimentos y energéticos seleccionados se encuentra cercana a los resultados obtenidos a la medida de exclusión óptima. 
-
-### Análisis de sensibilidad ante cambios en el subperíodo de evaluación ****
-
-A continuación, se presenta un análisis de sensibilidad de la evaluación al considerar un cambio en el período de evaluación. La siguiente gráfica ilustra la evaluación de las diferentes medidas exclusión en los diferentes períodos de evaluación, mientras que el escenario base se observa en la última fila, correspondiente al período completo.
-
-**Figura.** *Análisis de sensibilidad ante cambios en el subperíodo de evaluación.*
-![](images/exclusion-fija/result/eval-sens-dash.png)
-
-Se puede observar que la medida de exclusión óptima es la que obtiene las mejores evaluaciones, sin importar el periodo de evaluación utilizado. Se destaca que en el periodo de transición *2000-2010* se encuentran los mayores MSE promedio, derivado de la alta volatilidad en este periodo. Además, se observa que descarta únicamente algunos energéticos seleccionado posee los mayores MSE promedio.
-
-### Análisis de sensibilidad ante cambios en la componente de tendencia ****
-
-A continuación, se presenta un análisis de sensibilidad de la evaluación al considerar un cambio en la componente multiplicativa de tendencia en el procedimiento de evaluación. La siguiente gráfica ilustra la evaluación de las medidas de exclusión fija en tres escenarios de tendencia, siendo el escenario con criterios básicos el que se observa en la primera fila, correspondiente a la componente de tendencia de caminata aleatoria.
+Del mismo modo, se observa que la inflación media ponderada tampoco es sensible ante cambios el periodo final de evaluación. Sin embargo, la média móvil mejor evaluada sí cambia respecto a la fecha de finalización, siendo la media móvil de 8 meses la que corresponde a diciembre de 2019 y la média móvil de 9 meses para los periodos restantes.
 
 
-**Figura.** *Análisis de sensibilidad ante cambios en la componente de tendencia.*
-![](images/exclusion-fija/result/tend-sens-dash.png)
+### Análisis de sensibilidad ante cambio en la medida de evaluación
 
-Se puede observar que la medida de exclusión óptima es la que obtiene las mejores evaluaciones, sin importar la tendencia aplicada. Se destaca que la aplicación de tendencia siempre deriva en una MSE promedio mayor en todas las medidas, y que la componente exponencial es la que introduce más volatilidad e induce mayores errores estándares.
+Considerando los estadísticos de evaluación alternativos, se construyen gráficas que ilustran el desempeño de las medidas consideradas, utilizando diferentes medidas de evaluación. Dichas gráficas se muestran a continuación.
 
-### Análisis de sensibilidad ante cambios en la trayectoria de inflación paramétrica ****
+**Figura.** *Análisis de sensibilidad respecto al cambio en la medida de evaluación. Inflación total CPI.*
+![](images/inflaciones-totales/medidas-cpidash.png)
 
-Ahora se presenta un análisis de sensibilidad de la evaluación al considerar un cambio en la trayectoria de inflación paramétrica del procedimiento de evaluación. La siguiente gráfica ilustra la evaluación de las diferentes medidas de exclusión fija utilizando tres diferentes parámetros de inflación, siendo el escenario base el que se observa en la primera fila, correspondiente a la evaluación respecto al parámetro de variación interanual del IPC con cambios de base.
+Como se observa en la gráfica, la medida de inflación total CPI es sensible ante el cambio de estadístico. Se puede notar por medio del error medio, que las médias móviles tienden a introducir sesgo a la medida, esto debido a el atraso de la señal que se deriva de este procedimiento. Además podemos notar que la media móvil de 8 meses es la que presenta la mejor correlación promedio. 
 
-**Figura.** *Análisis de sensibilidad ante cambios en la trayectoria de inflación paramétrica.*
-![](images/exclusion-fija/result/param-sens-dash.png)
+**Figura.** *Análisis de sensibilidad respecto al cambio en la medida de evaluación. Media ponderada.*
+![](images/inflaciones-totales/medidas-mpadash.png)
 
-Se puede observar que la medida de exclusión óptima es la que obtiene las mejores evaluaciones, sin importar el parámetro contra quien se esté evaluando. 
+Del mismo modo que ocurre con la inflación total CPI, el promedio móvil sobre la media ponderada introduce un componente de sesgo positivos a través de las médias móviles. Sin embargo, la medida de inflación es menos sensible ante los cambios del estadístico a evaluar. 
 
-### Análisis de sensibilidad ante cambios en el número de simulaciones ****
+### Análisis de sensibilidad ante cambios en el subperíodo de evaluación
 
-En este caso, se realiza una prueba de sensibilidad cambiando el número de simulaciones a 500,000 realizaciones de las trayectorias de inflación muestral.
+A continuación, se presenta un análisis de sensibilidad de la evaluación al considerar un cambio en el período de evaluación. Las siguientes gráficas ilustran la evaluación de las diferentes medidas en los diferentes períodos de evaluación, mientras que el escenario base se observa en la última fila, correspondiente al período completo.
 
-Como se muestra en la gráfica siguiente, los resultados coinciden sin mayor variabilidad. Esto se debe a que el número inicial de simulaciones es, en realidad, más que suficiente para la distribución del MSE de los estimadores muestrales (en realidad, con alrededor de 10,000 simulaciones se tenía errores estándar de simulación muy pequeños).
+**Figura.** *Análisis de sensibilidad ante cambios en el subperíodo de evaluación. Inflación total CPI.*
+![](images/inflaciones-totales/periodo-cpidash.png)
 
-**Figura.** *Análisis de sensibilidad ante cambios en el número de simulaciones.*
-![](images/exclusion-fija/result/numSim-sens-dash.png)
+Se observa que la medida de inflación total CPI es altamente sensible al periodo de evaluación. Tanto para el periodo que abarca la base 2000 como el periodo completo, la medida mejor evaluada corresponde a la media móvil de 12 meses, sin embargo, para el periodo de transición la medida sin cálculo de media móvil es la mejor evaluada. Para el periodo que comprende únicamente a la base 2010, es la media móvil de 3 meses la que optimiza el MSE promedio.
 
-### Análisis de sensibilidad ante cambios en el muestreo ****
+**Figura.** *Análisis de sensibilidad ante cambios en el subperíodo de evaluación. Media ponderada.*
+![](images/inflaciones-totales/periodo-mpadash.png)
 
-Se realiza una prueba de sensibilidad utilizando como técnica de remuestreo la variante de nonoverlapping block bootstrap con bloques de 12 meses. El muestreo se realiza de forma independiente para cada unos de los gastos básicos en cada una de las bases del IPC. A continuación, se muestran los resultados en la gráfica siguiente.
+Si observamos el valor del MSE promedio de la evaluación de la media ponderada sin media móvil, podemos notar que es menos sensible ante los cambios del periodo de evaluación. Sin embargo, la media móvil óptima sí es sensible ante este cambio. 
 
-**Figura.** *Análisis de sensibilidad ante cambios en el muestreo.*
-![](images/exclusion-fija/result/sample-sens-dash.png)
+### Análisis de sensibilidad ante cambios en la componente de tendencia
 
-Se destaca la disminución en el MSE promedio de la medida de inflación que excluye algunos energéticos. Esta reducción se justifica en la estructura de años completo de los datos contra la estructura mensual, dado que en el muestreo por bloque es menos frecuente la selección de aquellas variaciones intermensuales atípicamente altas o bajas.
+A continuación, se presenta un análisis de sensibilidad de la evaluación al considerar un cambio en la componente multiplicativa de tendencia en el procedimiento de evaluación. Las siguientes gráficas ilustran la evaluación de las medidas de inflación total en tres escenarios de tendencia, siendo el escenario con criterios básicos el que se observa en la primera fila, correspondiente a la componente de tendencia de caminata aleatoria.
 
-### Distribuciones de simulación del MSE en las medidas óptimas ****
+
+**Figura.** *Análisis de sensibilidad ante cambios en la componente de tendencia. Inflación total CPI.*
+![](images/inflaciones-totales/tendencia-cpidash.png)    
+
+Si observamos el MSE promedio de la inflación total CPI sin media móvil en los tres escenarios, notamos que el valor de dicho estadístico es altamente sensible a la forma de la aplicación de la tendencia, sin embargo, podemos notar que la media móvil de 12 meses es la que presenta el menor MSE promedio sin importar la tendencia aplicada. 
+
+**Figura.** *Análisis de sensibilidad ante cambios en la componente de tendencia. Media ponderada.*
+![](images/inflaciones-totales/tendencia-mpadash.png)    
+
+Respecto a la media ponderada, el MSE promedio de la medida sin media móvil es menos sensible al cambio de la aplicación de tendencia, comparado con la inflación total. También se observa que la media móvil óptima para esta medida de inflación es sensible a la tendencia aplicada, siendo de 8 meses para la aplicación de caminata aleatoria y 12 para las demás.
+
+### Análisis de sensibilidad ante cambios en la trayectoria de inflación paramétrica
+
+Se presenta un análisis de sensibilidad de la evaluación al considerar un cambio en la trayectoria de inflación paramétrica del procedimiento de evaluación. La siguiente gráfica ilustra la evaluación de las diferentes medidas de inflación total utilizando tres diferentes parámetros de inflación, siendo el escenario base el que se observa en la primera fila, correspondiente a la evaluación respecto al parámetro de variación interanual del IPC con cambios de base.
+
+**Figura.** *Análisis de sensibilidad ante cambios en la trayectoria de inflación paramétrica. Inflación total IPC.*
+![](images/inflaciones-totales/param-cpidash.png)  
+
+Se observa que el MSE promedio de la medida de inflación total sin media móvil no es altamente sensible al cambio de inflación paramétrica. Además, la media móvil óptima no varía ante cambios en el parámetro de inflación.
+
+**Figura.** *Análisis de sensibilidad ante cambios en la trayectoria de inflación paramétrica. Media ponderada.*
+![](images/inflaciones-totales/param-mpadash.png) 
+
+En el caso de la media ponderada, podemos notar que el MSE promedio sin media móvil es sensible en el caso de la evaluación contra la inflación parámetro IPC total.  Además de esto, se observa que la media móvil óptima es sensible ante cambios en el parámetro de inflación. 
+
+### Análisis de sensibilidad ante cambios en el número de simulaciones
+
+A contuación se presenta un análisis de sensibilidad cambiando el número de simulaciones a 500,000 realizaciones de las trayectorias de inflación muestral.
+
+**Figura.** *Análisis de sensibilidad ante cambios en el número de simulaciones. Inflación total IPC.*
+![](images/inflaciones-totales/nSim-cpidash.png) 
+
+Respecto a la medida de inflación total IPC, podemos notar que no es altamente sensible ante cambios en el número de simulaciones, manteniéndose la media móvil óptima.
+
+**Figura.** *Análisis de sensibilidad ante cambios en el número de simulaciones. Media ponderada.*
+![](images/inflaciones-totales/nSim-mpadash.png) 
+
+Respecto a la media ponderada, podemos notar que no es sensible ante el cambio en el número de simulaciones, manteniéndose la media movil óptima. Podemos notar que esta medida es mucho menos sensible ante los cambios en el número de simulaciones, comparado con la inflación total.
+
+### Análisis de sensibilidad ante cambios en el muestreo ---
+
+Se realiza una prueba de sensibilidad utilizando como técnica de remuestreo la variante de *nonoverlapping block bootstrap* con bloques de 12 meses. El muestreo se realiza de forma independiente para cada unos de los gastos básicos en cada una de las bases del IPC. A continuación, se muestran los resultados en la gráfica siguiente.
+
+**Figura.** *Análisis de sensibilidad ante cambios en el muestreo. Inflación total IPC.*
+![](images/inflaciones-totales/muestreo-cpidash.png) 
+
+El método de cómputo de la inflación total IPC hace que sea altamente sensible ante variaciones anómalas en los gatos básicos. El muestreo por bloque reduce la importante de las variaciones anómalas, dado que la probabilidad de su ocurrencia dentro del muestreo es mucho menor. Debido a esto, la medida es altamente sensible ante dichos cambios.
+
+**Figura.** *Análisis de sensibilidad ante cambios en el muestreo. Media ponderada.*
+![](images/inflaciones-totales/muestreo-mpadash.png) 
+
+Respecto a la media ponderada, podemos notar que la medida es mucho menos sensible ante los cambios en el tipo de muestreo. Esto debido a que dicho método de cálculo es menos sensible ante variaciones anómalas.
+
+### Distribuciones de simulación del MSE en las medidas óptimas
 
 A continuación, se presentan gráficas de las distribuciones de simulación del MSE en el escenario base. Esta gráfica permite observar el rango, o amplitud, de la distribución de simulación del estadístico de evaluación a través de la gráfica de la distribución acumulada.
 
-**Figura.** *Distribuciones de simulación del MSE de las medidas de exclusión fija con criterio basicos*.
-![](images/exclusion-fija/result/mse-dist-dash.png)
+**Figura.** *Distribuciones de simulación del MSE de la medida de inflación total IPC y sus respectivas medias móviles.*.
+![](images/inflaciones-totales/cdf-cpidash.png) 
 
-Se puede observar que la medida *Energéticos seleccionados* presenta la distribución de MSE promedio con mayor desviación estándar, asimetría y curtosis. Por el contrario, la medida denominada *Exclusión óptima* es la que presenta la menor curtosis y asimetría. 
 
-A continuación, se muestra una gráfica similar, en la que se compara la amplitud de las distribuciones de simulación respecto al tipo de tendencia. Nuevamente, se observa que con cualquiera de los tres tipos de componentes de tendencia, se tienen distribuciones con mayor desviación estándar en la medida que solamente excluye alguno gastos básicos relacionado a energéticos.
+Podemos notar que las medias móviles que abarcan más periodos, tienden a acumular más probabilidad en valores de MSE promedio más bajos.
 
-**Figura.** *Distribuciones de simulación del MSE de las medidas de exclusión fija con criterio basicos, por tipo de tendencia aplicada en la evaluación*.
-![](images/exclusion-fija/result/trend-sens.png)
+**Figura.** *Distribuciones de simulación del MSE de la medida de inflación media ponderada y sus respectivas medias móviles.*.
+![](images/inflaciones-totales/cdf-mpadash.png) 
 
-En la siguiente gráfica, se compara la amplitud de las distribuciones de simulación en los diferentes subperíodos de evaluación. En este caso, se observa que las distribuciones con mayor rango son las del período de transición, en cualquiera de los escenarios de tendencia. Además, se hace notar que al tendencia exponencial es la que produce una mayor amplitud en los rangos de MSE en todas las medidas de exclusión fija, así como cualquier periodo de evaluación. 
+Respecto al a media ponderada, se percibe el mismo efecto de las medias móviles sobre la distribución del MSE promedio, siendo más severo el desplazamiento en aquellas distribuciones derivadas de una media móvil con menos ded 5 periodos. 
 
-**Figura.** *Distribuciones de simulación del MSE de las medidas de exclusión fija con criterio basicos, por subperíodo de evaluación*.
-![](images/exclusion-fija/result/trend-date-sens-dash.png)
+Podemos notar que el MSE promedio derivado de la evaluación de la media ponderada tiene una media y dispersión menor a la derivada de la medida de inflación total IPC. En este caso, la diferencia es la sensibilidad de la medida de inflación ante variaciones anómalas en los gatos básicos.
+
+
+**Figura.** *Distribuciones de simulación del MSE de la medida de inflación total IPC con criterio básicos y por tipo de tendencia aplicada en la evaluación*.
+![](images/inflaciones-totales/cdf-cpi-trend-periododash.png) 
+
+En la gráfica anterior, correspondiente a la medida de inflación total IPC, podemos observar que, a una misma tendencia aplicada fija, el periodo de transición 2000-2010 es el que genera una distribución de MSE promedio más dispersa. Por el contrario, el periodo de evaluación 2010 es el que presenta la distribución menos dispersa, además de estar concentrada en MSE promedio menores. Respecto a la tendencia, podemos notar que la aplicación de crecimiento exponencial genera la distribución más dispersa, concentrándose en MSE promedio mayores a los observados en los otros tipos de aplicaciones de tendencia. 
+
+
+**Figura.** *Distribuciones de simulación del MSE de la meida ponderada con criterio básicos y por tipo de tendencia aplicada en la evaluación*.
+![](images/inflaciones-totales/cdf-mpa-trend-periododash.png) 
+
+Las conclusiones son similares para las distribuciones del MSE promedio obtenidas al evaluar la media ponderada, con la observación que dichas distribuciones se centran en valores mucho menores a los obtenidos al evaluar la inflación total CPI. 
 
 ## Análisis de trayectorias para los datos históricamente observados ****
 
-A continuación, se presenta una gráfica del comportamiento históricamente observado de las diferentes medidas de exclusión evaluadas, comparándolas con la variación interanual del IPC, en el período de diciembre de 2001 a diciembre de 2019. Como se observa, en el período de la base 2000 del IPC, todas las medidas, excepto aquella que excluye todos los gastos básicos de los grupos de combustibles y alimentos, tienden a seguir el comportamiento de la inflación total con niveles cercanos y usualmente menores. Similarmente, se observa el mismo comportamiento en el periodo que comprende a la base 2010 del IPC. Se observa que la medida de inflación que excluye todos los alimentos y combustibles es la que mantiene el menor nivel en todos los periodos, así como una volatilidad reducida. 
+A continuación, se presenta una gráfica del comportamiento históricamente observado de las medidas de inflación total (y sus medias móviles), comparándolas con la variación interanual del IPC, en el período de diciembre de 2001 a diciembre de 2019. En primer lugar, podemos observar que las medias móviles tienden a atrasar y suavizar la señal provista por las medidas de inflación total IPC y media ponderada. Además, el nivel de las inflaciones totales IPC y la media ponderada son similares durante la base 2000, separándose presistentemente a partir de 2015 (en la base 2010).
 
-**Figura.** *Trayectorias de inflación históricamente observadas de las medidas de exclusión fija evaluadas*.
-![](images/exclusion-fija/result/trayectoria-dash.png)
+**Figura.** *Trayectorias de inflación históricamente observadas en la inflación total IPC, como en la media ponderada y sus respectivas medias móviles*.
+![](images/inflaciones-totales/trayectoriasdash.png) 
