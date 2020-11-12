@@ -164,7 +164,7 @@ En la gráfica anterior, correspondiente a la medida de inflación total IPC, po
 
 Las conclusiones son similares para las distribuciones del MSE promedio obtenidas al evaluar la media ponderada, con la observación que dichas distribuciones se centran en valores mucho menores a los obtenidos al evaluar la inflación total CPI. 
 
-## Análisis de trayectorias para los datos históricamente observados ****
+## Análisis de trayectorias para los datos históricamente observados
 
 A continuación, se presenta una gráfica del comportamiento históricamente observado de las medidas de inflación total (y sus medias móviles), comparándolas con la variación interanual del IPC, en el período de diciembre de 2001 a diciembre de 2019. En primer lugar, podemos observar que las medias móviles tienden a atrasar y suavizar la señal provista por las medidas de inflación total IPC y media ponderada. Además, el nivel de las inflaciones totales IPC y la media ponderada son similares durante la base 2000, separándose presistentemente a partir de 2015 (en la base 2010).
 
