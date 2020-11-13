@@ -73,7 +73,7 @@ En general, se puede concluir que al considerar diferentes estadísticos de eval
 
 ### Análisis de sensibilidad ante cambios en el subperíodo de evaluación
 
-A continuación, se presenta un análisis de sensibilidad de la evaluación al considerar un cambio en el período de evaluación. La siguiente gráfica ilustra la evaluación de los grupos de de medias truncadas equiponderadas y ponderadas en los diferentes períodos de evaluación, mientras que el escenario con el criterio básico de evaluación observa en la última fila, correspondiente al período completo.  
+A continuación, se presenta un análisis de sensibilidad de la evaluación al considerar un cambio en el período de evaluación. La siguiente gráfica ilustra la evaluación de los grupos de medias truncadas equiponderadas y ponderadas en los diferentes períodos de evaluación, mientras que el escenario con el criterio básico de evaluación observa en la última fila, correspondiente al período completo.  
 
 **Figura.** *Análisis de sensibilidad respecto del subperíodo de evaluación*.
 ![Evaluacion medias truncadas análisis sensibilidad subperíodo evaluación](images/medias-truncadas/evaluacion-medias-truncadas.md-2020-10-28-17-33-26.png)
