@@ -4,23 +4,30 @@ En esta sección se documentan los resultados del proceso de evaluación de la m
 
 Finalmente, se añade un análisis de sensibilidad, el cual se efectúa modificando algunos parámetros respecto de los criterios básicos de evaluación.
 
-## Proceso de optimización se los límites de exclusión
-
-Dada la desviación estándar $\sigma_{v_t}$ del conjunto $\lbrace v_{t,i}\rbrace_{i=1}^N$, la cual corresponde a las variaciones intermensuales de todos los gastos básicos en el periodo $t$, definimos el subconjunto 
+Dada la desviación estándar $\sigma_{v_t}$ del conjunto $\lbrace v_{t,i}\rbrace_{i=1}^N$, la cual corresponde a las variaciones intermensuales de todos los gastos básicos en el periodo $t$, definimos la función 
 
 $$
-\mathscr{V}_t = \lbrace v_{t,i}:\bar{v_t} - \lambda_1 \sigma_{v_t}  \leq v_{t,i} \leq \bar{v_t} +\lambda_2 \sigma_{v_t} \rbrace
-$$
 
-El conjunto $\mathscr{V}_t$, corresponde a aquellas variaciones intermensuales en el periodo $t$ que se encuentran en el rango especificado, en donde los parámetros $\lambda_1$ y $\lambda_2$ son los que determinan la amplitud del mismo. 
-
-Sobre el conjunto anterior se puede calcular una variación intermensual ponderada
+w_{t,i} = \lbrace \begin{array}{cc} IPC_i& \bar{v_t} - \lambda_1\sigma_{v_t} \leq v_{t,i} \leq \bar{v_t} + \lambda_2 \sigma_{v_t} \\
+0 &  \text{en otro caso} \end{array}
 
 $$
-v_t = \sum_ {v_{t,i} \in \mathscr{V}_t} \dfrac{IPC_{v_{t,i}}}{\sum_ {v_{t,i} \in \mathscr{V}_t}IPC_{v_{t,i}}}v_{t,i}
+
+A partir de los nuevos pesos, computamos una variación intermensual promedio ponderada
+
+
+$$
+\hat{v_t} = \sum_{i=1}^N \dfrac{w_{t,i}}{\sum_{i=1}^N w_{t,i}}v_{t,i}
 $$
 
-la cual corresponde a la inflación subyacente dinámica. 
+
+con la cual podemos computar un nuevo índice de precios capitalizando a partir del periodo inicial del modo siguiente
+
+$$
+\hat{IPC_t} = 100 \prod_{j=1}^t \hat{v_j}
+$$
+
+En donde $t$ corresponde a la posición relativa respecto al periodo inicial. Esta ecuación corresponde al cómputo de la inflación subyacente dinámica.  
 
 El recorte usual para la medida de inflación subyacente dinámica corresponde al recorte simétrico, definido por $\lambda_1 = \lambda_2 = 2$, siendo este uno de los dos recortes a evaluar en las posteriores secciones. Además de esto, y utilizando la HEMI, se plante el problema de optimización
 
