@@ -7,10 +7,8 @@ Finalmente, se añade un análisis de sensibilidad, el cual se efectúa modifica
 Dada la desviación estándar $\sigma_{v_t}$ del conjunto $\lbrace v_{t,i}\rbrace_{i=1}^N$, la cual corresponde a las variaciones intermensuales de todos los gastos básicos en el periodo $t$, definimos la función 
 
 $$
-
 w_{t,i} = \lbrace \begin{array}{cc} IPC_i& \bar{v_t} - \lambda_1\sigma_{v_t} \leq v_{t,i} \leq \bar{v_t} + \lambda_2 \sigma_{v_t} \\
 0 &  \text{en otro caso} \end{array}
-
 $$
 
 A partir de los nuevos pesos, computamos una variación intermensual promedio ponderada
