@@ -20,6 +20,8 @@ nav:
         - Evaluación de las medidas basadas en medias truncadas: evaluacion/evaluacion-medias-truncadas.md
         - Evaluación de las medidas basadas en metodología de subyacente MAI: evaluacion/evaluacion-mai.md
         - Evaluación de las medidas basadas en exclusión dinámica: evaluacion/sub-dinamica.md
+        - Combinaciones lineales de medidas de inflación óptimas: evaluacion/combinacion-lineal.md
+        - Conformación de intervalos de confianza para el nivel de inflación: evaluacion/intervalos-confianza.md
 
 theme: 
     name: readthedocs
