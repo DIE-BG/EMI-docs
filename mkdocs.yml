@@ -12,6 +12,7 @@ nav:
         - Selección del número de simulaciones: calibracion/Selección simulaciones.md
         - Selección de la medida de evaluación: calibracion/Determinación medida evaluación.md
         - Remuestreo con block bootstrap: calibracion/Remuestreo block bootstrap.md
+        - Revisión de métodos de remuestreo: calibracion/Revisión de métodos de bloque.md
     - Evaluación: 
         - Criterios de evaluación y pruebas de sensibilidad: evaluacion/criterios-de-evaluacion.md
         - Evaluación de las medidas de inflación total: evaluacion/inflaciones-totales.md
