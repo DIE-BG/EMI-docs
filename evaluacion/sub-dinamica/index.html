@@ -1,0 +1,966 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Proyecto de evaluación de medidas de inflación en MATLAB. Realizado por el Departamento de Investigaciones Económicas del Banco de Guatemala.">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.4">
+    
+    
+      
+        <title>Evaluación de las medidas basadas en exclusión dinámica - HEMI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.f7f47774.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#evaluacion-de-medidas-de-exclusion-dinamica" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="HEMI" class="md-header__button md-logo" aria-label="HEMI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            HEMI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Evaluación de las medidas basadas en exclusión dinámica
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/DIE-BANGUAT/EMI-docs/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="HEMI" class="md-nav__button md-logo" aria-label="HEMI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    HEMI
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/DIE-BANGUAT/EMI-docs/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+      
+      <label class="md-nav__link" for="__nav_1">
+        HEMI
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="HEMI" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          HEMI
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Herramienta de evaluación de medidas de inflación (HEMI) de Guatemala
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      <label class="md-nav__link" for="__nav_2">
+        Principal
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Principal" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Principal
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cuerpo/introduccion/" class="md-nav__link">
+        Introducción
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cuerpo/justificacion/" class="md-nav__link">
+        Justificación
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      <label class="md-nav__link" for="__nav_3">
+        Calibración
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Calibración" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Calibración
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../calibracion/Calibraci%C3%B3n%20varianza%20RW/" class="md-nav__link">
+        Especificación y calibración del factor de tendencia estocástica
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../calibracion/Selecci%C3%B3n%20simulaciones/" class="md-nav__link">
+        Selección del número de simulaciones
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../calibracion/Determinaci%C3%B3n%20medida%20evaluaci%C3%B3n/" class="md-nav__link">
+        Selección de la medida de evaluación
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../calibracion/Remuestreo%20block%20bootstrap/" class="md-nav__link">
+        Remuestreo con block bootstrap
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      <label class="md-nav__link" for="__nav_4">
+        Evaluación
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Evaluación" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Evaluación
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../criterios-de-evaluacion/" class="md-nav__link">
+        Criterios de evaluación y pruebas de sensibilidad
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../inflaciones-totales/" class="md-nav__link">
+        Evaluación de las medidas de inflación total
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../evaluacion-percentiles/" class="md-nav__link">
+        Evaluación de las medidas basadas en percentiles
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../evaluacion-exclusion-fija/" class="md-nav__link">
+        Evaluación de las medidas basadas en exclusión fija
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../evaluacion-medias-truncadas/" class="md-nav__link">
+        Evaluación de las medidas basadas en medias truncadas
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../evaluacion-mai/" class="md-nav__link">
+        Evaluación de las medidas basadas en metodología de subyacente MAI
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Evaluación de las medidas basadas en exclusión dinámica
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Evaluación de las medidas basadas en exclusión dinámica
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#evaluacion-de-medidas-de-exclusion-dinamica" class="md-nav__link">
+    Evaluación de medidas de exclusión dinámica
+  </a>
+  
+    <nav class="md-nav" aria-label="Evaluación de medidas de exclusión dinámica">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resultados-de-la-evaluacion-de-diferentes-medidas-de-inflacion" class="md-nav__link">
+    Resultados de la evaluación de diferentes medidas de inflación
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-sensibilidad" class="md-nav__link">
+    Análisis de sensibilidad
+  </a>
+  
+    <nav class="md-nav" aria-label="Análisis de sensibilidad">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-sensibilidad-ante-cambios-en-el-periodo-final-de-evaluacion" class="md-nav__link">
+    Análisis de sensibilidad ante cambios en el período final de evaluación
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-sensibilidad-ante-cambio-en-la-medida-de-evaluacion" class="md-nav__link">
+    Análisis de sensibilidad ante cambio en la medida de evaluación
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-sensibilidad-ante-cambios-en-el-subperiodo-de-evaluacion" class="md-nav__link">
+    Análisis de sensibilidad ante cambios en el subperíodo de evaluación
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-sensibilidad-ante-cambios-en-la-componente-de-tendencia" class="md-nav__link">
+    Análisis de sensibilidad ante cambios en la componente de tendencia
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-sensibilidad-ante-cambios-en-la-trayectoria-de-inflacion-parametrica" class="md-nav__link">
+    Análisis de sensibilidad ante cambios en la trayectoria de inflación paramétrica
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-sensibilidad-ante-cambios-en-el-numero-de-simulaciones" class="md-nav__link">
+    Análisis de sensibilidad ante cambios en el número de simulaciones
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-sensibilidad-ante-cambios-en-el-muestreo" class="md-nav__link">
+    Análisis de sensibilidad ante cambios en el muestreo
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#distribuciones-de-simulacion-del-mse-en-las-medidas-optimas" class="md-nav__link">
+    Distribuciones de simulación del MSE en las medidas óptimas
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-trayectorias-para-los-datos-historicamente-observados" class="md-nav__link">
+    Análisis de trayectorias para los datos históricamente observados
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../combinacion-lineal/" class="md-nav__link">
+        Combinaciones lineales de medidas de inflación óptimas
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intervalos-confianza/" class="md-nav__link">
+        Conformación de intervalos de confianza para el nivel de inflación
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#evaluacion-de-medidas-de-exclusion-dinamica" class="md-nav__link">
+    Evaluación de medidas de exclusión dinámica
+  </a>
+  
+    <nav class="md-nav" aria-label="Evaluación de medidas de exclusión dinámica">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resultados-de-la-evaluacion-de-diferentes-medidas-de-inflacion" class="md-nav__link">
+    Resultados de la evaluación de diferentes medidas de inflación
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-sensibilidad" class="md-nav__link">
+    Análisis de sensibilidad
+  </a>
+  
+    <nav class="md-nav" aria-label="Análisis de sensibilidad">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-sensibilidad-ante-cambios-en-el-periodo-final-de-evaluacion" class="md-nav__link">
+    Análisis de sensibilidad ante cambios en el período final de evaluación
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-sensibilidad-ante-cambio-en-la-medida-de-evaluacion" class="md-nav__link">
+    Análisis de sensibilidad ante cambio en la medida de evaluación
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-sensibilidad-ante-cambios-en-el-subperiodo-de-evaluacion" class="md-nav__link">
+    Análisis de sensibilidad ante cambios en el subperíodo de evaluación
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-sensibilidad-ante-cambios-en-la-componente-de-tendencia" class="md-nav__link">
+    Análisis de sensibilidad ante cambios en la componente de tendencia
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-sensibilidad-ante-cambios-en-la-trayectoria-de-inflacion-parametrica" class="md-nav__link">
+    Análisis de sensibilidad ante cambios en la trayectoria de inflación paramétrica
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-sensibilidad-ante-cambios-en-el-numero-de-simulaciones" class="md-nav__link">
+    Análisis de sensibilidad ante cambios en el número de simulaciones
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-sensibilidad-ante-cambios-en-el-muestreo" class="md-nav__link">
+    Análisis de sensibilidad ante cambios en el muestreo
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#distribuciones-de-simulacion-del-mse-en-las-medidas-optimas" class="md-nav__link">
+    Distribuciones de simulación del MSE en las medidas óptimas
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-trayectorias-para-los-datos-historicamente-observados" class="md-nav__link">
+    Análisis de trayectorias para los datos históricamente observados
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/DIE-BANGUAT/EMI-docs/edit/master/docs/evaluacion/sub-dinamica.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  <h1>Evaluación de las medidas basadas en exclusión dinámica</h1>
+                
+                <h2 id="evaluacion-de-medidas-de-exclusion-dinamica">Evaluación de medidas de exclusión dinámica<a class="headerlink" href="#evaluacion-de-medidas-de-exclusion-dinamica" title="Permanent link">&para;</a></h2>
+<p>En esta sección se documentan los resultados del proceso de evaluación de la medida de inflación basadas en la exclusión dinámica de gastos básicos. Junto a dicha evaluación, se añade los resultados de la optimización de los límites para el recorte dinámico, explicado más adelante. </p>
+<p>Finalmente, se añade un análisis de sensibilidad, el cual se efectúa modificando algunos parámetros respecto de los criterios básicos de evaluación.</p>
+<p>Dada la desviación estándar <span><span class="MathJax_Preview">\sigma_{v_t}</span><script type="math/tex">\sigma_{v_t}</script></span> del conjunto <span><span class="MathJax_Preview">\lbrace v_{t,i}\rbrace_{i=1}^N</span><script type="math/tex">\lbrace v_{t,i}\rbrace_{i=1}^N</script></span>, la cual corresponde a las variaciones intermensuales de todos los gastos básicos en el periodo <span><span class="MathJax_Preview">t</span><script type="math/tex">t</script></span>, definimos la función </p>
+<div>
+<div class="MathJax_Preview">
+w_{t,i} = \lbrace \begin{array}{cc} IPC_i&amp; \bar{v_t} - \lambda_1\sigma_{v_t} \leq v_{t,i} \leq \bar{v_t} + \lambda_2 \sigma_{v_t} \\
+0 &amp;  \text{en otro caso} \end{array}
+</div>
+<script type="math/tex; mode=display">
+w_{t,i} = \lbrace \begin{array}{cc} IPC_i& \bar{v_t} - \lambda_1\sigma_{v_t} \leq v_{t,i} \leq \bar{v_t} + \lambda_2 \sigma_{v_t} \\
+0 &  \text{en otro caso} \end{array}
+</script>
+</div>
+<p>A partir de los nuevos pesos, computamos una variación intermensual promedio ponderada</p>
+<div>
+<div class="MathJax_Preview">
+\hat{v_t} = \sum_{i=1}^N \dfrac{w_{t,i}}{\sum_{i=1}^N w_{t,i}}v_{t,i}
+</div>
+<script type="math/tex; mode=display">
+\hat{v_t} = \sum_{i=1}^N \dfrac{w_{t,i}}{\sum_{i=1}^N w_{t,i}}v_{t,i}
+</script>
+</div>
+<p>con la cual podemos computar un nuevo índice de precios capitalizando a partir del periodo inicial del modo siguiente</p>
+<div>
+<div class="MathJax_Preview">
+\hat{IPC_t} = 100 \prod_{j=1}^t \hat{v_j}
+</div>
+<script type="math/tex; mode=display">
+\hat{IPC_t} = 100 \prod_{j=1}^t \hat{v_j}
+</script>
+</div>
+<p>En donde <span><span class="MathJax_Preview">t</span><script type="math/tex">t</script></span> corresponde a la posición relativa respecto al periodo inicial. Esta ecuación corresponde al cómputo de la inflación subyacente dinámica.  </p>
+<p>El recorte usual para la medida de inflación subyacente dinámica corresponde al recorte simétrico, definido por <span><span class="MathJax_Preview">\lambda_1 = \lambda_2 = 2</span><script type="math/tex">\lambda_1 = \lambda_2 = 2</script></span>, siendo este uno de los dos recortes a evaluar en las posteriores secciones. Además de esto, y utilizando la HEMI, se plante el problema de optimización</p>
+<div>
+<div class="MathJax_Preview">
+\min_{\lambda_1, \lambda_2} f(\lambda_1,\lambda_2)
+</div>
+<script type="math/tex; mode=display">
+\min_{\lambda_1, \lambda_2} f(\lambda_1,\lambda_2)
+</script>
+</div>
+<p>En donde la función <span><span class="MathJax_Preview">f(.)</span><script type="math/tex">f(.)</script></span> corresponde a la evaluación de un conjunto de variaciones intermensuales con criterios básicos, utilizando como variables a optimizar, los parámetros de escala para los recortes. El resultado del proceso de optimización corresponde al segundo recorte a evaluar.</p>
+<p><strong>Figura.</strong> <em>Evaluación exploratorio. Evaluación de medidas de inflación subyacente dinámica variando los factores <span><span class="MathJax_Preview">\lambda_1</span><script type="math/tex">\lambda_1</script></span> y <span><span class="MathJax_Preview">\lambda_2</span><script type="math/tex">\lambda_2</script></span>. Evaluación con criterios básicos y 10,000 simulaciones.</em>
+<img alt="" src="../images/sub_din/DSH_CRIT_MT.png" /></p>
+<p>Previo a la optimización con criterios básicos y 125 mil simulaciones, se realiza un proceso exploratorio con 10 mil simulaciones con el fin de identificar la región óptima y un punto adecuado para comenzar el algoritmo de optimización. De la gráfica anterior podemos observar que el recorte óptimo se encuentra al rededor de <span><span class="MathJax_Preview">\lambda_1 = 0.35</span><script type="math/tex">\lambda_1 = 0.35</script></span> y <span><span class="MathJax_Preview">\lambda_2 = 1.9</span><script type="math/tex">\lambda_2 = 1.9</script></span>. Comparado con el recorte simétrico, podemos notar que la medida óptima descarta una mayor cantidad de gastos básicos que están bajo la media de cada periodo. Además podemos notar que la medida con recorte simétrico se encuentra en una región subóptima, mostrándose en la gráfica el recorte más cercano a la misma. </p>
+<p>Al completar el proceso de optimización utilizando critérios básicos, se obtienen los parámetros <span><span class="MathJax_Preview">\lambda_1 = 0.3222</span><script type="math/tex">\lambda_1 = 0.3222</script></span> y <span><span class="MathJax_Preview">\lambda_2 = 1.7283</span><script type="math/tex">\lambda_2 = 1.7283</script></span>. Esto quiere decir que, respecto al recorte simétrico de dos desviaciones estándar, la medida óptima incluye menos gástos básicos, descartando más gastos que tienen una variación interanual inferior a la media. También podemos notar que el recorte óptimo no es simétrico. Esto puede explicarse por la acumulación de variaciones pequeñas en la distribución.</p>
+<h3 id="resultados-de-la-evaluacion-de-diferentes-medidas-de-inflacion">Resultados de la evaluación de diferentes medidas de inflación<a class="headerlink" href="#resultados-de-la-evaluacion-de-diferentes-medidas-de-inflacion" title="Permanent link">&para;</a></h3>
+<p>Dicha evaluación se llevó a cabo utilizando los criterios básicos, aplicados sobre el recorte simétrico y el recorte optimizado.</p>
+<p><strong>Figura.</strong> <em>Resultados del error cuadrático medio de la evaluación con criterios básicos.</em>
+<img alt="" src="../images/sub_din/base-dash.png" /></p>
+<p>Podemos observar que el recorte optimizado presenta un MSE promedio de evaluación mucho menor al recorte simétrico, estando al rededor de los niveles de MSE promedio observados en la media truncada equiponderada.</p>
+<p><strong>Figura.</strong> <em>Resultados del MSE de la evaluación con criterios básicos.</em>
+<img alt="" src="../images/sub_din/base_mse-dash.png" /></p>
+<p>Respecto a la descomposición del MSE promedio, podemos notar que la medida optimizada presenta sesgo y varianza cercanas a cero.</p>
+<h3 id="analisis-de-sensibilidad">Análisis de sensibilidad<a class="headerlink" href="#analisis-de-sensibilidad" title="Permanent link">&para;</a></h3>
+<p>En esta sección se presentan los análisis de sensibilidad obtenidos en el ejercicio de evaluación de las medidas subyacentes dinámicas con recorte simétrico y optimizado.</p>
+<h4 id="analisis-de-sensibilidad-ante-cambios-en-el-periodo-final-de-evaluacion">Análisis de sensibilidad ante cambios en el período final de evaluación<a class="headerlink" href="#analisis-de-sensibilidad-ante-cambios-en-el-periodo-final-de-evaluacion" title="Permanent link">&para;</a></h4>
+<p>Debido a que se considera el período completo de evaluación hasta diciembre de 2019, se realiza un análisis de sensibilidad que considera los resultados ante un cambio en el período final de evaluación. Se consideran los siguientes períodos finales de evaluación:</p>
+<ul>
+<li>Diciembre de 2018</li>
+<li>Junio de 2019</li>
+<li>Diciembre 2019</li>
+</ul>
+<p><strong>Figura.</strong> <em>Análisis de sensibilidad respecto del período final considerado en la evaluación.</em>
+<img alt="" src="../images/sub_din/end_sens-dash.png" /></p>
+<p>Se puede observar que ambas medidas son poco sensibles ante cambios en el periodo final de evaluación, siendo la medida optimizada la que presenta los menores MSE promedios en los tres escenarios.</p>
+<h4 id="analisis-de-sensibilidad-ante-cambio-en-la-medida-de-evaluacion">Análisis de sensibilidad ante cambio en la medida de evaluación<a class="headerlink" href="#analisis-de-sensibilidad-ante-cambio-en-la-medida-de-evaluacion" title="Permanent link">&para;</a></h4>
+<p>Considerando los estadísticos de evaluación alternativos, se construyen gráficas que ilustran el desempeño de las medidas consideradas, utilizando diferentes medidas de evaluación. Dichas gráficas se muestran a continuación.</p>
+<p><strong>Figura.</strong> <em>Análisis de sensibilidad respecto al cambio en la medida de evaluación.</em>
+<img alt="" src="../images/sub_din/mesure_sens-dash.png" /></p>
+<p>Podemos observar, en primer lugar, que la medida optimizada es la que presenta las mejores características para cada estadístico. Ademas, se puede notar que presenta un error medio igual a cero, lo que implica un sesgo nulo. Además de esto, la medida óptima obtiene una correlación promedio mayor a la medida con recorte simétrico.</p>
+<p>El índice de error muestral resume las propiedades antes mencionadas.</p>
+<h4 id="analisis-de-sensibilidad-ante-cambios-en-el-subperiodo-de-evaluacion">Análisis de sensibilidad ante cambios en el subperíodo de evaluación<a class="headerlink" href="#analisis-de-sensibilidad-ante-cambios-en-el-subperiodo-de-evaluacion" title="Permanent link">&para;</a></h4>
+<p>A continuación, se presenta un análisis de sensibilidad de la evaluación al considerar un cambio en el período de evaluación. Las siguientes gráficas ilustran los resultados en los diferentes períodos de evaluación, mientras que el escenario base se observa en la última fila, correspondiente al período completo.</p>
+<p><strong>Figura.</strong> <em>Análisis de sensibilidad ante cambios en el subperíodo de evaluación.</em>
+<img alt="" src="../images/sub_din/periodo_sens-dash.png" /></p>
+<p>Se observa que los valores más altos de MSE promedio se obtienen en el periodo de transición, mientras que los más bajos en el periodo 2010. La medida de recorte optimizado presenta el menor MSE promedio en los cuatro escenarios, siendo robusta ante dichos cambios.</p>
+<h4 id="analisis-de-sensibilidad-ante-cambios-en-la-componente-de-tendencia">Análisis de sensibilidad ante cambios en la componente de tendencia<a class="headerlink" href="#analisis-de-sensibilidad-ante-cambios-en-la-componente-de-tendencia" title="Permanent link">&para;</a></h4>
+<p>A continuación, se presenta un análisis de sensibilidad de la evaluación al considerar un cambio en la componente multiplicativa de tendencia en el procedimiento de evaluación. Las siguientes gráficas ilustran la evaluación de las medidas de inflación total en tres escenarios de tendencia, siendo el escenario con criterios básicos el que se observa en la primera fila, correspondiente a la componente de tendencia de caminata aleatoria.</p>
+<p><strong>Figura.</strong> <em>Análisis de sensibilidad ante cambios en la componente de tendencia.</em>
+<img alt="" src="../images/sub_din/trend_sens-dash.png" />    </p>
+<p>La medida optimizada es la que presenta el menor MSE promedio sin importar el escenario de tendencia aplicado. También podemos notar que la tendencia de crecimiento exponencial es la que introduce una mayor componente de error en el proceso.</p>
+<h4 id="analisis-de-sensibilidad-ante-cambios-en-la-trayectoria-de-inflacion-parametrica">Análisis de sensibilidad ante cambios en la trayectoria de inflación paramétrica<a class="headerlink" href="#analisis-de-sensibilidad-ante-cambios-en-la-trayectoria-de-inflacion-parametrica" title="Permanent link">&para;</a></h4>
+<p>Se presenta un análisis de sensibilidad de la evaluación al considerar un cambio en la trayectoria de inflación paramétrica del procedimiento de evaluación. La siguiente gráfica ilustra la evaluación de las diferentes medidas de inflación total utilizando tres diferentes parámetros de inflación, siendo el escenario base el que se observa en la primera fila, correspondiente a la evaluación respecto al parámetro de variación interanual del IPC con cambios de base.</p>
+<p><strong>Figura.</strong> <em>Análisis de sensibilidad ante cambios en la trayectoria de inflación paramétrica. variación interanual del IPC.</em>
+<img alt="" src="../images/sub_din/param_sens-dash.png" />  </p>
+<p>Se observa que la medida optimizada es la que presenta el menor MSE promedio en cualquiera de los tres escenarios. Además, los valores más altos de MSE promedio se obtienen al evaluar las medidas subyacentes contra las inflación total IPC paramétrica. </p>
+<h4 id="analisis-de-sensibilidad-ante-cambios-en-el-numero-de-simulaciones">Análisis de sensibilidad ante cambios en el número de simulaciones<a class="headerlink" href="#analisis-de-sensibilidad-ante-cambios-en-el-numero-de-simulaciones" title="Permanent link">&para;</a></h4>
+<p>A contuación se presenta un análisis de sensibilidad cambiando el número de simulaciones a 500,000 realizaciones de las trayectorias de inflación muestral.</p>
+<p><strong>Figura.</strong> <em>Análisis de sensibilidad ante cambios en el número de simulaciones.</em>
+<img alt="" src="../images/sub_din/nSim_sens-dash.png" /> </p>
+<p>Dado que ambas medidas moderan la volatilidad de las variaciones introducidas en ellas, el cambio en el número de simulaciones es altamente robusto, siendo la medida optimizada la que obtiene el menor MSE promedio en ambos escenarios.</p>
+<h4 id="analisis-de-sensibilidad-ante-cambios-en-el-muestreo">Análisis de sensibilidad ante cambios en el muestreo<a class="headerlink" href="#analisis-de-sensibilidad-ante-cambios-en-el-muestreo" title="Permanent link">&para;</a></h4>
+<p>Se realiza una prueba de sensibilidad utilizando como técnica de remuestreo la variante de <em>nonoverlapping block bootstrap</em> con bloques de 12 meses. El muestreo se realiza de forma independiente para cada unos de los gastos básicos en cada una de las bases del IPC. A continuación, se muestran los resultados en la gráfica siguiente.</p>
+<p><strong>Figura.</strong> <em>Análisis de sensibilidad ante cambios en el muestreo.</em>
+<img alt="" src="../images/sub_din/sample_sens-dash.png" /> </p>
+<p>Del mismo modo que el escenario anterior, dado que las medidas moderan la volatilidad de las variaciones introducidas en el proceso, dichas medidas son altamente robustas ante cambios en el tipo de muestreo, siendo el recorte optimizado el que presenta el menor MSE promedio en ambos escenarios.</p>
+<h4 id="distribuciones-de-simulacion-del-mse-en-las-medidas-optimas">Distribuciones de simulación del MSE en las medidas óptimas<a class="headerlink" href="#distribuciones-de-simulacion-del-mse-en-las-medidas-optimas" title="Permanent link">&para;</a></h4>
+<p>A continuación, se presentan las gráficas de las distribuciones de simulación del MSE en el escenario base. Esta gráfica permite observar el rango, o amplitud, de la distribución de simulación del error cuadrático medio a través de la gráfica de su distribución acumulada.</p>
+<p><strong>Figura.</strong> <em>Distribuciones de simulación del MSE promedio.</em>.
+<img alt="" src="../images/sub_din/dist_base-dash.png" /> </p>
+<p>Podemos notar que la distribución del MSE promedio de la medida con recorte optimizado tiene un un promedio y desviación entándar menor, lo que indica que se concentra en valores bajos. Esto es deseable dado que indica robustez en el estadístico. </p>
+<p><strong>Figura.</strong> <em>Distribuciones de simulación del MSE promedio con criterios básicos y por tipo de tendencia aplicada en la evaluación</em>.
+<img alt="" src="../images/sub_din/dist_sens-dash.png" /> </p>
+<p>Respecto a la sensibilidad de las distribuciones, se puede observar que el las distribuciones no son altamente sensible ante cambios en el periodo de evaluación y tendencia, exceptuando al escenario que introduce una tendencia exponencial.</p>
+<h3 id="analisis-de-trayectorias-para-los-datos-historicamente-observados">Análisis de trayectorias para los datos históricamente observados<a class="headerlink" href="#analisis-de-trayectorias-para-los-datos-historicamente-observados" title="Permanent link">&para;</a></h3>
+<p>A continuación, se presenta una gráfica del comportamiento históricamente observado de las medidas subyacentes dinámicas, tanto la simétrica como la de recorte optimizado, así como la inflación total. Podemos notar que ambas medidas subyacentes presentan una alta correlación con la inflación total, sin embargo, el nivel de la inflación subyacente con recorte óptimo es mayor a la medida de recorte simétrico en toda su trayectoria.</p>
+<p><strong>Figura.</strong> <em>Trayectorias de inflación históricamente observadas de la variación interanual del IPC y de las medidas subyacentes dinámicas.</em>.
+<img alt="" src="../images/sub_din/tray.png" /> </p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../evaluacion-mai/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Evaluación de las medidas basadas en metodología de subyacente MAI" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Evaluación de las medidas basadas en metodología de subyacente MAI
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../combinacion-lineal/" class="md-footer__link md-footer__link--next" aria-label="Next: Combinaciones lineales de medidas de inflación óptimas" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Combinaciones lineales de medidas de inflación óptimas
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.709b4209.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.febc23d1.min.js"></script>
+      
+        <script src="../../js/extra.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      
+    
+  </body>
+</html>

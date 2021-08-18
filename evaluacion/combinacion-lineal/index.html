@@ -1,0 +1,1263 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Proyecto de evaluación de medidas de inflación en MATLAB. Realizado por el Departamento de Investigaciones Económicas del Banco de Guatemala.">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.4">
+    
+    
+      
+        <title>Combinaciones lineales de medidas de inflación óptimas - HEMI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.f7f47774.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#optimizacion-de-la-combinacion-lineal-de-variantes-de-medidas-de-inflacion-subyacente" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="HEMI" class="md-header__button md-logo" aria-label="HEMI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            HEMI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Combinaciones lineales de medidas de inflación óptimas
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/DIE-BANGUAT/EMI-docs/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="HEMI" class="md-nav__button md-logo" aria-label="HEMI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    HEMI
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/DIE-BANGUAT/EMI-docs/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+      
+      <label class="md-nav__link" for="__nav_1">
+        HEMI
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="HEMI" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          HEMI
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Herramienta de evaluación de medidas de inflación (HEMI) de Guatemala
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      <label class="md-nav__link" for="__nav_2">
+        Principal
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Principal" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Principal
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cuerpo/introduccion/" class="md-nav__link">
+        Introducción
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cuerpo/justificacion/" class="md-nav__link">
+        Justificación
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      <label class="md-nav__link" for="__nav_3">
+        Calibración
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Calibración" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Calibración
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../calibracion/Calibraci%C3%B3n%20varianza%20RW/" class="md-nav__link">
+        Especificación y calibración del factor de tendencia estocástica
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../calibracion/Selecci%C3%B3n%20simulaciones/" class="md-nav__link">
+        Selección del número de simulaciones
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../calibracion/Determinaci%C3%B3n%20medida%20evaluaci%C3%B3n/" class="md-nav__link">
+        Selección de la medida de evaluación
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../calibracion/Remuestreo%20block%20bootstrap/" class="md-nav__link">
+        Remuestreo con block bootstrap
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      <label class="md-nav__link" for="__nav_4">
+        Evaluación
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Evaluación" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Evaluación
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../criterios-de-evaluacion/" class="md-nav__link">
+        Criterios de evaluación y pruebas de sensibilidad
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../inflaciones-totales/" class="md-nav__link">
+        Evaluación de las medidas de inflación total
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../evaluacion-percentiles/" class="md-nav__link">
+        Evaluación de las medidas basadas en percentiles
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../evaluacion-exclusion-fija/" class="md-nav__link">
+        Evaluación de las medidas basadas en exclusión fija
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../evaluacion-medias-truncadas/" class="md-nav__link">
+        Evaluación de las medidas basadas en medias truncadas
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../evaluacion-mai/" class="md-nav__link">
+        Evaluación de las medidas basadas en metodología de subyacente MAI
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sub-dinamica/" class="md-nav__link">
+        Evaluación de las medidas basadas en exclusión dinámica
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Combinaciones lineales de medidas de inflación óptimas
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Combinaciones lineales de medidas de inflación óptimas
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#optimizacion-de-la-combinacion-lineal-de-variantes-de-medidas-de-inflacion-subyacente" class="md-nav__link">
+    Optimización de la combinación lineal de variantes de medidas de inflación subyacente
+  </a>
+  
+    <nav class="md-nav" aria-label="Optimización de la combinación lineal de variantes de medidas de inflación subyacente">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#combinacion-lineal-que-minimiza-el-mse-promedio" class="md-nav__link">
+    Combinación lineal que minimiza el MSE promedio
+  </a>
+  
+    <nav class="md-nav" aria-label="Combinación lineal que minimiza el MSE promedio">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#minimizacion-de-mse-promedio" class="md-nav__link">
+    Minimización de MSE promedio
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trayectorias-historicas-de-medidas-de-inflacion-que-minimizan-el-mse-promedio" class="md-nav__link">
+    Trayectorias históricas de medidas de inflación que minimizan el MSE promedio
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejercicio-de-optimizacion-sin-la-medida-de-exclusion-fija" class="md-nav__link">
+    Ejercicio de optimización sin la medida de exclusión fija
+  </a>
+  
+    <nav class="md-nav" aria-label="Ejercicio de optimización sin la medida de exclusión fija">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#minimizacion-de-mse" class="md-nav__link">
+    Minimización de MSE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trayectorias-historicas-de-medidas-de-inflacion-que-minimizan-el-mse-promedio_1" class="md-nav__link">
+    Trayectorias históricas de medidas de inflación que minimizan el MSE promedio
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#combinacion-lineal-que-maximiza-la-correlacion-lineal-promedio" class="md-nav__link">
+    Combinación lineal que maximiza la correlación lineal promedio
+  </a>
+  
+    <nav class="md-nav" aria-label="Combinación lineal que maximiza la correlación lineal promedio">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#maximizacion-del-coeficiente-de-correlacion-lineal-promedio" class="md-nav__link">
+    Maximización del coeficiente de correlación lineal promedio
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trayectorias-historicas-de-medidas-de-inflacion-que-maximizan-la-correlacion-lineal-promedio" class="md-nav__link">
+    Trayectorias históricas de medidas de inflación que maximizan la correlación lineal promedio
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#combinacion-lineal-que-minimiza-el-valor-absoluto-de-error-medio-promedio" class="md-nav__link">
+    Combinación lineal que minimiza el valor absoluto de error medio promedio
+  </a>
+  
+    <nav class="md-nav" aria-label="Combinación lineal que minimiza el valor absoluto de error medio promedio">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#minimizacion-del-valor-absoluto-de-error-medio-promedio" class="md-nav__link">
+    Minimización del valor absoluto de error medio promedio
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trayectorias-historicas-de-medidas-de-inflacion-que-minimizan-el-valor-absoluto-de-error-medio-promedio" class="md-nav__link">
+    Trayectorias históricas de medidas de inflación que minimizan el valor absoluto de error medio promedio
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intervalos-confianza/" class="md-nav__link">
+        Conformación de intervalos de confianza para el nivel de inflación
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#optimizacion-de-la-combinacion-lineal-de-variantes-de-medidas-de-inflacion-subyacente" class="md-nav__link">
+    Optimización de la combinación lineal de variantes de medidas de inflación subyacente
+  </a>
+  
+    <nav class="md-nav" aria-label="Optimización de la combinación lineal de variantes de medidas de inflación subyacente">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#combinacion-lineal-que-minimiza-el-mse-promedio" class="md-nav__link">
+    Combinación lineal que minimiza el MSE promedio
+  </a>
+  
+    <nav class="md-nav" aria-label="Combinación lineal que minimiza el MSE promedio">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#minimizacion-de-mse-promedio" class="md-nav__link">
+    Minimización de MSE promedio
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trayectorias-historicas-de-medidas-de-inflacion-que-minimizan-el-mse-promedio" class="md-nav__link">
+    Trayectorias históricas de medidas de inflación que minimizan el MSE promedio
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejercicio-de-optimizacion-sin-la-medida-de-exclusion-fija" class="md-nav__link">
+    Ejercicio de optimización sin la medida de exclusión fija
+  </a>
+  
+    <nav class="md-nav" aria-label="Ejercicio de optimización sin la medida de exclusión fija">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#minimizacion-de-mse" class="md-nav__link">
+    Minimización de MSE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trayectorias-historicas-de-medidas-de-inflacion-que-minimizan-el-mse-promedio_1" class="md-nav__link">
+    Trayectorias históricas de medidas de inflación que minimizan el MSE promedio
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#combinacion-lineal-que-maximiza-la-correlacion-lineal-promedio" class="md-nav__link">
+    Combinación lineal que maximiza la correlación lineal promedio
+  </a>
+  
+    <nav class="md-nav" aria-label="Combinación lineal que maximiza la correlación lineal promedio">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#maximizacion-del-coeficiente-de-correlacion-lineal-promedio" class="md-nav__link">
+    Maximización del coeficiente de correlación lineal promedio
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trayectorias-historicas-de-medidas-de-inflacion-que-maximizan-la-correlacion-lineal-promedio" class="md-nav__link">
+    Trayectorias históricas de medidas de inflación que maximizan la correlación lineal promedio
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#combinacion-lineal-que-minimiza-el-valor-absoluto-de-error-medio-promedio" class="md-nav__link">
+    Combinación lineal que minimiza el valor absoluto de error medio promedio
+  </a>
+  
+    <nav class="md-nav" aria-label="Combinación lineal que minimiza el valor absoluto de error medio promedio">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#minimizacion-del-valor-absoluto-de-error-medio-promedio" class="md-nav__link">
+    Minimización del valor absoluto de error medio promedio
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trayectorias-historicas-de-medidas-de-inflacion-que-minimizan-el-valor-absoluto-de-error-medio-promedio" class="md-nav__link">
+    Trayectorias históricas de medidas de inflación que minimizan el valor absoluto de error medio promedio
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/DIE-BANGUAT/EMI-docs/edit/master/docs/evaluacion/combinacion-lineal.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  <h1>Combinaciones lineales de medidas de inflación óptimas</h1>
+                
+                <h2 id="optimizacion-de-la-combinacion-lineal-de-variantes-de-medidas-de-inflacion-subyacente">Optimización de la combinación lineal de variantes de medidas de inflación subyacente<a class="headerlink" href="#optimizacion-de-la-combinacion-lineal-de-variantes-de-medidas-de-inflacion-subyacente" title="Permanent link">&para;</a></h2>
+<h3 id="combinacion-lineal-que-minimiza-el-mse-promedio">Combinación lineal que minimiza el MSE promedio<a class="headerlink" href="#combinacion-lineal-que-minimiza-el-mse-promedio" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Se aplica la misma metodología de combinación lineal óptima utilizada en la optimización de la inflación subyacente MAI.</li>
+<li>La metodología de combinación se aplica utilizando las medidas de inflación con menor MSE de cada método de cómputo. </li>
+<li>Se obtiene una solución libre y una solución restringida (ligeramente subóptima).</li>
+<li>En la variante de optimización restringida:</li>
+<li>Se requiere que los ponderadores sean positivos y que su suma sea igual a 1. </li>
+<li>Se utiliza como punto inicial una distribución uniforme de ponderadores y una distribución de ponderadores construidos con base en el inverso de los valores de MSE promedio de cada medida y se obtienen los mismos resultados.</li>
+</ul>
+<h4 id="minimizacion-de-mse-promedio">Minimización de MSE promedio<a class="headerlink" href="#minimizacion-de-mse-promedio" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Medidas de inflación incluidas en la combinación lineal y se obtienen los siguientes ponderadores.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Medida de inflación</strong></th>
+<th align="center"><span><span class="MathJax_Preview">\overline{\text{MSE}}</span><script type="math/tex">\overline{\text{MSE}}</script></span></th>
+<th align="right"><span><span class="MathJax_Preview">\hat{w}_{\text{libre}}</span><script type="math/tex">\hat{w}_{\text{libre}}</script></span></th>
+<th align="right"><span><span class="MathJax_Preview">\hat{w}_{\text{rest}}</span><script type="math/tex">\hat{w}_{\text{rest}}</script></span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Percentil equiponderado 72</td>
+<td align="center">0.2498</td>
+<td align="right">-0.3238</td>
+<td align="right">0.0001</td>
+</tr>
+<tr>
+<td align="left">Percentil ponderado 70</td>
+<td align="center">0.4149</td>
+<td align="right">0.0103</td>
+<td align="right">0.0001</td>
+</tr>
+<tr>
+<td align="left">Media truncada equiponderada (57.5, 84)</td>
+<td align="center">0.2171</td>
+<td align="right">1.0546</td>
+<td align="right">0.6446</td>
+</tr>
+<tr>
+<td align="left">Media truncada ponderada (15, 97)</td>
+<td align="center">0.2948</td>
+<td align="right">-0.1390</td>
+<td align="right">0.0001</td>
+</tr>
+<tr>
+<td align="left">Exclusión fija óptima con criterio de volatilidad</td>
+<td align="center">0.6414</td>
+<td align="right">0.2852</td>
+<td align="right">0.2423</td>
+</tr>
+<tr>
+<td align="left">Subyacente dinámica con factores (0.3222, 1.7283)</td>
+<td align="center">0.2906</td>
+<td align="right">-0.0800</td>
+<td align="right">0.0001</td>
+</tr>
+<tr>
+<td align="left">Subyacente MAI óptima MSE</td>
+<td align="center">0.2162</td>
+<td align="right">0.1903</td>
+<td align="right">0.1128</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="" src="../images/combinacion-lineal/grafica-violin-mse.png" /></p>
+<p><img alt="" src="../images/combinacion-lineal/ponderadores-mse.png" /></p>
+<ul>
+<li><strong><em>Combinación lineal óptima MSE promedio (solución libre)</em></strong></li>
+</ul>
+<div>
+<div class="MathJax_Preview">\overline{\text{MSE}} = 0.151965</div>
+<script type="math/tex; mode=display">\overline{\text{MSE}} = 0.151965</script>
+</div>
+<ul>
+<li>
+<p>Suma de ponderadores: <em>0.9975</em></p>
+</li>
+<li>
+<p><strong><em>Combinación lineal óptima MSE promedio (solución restringida)</em></strong></p>
+</li>
+</ul>
+<div>
+<div class="MathJax_Preview">\overline{\text{MSE}} = 0.156907</div>
+<script type="math/tex; mode=display">\overline{\text{MSE}} = 0.156907</script>
+</div>
+<ul>
+<li>Suma de ponderadores: <em>1.0000</em></li>
+</ul>
+<h4 id="trayectorias-historicas-de-medidas-de-inflacion-que-minimizan-el-mse-promedio">Trayectorias históricas de medidas de inflación que minimizan el MSE promedio<a class="headerlink" href="#trayectorias-historicas-de-medidas-de-inflacion-que-minimizan-el-mse-promedio" title="Permanent link">&para;</a></h4>
+<p><img alt="" src="../images/combinacion-lineal/trayectorias-combinacion-lineal-mse.png" /></p>
+<hr />
+<h3 id="ejercicio-de-optimizacion-sin-la-medida-de-exclusion-fija">Ejercicio de optimización sin la medida de exclusión fija<a class="headerlink" href="#ejercicio-de-optimizacion-sin-la-medida-de-exclusion-fija" title="Permanent link">&para;</a></h3>
+<ul>
+<li>En este ejercicio se lleva a cabo la minimización del error cuadrático medio de la combinación lineal de medidas de inflación. </li>
+<li>Se excluye la medida de inflaciíon denominada <strong><em>Exclusión fija óptima con criterio de volatilidad</em></strong></li>
+</ul>
+<h4 id="minimizacion-de-mse">Minimización de MSE<a class="headerlink" href="#minimizacion-de-mse" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Medidas de inflación incluidas en la combinación lineal: </li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Medida de inflación</strong></th>
+<th align="center"><span><span class="MathJax_Preview">\overline{\text{MSE}}</span><script type="math/tex">\overline{\text{MSE}}</script></span></th>
+<th align="right"><span><span class="MathJax_Preview">\hat{w}_{\text{libre}}</span><script type="math/tex">\hat{w}_{\text{libre}}</script></span></th>
+<th align="right"><span><span class="MathJax_Preview">\hat{w}_{\text{rest}}</span><script type="math/tex">\hat{w}_{\text{rest}}</script></span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Percentil equiponderado 72</td>
+<td align="center">0.2498</td>
+<td align="right">-0.3852</td>
+<td align="right">0.0000</td>
+</tr>
+<tr>
+<td align="left">Percentil ponderado 70</td>
+<td align="center">0.4149</td>
+<td align="right">0.0642</td>
+<td align="right">0.0499</td>
+</tr>
+<tr>
+<td align="left">Media truncada equiponderada (57.5, 84)</td>
+<td align="center">0.2171</td>
+<td align="right">0.8457</td>
+<td align="right">0.4616</td>
+</tr>
+<tr>
+<td align="left">Media truncada ponderada (15, 97)</td>
+<td align="center">0.2948</td>
+<td align="right">0.0487</td>
+<td align="right">0.0691</td>
+</tr>
+<tr>
+<td align="left">Subyacente dinámica con factores (0.3222, 1.7283)</td>
+<td align="center">0.2906</td>
+<td align="right">0.0004</td>
+<td align="right">0.0095</td>
+</tr>
+<tr>
+<td align="left">Subyacente MAI óptima MSE</td>
+<td align="center">0.2162</td>
+<td align="right">0.4153</td>
+<td align="right">0.4099</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="" src="../images/combinacion-lineal/ponderadores-MSE-sin-exclusi%C3%B3n-fija.png" /></p>
+<ul>
+<li><strong><em>Combinación lineal óptima MSE promedio (solución libre)</em></strong>  </li>
+</ul>
+<div>
+<div class="MathJax_Preview">\overline{\text{MSE}} = 0.192694</div>
+<script type="math/tex; mode=display">\overline{\text{MSE}} = 0.192694</script>
+</div>
+<ul>
+<li>Suma de ponderadores: <em>0.9891</em></li>
+<li><strong><em>Combinación lineal óptima MSE promedio (solución restringida)</em></strong>  </li>
+</ul>
+<div>
+<div class="MathJax_Preview">\overline{\text{MSE}} = 0.193813</div>
+<script type="math/tex; mode=display">\overline{\text{MSE}} = 0.193813</script>
+</div>
+<ul>
+<li>Suma de ponderadores: <em>1.0000</em></li>
+</ul>
+<h4 id="trayectorias-historicas-de-medidas-de-inflacion-que-minimizan-el-mse-promedio_1">Trayectorias históricas de medidas de inflación que minimizan el MSE promedio<a class="headerlink" href="#trayectorias-historicas-de-medidas-de-inflacion-que-minimizan-el-mse-promedio_1" title="Permanent link">&para;</a></h4>
+<p><img alt="" src="../images/combinacion-lineal/trayectorias-combinacion-mse-sin-exclusion-fija.png" /></p>
+<hr />
+<h3 id="combinacion-lineal-que-maximiza-la-correlacion-lineal-promedio">Combinación lineal que maximiza la correlación lineal promedio<a class="headerlink" href="#combinacion-lineal-que-maximiza-la-correlacion-lineal-promedio" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Se aplica la misma metodología de combinación lineal óptima utilizada en la optimización de la inflación subyacente MAI para maximizar el coeficiente de correlación lineal de evaluación.</li>
+<li>La función objetivo a optimizar es la correlación promedio.</li>
+<li>La metodología de combinación se aplica utilizando las medidas de inflación con mayor correlación promedio de cada método de cómputo. </li>
+<li>Se obtiene una solución libre y una solución restringida (ligeramente subóptima).</li>
+</ul>
+<h4 id="maximizacion-del-coeficiente-de-correlacion-lineal-promedio">Maximización del coeficiente de correlación lineal promedio<a class="headerlink" href="#maximizacion-del-coeficiente-de-correlacion-lineal-promedio" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Medidas de inflación incluidas en la combinación lineal: </li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Medida de inflación</strong></th>
+<th align="center"><span><span class="MathJax_Preview">\bar{\rho}</span><script type="math/tex">\bar{\rho}</script></span></th>
+<th align="right"><span><span class="MathJax_Preview">\hat{w}_{\text{libre}}</span><script type="math/tex">\hat{w}_{\text{libre}}</script></span></th>
+<th align="right"><span><span class="MathJax_Preview">\hat{w}_{\text{rest}}</span><script type="math/tex">\hat{w}_{\text{rest}}</script></span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Percentil equiponderado 80</td>
+<td align="center">0.985750</td>
+<td align="right">0.0859</td>
+<td align="right">0.1127</td>
+</tr>
+<tr>
+<td align="left">Percentil ponderado 80</td>
+<td align="center">0.975427</td>
+<td align="right">0.0071</td>
+<td align="right">0.0000</td>
+</tr>
+<tr>
+<td align="left">Media truncada equiponderada (57.5, 92)</td>
+<td align="center">0.986799</td>
+<td align="right">0.1380</td>
+<td align="right">0.1548</td>
+</tr>
+<tr>
+<td align="left">Media truncada ponderada (52.5, 97)</td>
+<td align="center">0.979170</td>
+<td align="right">-0.0191</td>
+<td align="right">0.0000</td>
+</tr>
+<tr>
+<td align="left">Exclusión fija óptima con criterio de volatilidad</td>
+<td align="center">0.973143</td>
+<td align="right">0.1352</td>
+<td align="right">0.1597</td>
+</tr>
+<tr>
+<td align="left">Subyacente dinámica con recortes (0.3590, 2.5004)</td>
+<td align="center">0.978045</td>
+<td align="right">-0.0473</td>
+<td align="right">0.0000</td>
+</tr>
+<tr>
+<td align="left">Subyacente MAI óptima de correlación</td>
+<td align="center">0.986457</td>
+<td align="right">0.5140</td>
+<td align="right">0.5728</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="" src="../images/combinacion-lineal/grafica-violin-corr.png" /></p>
+<p><img alt="" src="../images/combinacion-lineal/ponderadores-correlaci%C3%B3n.png" /></p>
+<ul>
+<li><strong><em>Combinación lineal óptima para correlación promedio (solución libre)</em></strong></li>
+</ul>
+<div>
+<div class="MathJax_Preview">\overline{\rho} = 0.9887851</div>
+<script type="math/tex; mode=display">\overline{\rho} = 0.9887851</script>
+</div>
+<ul>
+<li>
+<p>Suma de ponderadores: <em>0.8137</em></p>
+</li>
+<li>
+<p><strong><em>Combinación lineal óptima para correlación promedio (solución restringida)</em></strong></p>
+</li>
+</ul>
+<div>
+<div class="MathJax_Preview">\overline{\rho} = 0.9886683</div>
+<script type="math/tex; mode=display">\overline{\rho} = 0.9886683</script>
+</div>
+<ul>
+<li>Suma de ponderadores: <em>1.0000</em></li>
+</ul>
+<h4 id="trayectorias-historicas-de-medidas-de-inflacion-que-maximizan-la-correlacion-lineal-promedio">Trayectorias históricas de medidas de inflación que maximizan la correlación lineal promedio<a class="headerlink" href="#trayectorias-historicas-de-medidas-de-inflacion-que-maximizan-la-correlacion-lineal-promedio" title="Permanent link">&para;</a></h4>
+<p><img alt="" src="../images/combinacion-lineal/trayectorias-combinacion-lineal-corr.png" /></p>
+<hr />
+<h3 id="combinacion-lineal-que-minimiza-el-valor-absoluto-de-error-medio-promedio">Combinación lineal que minimiza el valor absoluto de error medio promedio<a class="headerlink" href="#combinacion-lineal-que-minimiza-el-valor-absoluto-de-error-medio-promedio" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Se aplica la misma metodología de combinación lineal óptima utilizada en la optimización de la inflación subyacente MAI para minimizar el valor absoluto de error medio promedio.</li>
+<li>La metodología de combinación se aplica utilizando las medidas de inflación con menor valor asboluto de error medio promedio de cada método de cómputo. </li>
+<li>Se obtiene una solución libre y una solución restringida.</li>
+</ul>
+<hr />
+<h4 id="minimizacion-del-valor-absoluto-de-error-medio-promedio">Minimización del valor absoluto de error medio promedio<a class="headerlink" href="#minimizacion-del-valor-absoluto-de-error-medio-promedio" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Medidas de inflación incluidas en la combinación lineal: </li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Medida de inflación</strong></th>
+<th align="center"><span><span class="MathJax_Preview">\text{ME}</span><script type="math/tex">\text{ME}</script></span></th>
+<th align="right"><span><span class="MathJax_Preview">\hat{w}_{\text{libre}}</span><script type="math/tex">\hat{w}_{\text{libre}}</script></span></th>
+<th align="right"><span><span class="MathJax_Preview">\hat{w}_{\text{rest}}</span><script type="math/tex">\hat{w}_{\text{rest}}</script></span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Percentil equiponderado 72</td>
+<td align="center">-0.0620</td>
+<td align="right">0.1444</td>
+<td align="right">0.0294</td>
+</tr>
+<tr>
+<td align="left">Percentil ponderado 70</td>
+<td align="center">-0.0698</td>
+<td align="right">0.1444</td>
+<td align="right">0.0268</td>
+</tr>
+<tr>
+<td align="left">Media truncada equiponderada (42.5, 91)</td>
+<td align="center">-0.0009</td>
+<td align="right">0.1444</td>
+<td align="right">0.1350</td>
+</tr>
+<tr>
+<td align="left">Media truncada ponderada (52.5, 85)</td>
+<td align="center">0.0116</td>
+<td align="right">0.1444</td>
+<td align="right">0.5160</td>
+</tr>
+<tr>
+<td align="left">Exclusión fija óptima con criterio de volatilidad</td>
+<td align="center">-0.3053</td>
+<td align="right">0.1444</td>
+<td align="right">0.0072</td>
+</tr>
+<tr>
+<td align="left">Subyacente dinámica con factores (0.3524, 1.8829)</td>
+<td align="center">0.0000</td>
+<td align="right">0.1444</td>
+<td align="right">0.1434</td>
+</tr>
+<tr>
+<td align="left">Subyacente MAI óptima ME</td>
+<td align="center">0.0000</td>
+<td align="right">0.1444</td>
+<td align="right">0.1423</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="" src="../images/combinacion-lineal/ponderadores-ME.png" /></p>
+<hr />
+<ul>
+<li><strong><em>Combinación lineal óptima para <span><span class="MathJax_Preview">|\overline{\text{ME}}|</span><script type="math/tex">|\overline{\text{ME}}|</script></span> (solución libre)</em></strong></li>
+</ul>
+<div>
+<div class="MathJax_Preview">|\overline{\text{ME}}| = 0</div>
+<script type="math/tex; mode=display">|\overline{\text{ME}}| = 0</script>
+</div>
+<ul>
+<li>
+<p>Suma de ponderadores: <em>1.0109</em></p>
+</li>
+<li>
+<p><strong><em>Combinación lineal óptima para <span><span class="MathJax_Preview">|\overline{\text{ME}}|</span><script type="math/tex">|\overline{\text{ME}}|</script></span> (solución restringida)</em></strong></p>
+</li>
+</ul>
+<div>
+<div class="MathJax_Preview">|\overline{\text{ME}}| = 0</div>
+<script type="math/tex; mode=display">|\overline{\text{ME}}| = 0</script>
+</div>
+<ul>
+<li>Suma de ponderadores: <em>1.0000</em></li>
+</ul>
+<h4 id="trayectorias-historicas-de-medidas-de-inflacion-que-minimizan-el-valor-absoluto-de-error-medio-promedio">Trayectorias históricas de medidas de inflación que minimizan el valor absoluto de error medio promedio<a class="headerlink" href="#trayectorias-historicas-de-medidas-de-inflacion-que-minimizan-el-valor-absoluto-de-error-medio-promedio" title="Permanent link">&para;</a></h4>
+<p><img alt="" src="../images/combinacion-lineal/trayectorias-combinacion-lineal-me.png" /></p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../sub-dinamica/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Evaluación de las medidas basadas en exclusión dinámica" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Evaluación de las medidas basadas en exclusión dinámica
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../intervalos-confianza/" class="md-footer__link md-footer__link--next" aria-label="Next: Conformación de intervalos de confianza para el nivel de inflación" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Conformación de intervalos de confianza para el nivel de inflación
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.709b4209.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.febc23d1.min.js"></script>
+      
+        <script src="../../js/extra.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      
+    
+  </body>
+</html>

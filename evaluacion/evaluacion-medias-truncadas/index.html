@@ -1,0 +1,944 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Proyecto de evaluación de medidas de inflación en MATLAB. Realizado por el Departamento de Investigaciones Económicas del Banco de Guatemala.">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.4">
+    
+    
+      
+        <title>Evaluación de las medidas basadas en medias truncadas - HEMI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.f7f47774.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#evaluacion-de-medidas-de-inflacion-basadas-en-medias-truncadas" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="HEMI" class="md-header__button md-logo" aria-label="HEMI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            HEMI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Evaluación de las medidas basadas en medias truncadas
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/DIE-BANGUAT/EMI-docs/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="HEMI" class="md-nav__button md-logo" aria-label="HEMI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    HEMI
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/DIE-BANGUAT/EMI-docs/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+      
+      <label class="md-nav__link" for="__nav_1">
+        HEMI
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="HEMI" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          HEMI
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Herramienta de evaluación de medidas de inflación (HEMI) de Guatemala
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      <label class="md-nav__link" for="__nav_2">
+        Principal
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Principal" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Principal
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cuerpo/introduccion/" class="md-nav__link">
+        Introducción
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cuerpo/justificacion/" class="md-nav__link">
+        Justificación
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      <label class="md-nav__link" for="__nav_3">
+        Calibración
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Calibración" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Calibración
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../calibracion/Calibraci%C3%B3n%20varianza%20RW/" class="md-nav__link">
+        Especificación y calibración del factor de tendencia estocástica
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../calibracion/Selecci%C3%B3n%20simulaciones/" class="md-nav__link">
+        Selección del número de simulaciones
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../calibracion/Determinaci%C3%B3n%20medida%20evaluaci%C3%B3n/" class="md-nav__link">
+        Selección de la medida de evaluación
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../calibracion/Remuestreo%20block%20bootstrap/" class="md-nav__link">
+        Remuestreo con block bootstrap
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      <label class="md-nav__link" for="__nav_4">
+        Evaluación
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Evaluación" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Evaluación
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../criterios-de-evaluacion/" class="md-nav__link">
+        Criterios de evaluación y pruebas de sensibilidad
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../inflaciones-totales/" class="md-nav__link">
+        Evaluación de las medidas de inflación total
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../evaluacion-percentiles/" class="md-nav__link">
+        Evaluación de las medidas basadas en percentiles
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../evaluacion-exclusion-fija/" class="md-nav__link">
+        Evaluación de las medidas basadas en exclusión fija
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Evaluación de las medidas basadas en medias truncadas
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Evaluación de las medidas basadas en medias truncadas
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#evaluacion-de-medidas-de-inflacion-basadas-en-medias-truncadas" class="md-nav__link">
+    Evaluación de medidas de inflación basadas en medias truncadas
+  </a>
+  
+    <nav class="md-nav" aria-label="Evaluación de medidas de inflación basadas en medias truncadas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resultados-con-los-criterios-basicos-de-evaluacion" class="md-nav__link">
+    Resultados con los criterios básicos de evaluación
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-sensibilidad" class="md-nav__link">
+    Análisis de sensibilidad
+  </a>
+  
+    <nav class="md-nav" aria-label="Análisis de sensibilidad">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-sensibilidad-ante-cambios-en-el-periodo-final-de-evaluacion" class="md-nav__link">
+    Análisis de sensibilidad ante cambios en el período final de evaluación
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-sensibilidad-ante-cambio-en-la-medida-de-evaluacion" class="md-nav__link">
+    Análisis de sensibilidad ante cambio en la medida de evaluación
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-sensibilidad-ante-cambios-en-el-subperiodo-de-evaluacion" class="md-nav__link">
+    Análisis de sensibilidad ante cambios en el subperíodo de evaluación
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-sensibilidad-ante-cambios-en-la-componente-de-tendencia" class="md-nav__link">
+    Análisis de sensibilidad ante cambios en la componente de tendencia
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-sensibilidad-ante-cambios-en-la-trayectoria-de-inflacion-parametrica" class="md-nav__link">
+    Análisis de sensibilidad ante cambios en la trayectoria de inflación paramétrica
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-sensibilidad-ante-cambios-en-el-numero-de-simulaciones" class="md-nav__link">
+    Análisis de sensibilidad ante cambios en el número de simulaciones
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-sensibilidad-ante-cambios-en-el-muestreo" class="md-nav__link">
+    Análisis de sensibilidad ante cambios en el muestreo
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#distribuciones-de-simulacion-del-mse-en-las-medidas-optimas" class="md-nav__link">
+    Distribuciones de simulación del MSE en las medidas óptimas
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-trayectorias-para-los-datos-historicamente-observados" class="md-nav__link">
+    Análisis de trayectorias para los datos históricamente observados
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../evaluacion-mai/" class="md-nav__link">
+        Evaluación de las medidas basadas en metodología de subyacente MAI
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sub-dinamica/" class="md-nav__link">
+        Evaluación de las medidas basadas en exclusión dinámica
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../combinacion-lineal/" class="md-nav__link">
+        Combinaciones lineales de medidas de inflación óptimas
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intervalos-confianza/" class="md-nav__link">
+        Conformación de intervalos de confianza para el nivel de inflación
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#evaluacion-de-medidas-de-inflacion-basadas-en-medias-truncadas" class="md-nav__link">
+    Evaluación de medidas de inflación basadas en medias truncadas
+  </a>
+  
+    <nav class="md-nav" aria-label="Evaluación de medidas de inflación basadas en medias truncadas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resultados-con-los-criterios-basicos-de-evaluacion" class="md-nav__link">
+    Resultados con los criterios básicos de evaluación
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-sensibilidad" class="md-nav__link">
+    Análisis de sensibilidad
+  </a>
+  
+    <nav class="md-nav" aria-label="Análisis de sensibilidad">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-sensibilidad-ante-cambios-en-el-periodo-final-de-evaluacion" class="md-nav__link">
+    Análisis de sensibilidad ante cambios en el período final de evaluación
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-sensibilidad-ante-cambio-en-la-medida-de-evaluacion" class="md-nav__link">
+    Análisis de sensibilidad ante cambio en la medida de evaluación
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-sensibilidad-ante-cambios-en-el-subperiodo-de-evaluacion" class="md-nav__link">
+    Análisis de sensibilidad ante cambios en el subperíodo de evaluación
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-sensibilidad-ante-cambios-en-la-componente-de-tendencia" class="md-nav__link">
+    Análisis de sensibilidad ante cambios en la componente de tendencia
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-sensibilidad-ante-cambios-en-la-trayectoria-de-inflacion-parametrica" class="md-nav__link">
+    Análisis de sensibilidad ante cambios en la trayectoria de inflación paramétrica
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-sensibilidad-ante-cambios-en-el-numero-de-simulaciones" class="md-nav__link">
+    Análisis de sensibilidad ante cambios en el número de simulaciones
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-sensibilidad-ante-cambios-en-el-muestreo" class="md-nav__link">
+    Análisis de sensibilidad ante cambios en el muestreo
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#distribuciones-de-simulacion-del-mse-en-las-medidas-optimas" class="md-nav__link">
+    Distribuciones de simulación del MSE en las medidas óptimas
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-trayectorias-para-los-datos-historicamente-observados" class="md-nav__link">
+    Análisis de trayectorias para los datos históricamente observados
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/DIE-BANGUAT/EMI-docs/edit/master/docs/evaluacion/evaluacion-medias-truncadas.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  <h1>Evaluación de las medidas basadas en medias truncadas</h1>
+                
+                <h2 id="evaluacion-de-medidas-de-inflacion-basadas-en-medias-truncadas">Evaluación de medidas de inflación basadas en medias truncadas<a class="headerlink" href="#evaluacion-de-medidas-de-inflacion-basadas-en-medias-truncadas" title="Permanent link">&para;</a></h2>
+<p>En esta sección se documentan los resultados del proceso de evaluación de las medidas de inflación interanual basadas en medias truncadas de la distribución transversal de variaciones intermensuales de índices de precios.</p>
+<h3 id="resultados-con-los-criterios-basicos-de-evaluacion">Resultados con los criterios básicos de evaluación<a class="headerlink" href="#resultados-con-los-criterios-basicos-de-evaluacion" title="Permanent link">&para;</a></h3>
+<p>Aplicando el procedimiento de evaluación con los criterios básicos definidos, se lleva a cabo la simulación de 125,000 realizaciones para cada una de las medidas de inflación interanual con diferentes valores para el límite inferior y el límite superior del recorte para aplicar el promedio de la distribución de variaciones intermensuales en cada mes. </p>
+<p>En la siguiente figura, se observan los resultados de la evaluación de una cuadrícula de recortes (combinaciones de límite inferior y límite superior) de la distribución transversal de variaciones intermensuales, que se utiliza para construir una medida de inflación basada en medias truncadas ponderadas, utilizando las respectivas ponderaciones de los gastos básicos de acuerdo con la que tienen en el IPC. En cada uno de los puntos, el tamaño corresponde al valor recíproco del promedio del error cuadrático medio (MSE) a través de 125,000 simulaciones con el recorte especificado, por lo que un círculo más grande denota que la medida de inflación tuvo un mejor desempeño en la simulación. En color rojo se muestra el valor mínimo del MSE en la cuadrícula, mientras que en color naranja, se muestran resultados de las medidas cuyo promedio no se aleja más de 0.05pp² del mínimo. </p>
+<p><strong>Figura.</strong> <em>MSE recíproco de evaluación de medidas de inflación basadas en medias truncadas ponderadas</em>. 
+<img alt="Evaluacion medias truncadas ponderadas criterios básicos" src="../images/medias-truncadas/evaluacion-medias-truncadas.md-2020-10-28-15-39-11.png" /></p>
+<p>Como se puede observar, existe una región en la que se encuentran los valores más pequeños del MSE, que parecen estar a lo largo de una línea recta inclinada con pendiente negativa menor que uno en magnitud, lo que representa que existe una mayor variación de los resultados a lo largo del límite inferior del recorte. Asimismo, se observa que la medida de inflación que minimiza el valor de MSE es la <strong>media truncada ponderada con recortes (15, 97)</strong> (15% de recorte en la cola izquierda y 3% en la cola derecha de la distribución transversal). Cabe resaltar, que de forma similar que con las medidas basadas en percentiles de la distribución de variaciones intermensuales, la medida óptima presenta asímetría en el recorte de la distribución, siendo mayor el recorte en la cola izquierda, lo cual puede reflejar que la distribución de variaciones intermensuales posee sesgo positivo.</p>
+<!-- **Figura.** *MSE recíproco de evaluación de medidas de inflación basadas en medias truncadas equiponderadas*. 
+<div id="fig:resultados-criterios-basicos-mteq">
+![Evaluacion medias truncadas equiponderadas criterios básicos](images/medias-truncadas/medias-truncadas/evaluacion-medias-truncadas.md-2020-10-09-12-33-07.png)
+</div>
+
+En la [Figura 2](#fig:resultados-criterios-basicos-mteq) -->
+
+<p>En la figura mostrada a continuación, se presenta una gráfica similar a la anterior, que corresponde al MSE de evaluación de las medidas de inflación basadas en medias truncadas equiponderadas (en las cuales, los gastos básicos se tratan con las mismas ponderaciones, en vez de utilizar sus ponderaciones en el IPC, como si se tratara de una distribución de ocurrencias de las variaciones intermensuales).</p>
+<p><strong>Figura.</strong> <em>MSE recíproco de evaluación de medidas de inflación basadas en medias truncadas equiponderadas</em>. 
+<img alt="Evaluacion medias truncadas equiponderadas criterios básicos" src="../images/medias-truncadas/evaluacion-medias-truncadas.md-2020-10-28-15-40-22.png" /></p>
+<p>Como se puede observar, al utilizar recortes de la distribución de ocurrencias de variaciones intermensuales, el valor mínimo de MSE es exhibido por la <strong>media truncada equiponderada (57.5, 84)</strong> (57.5% de recorte en la cola izquierda y 16% en la cola derecha de la distribución transversal de ocurrencias). En la gráfica también se resalta el valor máximo de MSE obtenido en la simulación, el cual se obtiene en la media truncada equiponderada (70, 100), la cual excluye solamente el 30% de la cola izquierda de la distribución.</p>
+<p>En la siguiente figura se muestra la descomposición aditiva del error cuadrático medio en sus componentes de sesgo, varianza o precisión y correlación, con respecto a la trayectoria de inflación paramétrica, al utilizar los criterios básicos de evaluación. </p>
+<p>En el caso de las medias truncadas equiponderadas, se puede observar que el recorte óptimo de (57.5, 84) resulta debido a que es el que minimiza la componente de variabilidad del MSE, mientras que los recortes que minimizan las componentes de sesgo y correlación se encuentran en recortes del límite inferior que son menores al recorte inferior óptimo general de 57.5%. </p>
+<p>En el caso de las medias truncadas ponderadas, se observa que los valores óptimos de las componentes de sesgo y varianza se observan en recortes inferiores que son mucho mayores al 15% del recorte inferior óptimo general, particularmente en 52.5% en la componente de sesgo y 47.5% en la componente de varianza. Sin embargo, se observa que el recorte óptimo inferior en la componente de correlación se obtiene en el recorte inferior del 17.5%, y por lo tanto, esto empuja el recorte óptimo general al punto (15, 97).</p>
+<p><strong>Figura.</strong> <em>Descomposición aditiva del MSE recíproco de evaluación de medidas de inflación basadas en medias truncadas equiponderadas</em>. 
+<img alt="" src="../images/medias-truncadas/evaluacion-medias-truncadas.md-2020-10-28-17-24-24.png" /></p>
+<p>A continuación, se presentan algunos análisis de sensibilidad respecto al escenario con los criterios básicos de evaluación.</p>
+<h3 id="analisis-de-sensibilidad">Análisis de sensibilidad<a class="headerlink" href="#analisis-de-sensibilidad" title="Permanent link">&para;</a></h3>
+<p>En esta sección se presentan los análisis de sensbilidad obtenidos en el ejercicio de evaluación de las medidas de inflación basadas en medias truncadas. </p>
+<h4 id="analisis-de-sensibilidad-ante-cambios-en-el-periodo-final-de-evaluacion">Análisis de sensibilidad ante cambios en el período final de evaluación<a class="headerlink" href="#analisis-de-sensibilidad-ante-cambios-en-el-periodo-final-de-evaluacion" title="Permanent link">&para;</a></h4>
+<p>Debido a que se considera el período completo (hasta diciembre de 2019), como criterio básico de evaluación, a continuación se realiza un análisis de sensibilidad que considera los resultados ante un cambio en la fecha final del período de evaluación. Se consideran los siguientes períodos finales de evaluación:  </p>
+<ul>
+<li>Diciembre de 2018</li>
+<li>Junio de 2019</li>
+<li>Diciembre de 2019 (de acuerdo con los criterios básicos)</li>
+</ul>
+<p>Para realizar este análisis de sensibilidad, se excluyen los recortes de la cuadrícula que están fuera de una región de clasificación no lineal que conecta el recorte equiponderado óptimo con el recorte ponderado óptimo. Esta clasificación se llevó a cabo para ahorrar computación, ya que las medidas cuyos recortes presentaron mejor desempeño en la evaluación y en los análisis de sensibilidad, se encuentran en la región con forma de parábola en las gráficas. En adelante, se hará referencia a esta región como una de buen desempeño de las medidas basdadas en medias truncadas.</p>
+<p><strong>Figura.</strong> <em>Análisis de sensibilidad respecto del período final considerado en la evaluación</em>.
+<img alt="Evaluacion medias truncadas análisis sensibilidad períodos" src="../images/medias-truncadas/evaluacion-medias-truncadas.md-2020-10-28-17-32-15.png" /></p>
+<p>Como se puede observar, en todos los períodos finales considerados, la <strong>media truncada equiponderada (57.5, 84)</strong> y la <strong>media truncada ponderada (15, 97)</strong> resultan invariantemente óptimas en términos del MSE de evaluación. Estos resultados muestran que el recorte óptimo, en ambos tipos de medidas de inflación, no es tan sensible a cambios en las fechas finales del período de evaluación que están separadas entre 6 meses y un año.  </p>
+<h4 id="analisis-de-sensibilidad-ante-cambio-en-la-medida-de-evaluacion">Análisis de sensibilidad ante cambio en la medida de evaluación<a class="headerlink" href="#analisis-de-sensibilidad-ante-cambio-en-la-medida-de-evaluacion" title="Permanent link">&para;</a></h4>
+<p>Considerando estadísticos de evaluación alternativos, se construye una gráfica que ilustra el desempeño de las medidas consideradas como óptimas al aplicar los criterios básicos de evaluación utilizando diferentes medidas de evaluación. Dicha gráfica se muestra a continuación.   </p>
+<p><strong>Figura.</strong> <em>Análisis de sensibilidad respecto de la medida de evaluación</em>.
+<img alt="Evaluacion medias truncadas análisis sensibilidad medida evaluación" src="../images/medias-truncadas/evaluacion-medias-truncadas.md-2020-10-28-17-32-48.png" /></p>
+<p>Respecto a las medias truncadas equiponderadas, se puede observar que los recortes óptimos en cada medida de evaluación se encuentran cercanos al recorte óptimo obtenido en los criterios básicos. en el caso del valor absoluto medio y del índice de error muestral, se encuentran en la región de buen desempeño de las medias truncadas. Cabe resaltar que en la gráfica de correlación, todas las medidas en la cuadrícula se encuentran cerca del óptimo, que se encuentra en el recorte (57.5, 92), el cual está fuera de la región de buen desempeño. </p>
+<p>Respecto a las medias truncadas ponderadas, el recorte óptimo (15, 97) del error cuadrático medio, también lo es de acuerdo con el índice de error muestral. Respecto del valor absoluto medio, se observa que el recorte óptimo se encuentra en el punto (52.5, 85), dentro de la región de buen desempeño. Nuevamente, en la gráfica de correlación, el valor óptimo se encuentra en el punto (52.5, 97), el cual se encuentra fuera de la región de buen desempeño. </p>
+<p>En general, se puede concluir que al considerar diferentes estadísticos de evaluación del desempeño de las medidas de inflación, las medidas de inflación consideradas como óptimas al aplicar los criterios básicos de evaluación, no presentan una gran variabilidad, excepto en el caso del coeficiente de correlación lineal. </p>
+<h4 id="analisis-de-sensibilidad-ante-cambios-en-el-subperiodo-de-evaluacion">Análisis de sensibilidad ante cambios en el subperíodo de evaluación<a class="headerlink" href="#analisis-de-sensibilidad-ante-cambios-en-el-subperiodo-de-evaluacion" title="Permanent link">&para;</a></h4>
+<p>A continuación, se presenta un análisis de sensibilidad de la evaluación al considerar un cambio en el período de evaluación. La siguiente gráfica ilustra la evaluación de los grupos de medias truncadas equiponderadas y ponderadas en los diferentes períodos de evaluación, mientras que el escenario con el criterio básico de evaluación observa en la última fila, correspondiente al período completo.  </p>
+<p><strong>Figura.</strong> <em>Análisis de sensibilidad respecto del subperíodo de evaluación</em>.
+<img alt="Evaluacion medias truncadas análisis sensibilidad subperíodo evaluación" src="../images/medias-truncadas/evaluacion-medias-truncadas.md-2020-10-28-17-33-26.png" /></p>
+<p>Respecto a las medias truncadas equiponderadas, se puede observar que existen ligeras desviaciones del recorte óptimo, pero dentro de la región de buen desempeño. Cabe resaltar que el período en que se observa mayor error cuadrático medio óptimo es en el período de transición (0.2454pp²) y el menor se observa en el período 2010 (0.0532pp²). </p>
+<p>Mientras tanto, en el grupo de medias truncadas ponderadas, se observa que existen fuertes desviaciones del recorte óptimo hacia puntos cuyo recorte inferior es mayor, dentro de la región de buen desempeño. A su vez, el mayor error cuadrático medio óptimo es el del período base 2000 (0.3639pp²) de evaluación y nuevamente, el menor se observa en el período 2010 (0.0965pp²).</p>
+<h4 id="analisis-de-sensibilidad-ante-cambios-en-la-componente-de-tendencia">Análisis de sensibilidad ante cambios en la componente de tendencia<a class="headerlink" href="#analisis-de-sensibilidad-ante-cambios-en-la-componente-de-tendencia" title="Permanent link">&para;</a></h4>
+<p>A continuación, se presenta un análisis de sensibilidad de la evaluación al considerar un cambio en la componente multiplicativa de tendencia del procedimiento de evaluación. La siguiente gráfica ilustra la evaluación de los grupos de medias truncadas equiponderadas y ponderadas en tres escenarios de tendencia, siendo el escenario con criterios básicos el que se observa en la primera fila, correspondiente a la componente de tendencia de caminata aleatoria. </p>
+<p><strong>Figura.</strong> <em>Análisis de sensibilidad ante cambios en la componente de tendencia</em>.
+<img alt="Evaluacion medias truncadas análisis sensibilidad tendencia" src="../images/medias-truncadas/evaluacion-medias-truncadas.md-2020-10-28-17-34-04.png" /></p>
+<p>Como se puede observar, para ambos grupos de medidas de inflación existen ligeras desviaciones de los recortes óptimos del escenario de caminata aleatoria al escenario en el que no se aplica tendencia en la evaluación. Respecto de la comparación entre el escenario de caminata aleatoria y el escenario con tendencia de crecimiento exponencial, se puede observar que la desviación es mayor, hacia el recorte (35, 94) para las media truncada equiponderada y hacia el recorte (5, 99) para la media truncada ponderada. </p>
+<h4 id="analisis-de-sensibilidad-ante-cambios-en-la-trayectoria-de-inflacion-parametrica">Análisis de sensibilidad ante cambios en la trayectoria de inflación paramétrica<a class="headerlink" href="#analisis-de-sensibilidad-ante-cambios-en-la-trayectoria-de-inflacion-parametrica" title="Permanent link">&para;</a></h4>
+<p>Ahora se presenta un análisis de sensibilidad de la evaluación al considerar un cambio en la trayectoria de inflación paramétrica del procedimiento de evaluación. La siguiente gráfica ilustra la evaluación de los grupos de medias truncadas equiponderadas y ponderadas utilizando tres diferentes parámetros de inflación, siendo el escenario con criterios básicos de evaluación el que se observa en la primera fila, correspondiente a la evaluación respecto al parámetro de variación interanual del IPC con cambios de base.</p>
+<p><strong>Figura.</strong> <em>Análisis de sensibilidad respecto de la trayectoria de inflación paramétrica de evaluación</em>.
+<img alt="Evaluacion medias truncadas análisis sensibilidad parámetro poblacional" src="../images/medias-truncadas/evaluacion-medias-truncadas.md-2020-10-28-17-34-51.png" /></p>
+<p>Respecto a los resultados de la evaluación al utilizar la variación interanual del IPC (segunda fila) como parámetro, se observa que provoca un desplazamiento de los los recortes óptimos hacia recortes superiores mayores que en el escenario de de criterios básicos. Este resultado se debe a que al utilizar este parámetro de referencia para el cómputo de los errores, las medidas con niveles más altos de inflación (recortes superiores más altos) resultan favorecidas, ya que en el parámetro existe una tendencia creciente debido al sesgo inherente que resulta de la aplicación de la fórmula del IPC.</p>
+<p>Por su parte, respecto a los resultados de evaluación al utilizar la media ponderada interanual (tercera fila) como parámetro, se observa que provoca un desplazamiento de los recortes óptimos, equiponderados y ponderados, hacia los recortes (60, 81) para la media truncada equiponderada y al recorte (25, 94) para la media truncada ponderada. Cabe resaltar que dichos recortes están cerca del óptimo del escenario con criterios básicos y dentro de la región de buen desempeño. </p>
+<h4 id="analisis-de-sensibilidad-ante-cambios-en-el-numero-de-simulaciones">Análisis de sensibilidad ante cambios en el número de simulaciones<a class="headerlink" href="#analisis-de-sensibilidad-ante-cambios-en-el-numero-de-simulaciones" title="Permanent link">&para;</a></h4>
+<p>En este caso, se realiza una prueba de sensibilidad cambiando el número de simulaciones a 500,000 realizaciones de las trayectorias de inflación muestral.</p>
+<p>Como se muestra en la gráfica siguiente, los resultados coinciden sin mayor variabilidad. Esto se debe a que el número inicial de simulaciones es en realidad más que suficiente para la distribución del MSE de los estimadores muestrales basados en medias truncadas (en realidad, con alrededor de 10,000 simulaciones se tenía errores estándar de simulación muy pequeños).  </p>
+<p><strong>Figura.</strong> <em>Análisis de sensibilidad ante cambios en el número de simulaciones</em>.
+<img alt="Evaluacion medias truncadas análisis sensibilidad muestreo bootstrap" src="../images/medias-truncadas/evaluacion-medias-truncadas.md-2020-10-28-17-37-45.png" /></p>
+<h4 id="analisis-de-sensibilidad-ante-cambios-en-el-muestreo">Análisis de sensibilidad ante cambios en el muestreo<a class="headerlink" href="#analisis-de-sensibilidad-ante-cambios-en-el-muestreo" title="Permanent link">&para;</a></h4>
+<p>Se realiza una prueba de sensibilidad utilizando como técnica de remuestreo la variante de <em>nonoverlapping block bootstrap</em> con bloques de 12 meses. El muestreo se realiza de forma independiente para cada unos de los gastos básicos en cada una de las bases del IPC. A continuación, se muestran los resultados en la gráfica siguiente.  </p>
+<p><strong>Figura.</strong> <em>Análisis de sensibilidad ante cambios en el procedimiento de muestreo</em>.
+<img alt="Evaluacion medias truncadas análisis sensibilidad simulaciones" src="../images/medias-truncadas/evaluacion-medias-truncadas.md-2020-10-28-17-36-10.png" /></p>
+<p>Como se puede observar, utilizando una variante de muestreo de <em>block bootstrap</em>, la media truncada equponderada óptima se desplaza fuertemente hacia el recorte (20, 96), mientras que la media truncada ponderada óptima se desplaza ligeramente hacia el recorte (17.5, 96). </p>
+<h4 id="distribuciones-de-simulacion-del-mse-en-las-medidas-optimas">Distribuciones de simulación del MSE en las medidas óptimas<a class="headerlink" href="#distribuciones-de-simulacion-del-mse-en-las-medidas-optimas" title="Permanent link">&para;</a></h4>
+<p>A continuación, se presentan gráficas de las distribuciones de simulación del MSE aplicando los criterios básicos de evaluación. Esta gráfica permite observar el rango, o amplitud, de la distribución de simulación del estadístico de evaluación a través de la gráfica de la distribución acumulada.</p>
+<p><strong>Figura.</strong> <em>Distribuciones de simulación del MSE de las medias truncadas óptimas con criterio basicos</em>.
+<img alt="Distribuciones de simulación MSE medias truncadas óptimas criterio basico" src="../images/medias-truncadas/evaluacion-medias-truncadas.md-2020-10-28-17-39-53.png" /></p>
+<p>Como se puede observar, el error cuadrático medio de la media truncada ponderada (15, 97) se distribuye a través de un rango más amplio de valores y con una media de simulación en un nivel más alto que la media truncada equiponderada (57.5, 84). Ya que se observan valores de asimetría cercanos a cero y curtosis cercana a tres, se tienen distribuciones del error cuadrático medio que son aproximadamente normales al aplicar los criterios básicos de evaluación. </p>
+<p>A continuación, se muestra una gráfica similar, en la que se compara la amplitud de las distribuciones de simulación respecto al tipo de tendencia para ambos grupos de medidas. Nuevamente, se observa que con cualquiera de los tres tipos de componente de tendencia, se tienen distribuciones con mayor desviación estándar en el grupo de medias truncadas ponderadas.</p>
+<p><strong>Figura.</strong> <em>Distribuciones de simulación del MSE de las medias truncadas óptimas con criterio basicos, por tipo de tendencia aplicada en la evaluación</em>.
+<img alt="Distribuciones de simulación MSE medias truncadas óptimas por tipo tendencia" src="../images/medias-truncadas/evaluacion-medias-truncadas.md-2020-10-28-17-42-05.png" /></p>
+<p>En la siguiente gráfica, se compara la amplitud de las distribuciones de simulación en los diferentes períodos de evaluación, para ambos grupos de medidas. En este caso, se observa que las distribuciones con mayor rango son las del período de transición, en cualquiera de los escenarios de tendencia.  </p>
+<p><strong>Figura.</strong> <em>Distribuciones de simulación del MSE de las medias truncadas óptimas con criterio basicos, por subperíodo de evaluación</em>.
+<img alt="Distribuciones de simulación MSE medias truncadas óptimas por subperíodo" src="../images/medias-truncadas/evaluacion-medias-truncadas.md-2020-10-28-17-42-57.png" /></p>
+<h3 id="analisis-de-trayectorias-para-los-datos-historicamente-observados">Análisis de trayectorias para los datos históricamente observados<a class="headerlink" href="#analisis-de-trayectorias-para-los-datos-historicamente-observados" title="Permanent link">&para;</a></h3>
+<p>A continuación, se presenta una gráfica del comportamiento históricamente observado de las medias truncadas óptimas obtenidas al aplicar los criterios básicos de evaluación y se comparan resultados con la variación interanual del IPC, en el período de diciembre de 2001 a diciembre de 2019. Como se observa, el comportamiento general de ambas medidas de inflación subyacente posee menor volatilidad que la medida de inflación oficial. Por su parte, la media truncada ponderada (15, 97) presenta niveles ligeramente más altos durante el período del IPC base 2000. Sin embargo, durante el período del IPC base 2010, esta medida presenta en la mayor parte del período un nivel más bajo que el de la media truncada equiponderada (57.5, 84), en especial a partir del año 2014.</p>
+<p>Cabe resaltar el comportamiento de ambas medidas de inflación durante el período de la crisis económica mundial de 2007-2009, en el cual se observa un alza y una caída mucho más moderada que la registrada por la medida de inflación oficial. Finalmente, a partir de finales del año 2015, la variación interanual del IPC registra un nivel más alto (aunque con fluctuaciones volátiles) mientras que las medidas de inflación subyacente con base en las medias truncadas reportan niveles más bajos y estables de inflación.</p>
+<p><strong>Figura.</strong> <em>Trayectorias de inflación históricamente observadas de las medidas óptimas encontradas con el proceso de evaluación</em>.
+<img alt="Análisis de trayectorias de datos históricamente observados" src="../images/medias-truncadas/evaluacion-medias-truncadas.md-2020-10-28-17-43-46.png" /></p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../evaluacion-exclusion-fija/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Evaluación de las medidas basadas en exclusión fija" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Evaluación de las medidas basadas en exclusión fija
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../evaluacion-mai/" class="md-footer__link md-footer__link--next" aria-label="Next: Evaluación de las medidas basadas en metodología de subyacente MAI" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Evaluación de las medidas basadas en metodología de subyacente MAI
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.709b4209.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.febc23d1.min.js"></script>
+      
+        <script src="../../js/extra.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      
+    
+  </body>
+</html>

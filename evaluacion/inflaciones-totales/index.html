@@ -1,0 +1,955 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Proyecto de evaluación de medidas de inflación en MATLAB. Realizado por el Departamento de Investigaciones Económicas del Banco de Guatemala.">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.4">
+    
+    
+      
+        <title>Evaluación de las medidas de inflación total - HEMI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.f7f47774.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#evaluacion-de-medidas-de-inflacion-total" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="HEMI" class="md-header__button md-logo" aria-label="HEMI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            HEMI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Evaluación de las medidas de inflación total
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/DIE-BANGUAT/EMI-docs/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="HEMI" class="md-nav__button md-logo" aria-label="HEMI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    HEMI
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/DIE-BANGUAT/EMI-docs/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+      
+      <label class="md-nav__link" for="__nav_1">
+        HEMI
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="HEMI" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          HEMI
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Herramienta de evaluación de medidas de inflación (HEMI) de Guatemala
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      <label class="md-nav__link" for="__nav_2">
+        Principal
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Principal" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Principal
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cuerpo/introduccion/" class="md-nav__link">
+        Introducción
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cuerpo/justificacion/" class="md-nav__link">
+        Justificación
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      <label class="md-nav__link" for="__nav_3">
+        Calibración
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Calibración" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Calibración
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../calibracion/Calibraci%C3%B3n%20varianza%20RW/" class="md-nav__link">
+        Especificación y calibración del factor de tendencia estocástica
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../calibracion/Selecci%C3%B3n%20simulaciones/" class="md-nav__link">
+        Selección del número de simulaciones
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../calibracion/Determinaci%C3%B3n%20medida%20evaluaci%C3%B3n/" class="md-nav__link">
+        Selección de la medida de evaluación
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../calibracion/Remuestreo%20block%20bootstrap/" class="md-nav__link">
+        Remuestreo con block bootstrap
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      <label class="md-nav__link" for="__nav_4">
+        Evaluación
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Evaluación" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Evaluación
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../criterios-de-evaluacion/" class="md-nav__link">
+        Criterios de evaluación y pruebas de sensibilidad
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Evaluación de las medidas de inflación total
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Evaluación de las medidas de inflación total
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#evaluacion-de-medidas-de-inflacion-total" class="md-nav__link">
+    Evaluación de medidas de inflación total
+  </a>
+  
+    <nav class="md-nav" aria-label="Evaluación de medidas de inflación total">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resultados-de-la-evaluacion-de-diferentes-medidas-de-inflacion" class="md-nav__link">
+    Resultados de la evaluación de diferentes medidas de inflación
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-sensibilidad" class="md-nav__link">
+    Análisis de sensibilidad
+  </a>
+  
+    <nav class="md-nav" aria-label="Análisis de sensibilidad">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-sensibilidad-ante-cambios-en-el-periodo-final-de-evaluacion" class="md-nav__link">
+    Análisis de sensibilidad ante cambios en el período final de evaluación
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-sensibilidad-ante-cambio-en-la-medida-de-evaluacion" class="md-nav__link">
+    Análisis de sensibilidad ante cambio en la medida de evaluación
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-sensibilidad-ante-cambios-en-el-subperiodo-de-evaluacion" class="md-nav__link">
+    Análisis de sensibilidad ante cambios en el subperíodo de evaluación
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-sensibilidad-ante-cambios-en-la-componente-de-tendencia" class="md-nav__link">
+    Análisis de sensibilidad ante cambios en la componente de tendencia
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-sensibilidad-ante-cambios-en-la-trayectoria-de-inflacion-parametrica" class="md-nav__link">
+    Análisis de sensibilidad ante cambios en la trayectoria de inflación paramétrica
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-sensibilidad-ante-cambios-en-el-numero-de-simulaciones" class="md-nav__link">
+    Análisis de sensibilidad ante cambios en el número de simulaciones
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-sensibilidad-ante-cambios-en-el-muestreo-" class="md-nav__link">
+    Análisis de sensibilidad ante cambios en el muestreo ---
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#distribuciones-de-simulacion-del-mse-en-las-medidas-optimas" class="md-nav__link">
+    Distribuciones de simulación del MSE en las medidas óptimas
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-trayectorias-para-los-datos-historicamente-observados" class="md-nav__link">
+    Análisis de trayectorias para los datos históricamente observados
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../evaluacion-percentiles/" class="md-nav__link">
+        Evaluación de las medidas basadas en percentiles
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../evaluacion-exclusion-fija/" class="md-nav__link">
+        Evaluación de las medidas basadas en exclusión fija
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../evaluacion-medias-truncadas/" class="md-nav__link">
+        Evaluación de las medidas basadas en medias truncadas
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../evaluacion-mai/" class="md-nav__link">
+        Evaluación de las medidas basadas en metodología de subyacente MAI
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sub-dinamica/" class="md-nav__link">
+        Evaluación de las medidas basadas en exclusión dinámica
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../combinacion-lineal/" class="md-nav__link">
+        Combinaciones lineales de medidas de inflación óptimas
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intervalos-confianza/" class="md-nav__link">
+        Conformación de intervalos de confianza para el nivel de inflación
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#evaluacion-de-medidas-de-inflacion-total" class="md-nav__link">
+    Evaluación de medidas de inflación total
+  </a>
+  
+    <nav class="md-nav" aria-label="Evaluación de medidas de inflación total">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resultados-de-la-evaluacion-de-diferentes-medidas-de-inflacion" class="md-nav__link">
+    Resultados de la evaluación de diferentes medidas de inflación
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-sensibilidad" class="md-nav__link">
+    Análisis de sensibilidad
+  </a>
+  
+    <nav class="md-nav" aria-label="Análisis de sensibilidad">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-sensibilidad-ante-cambios-en-el-periodo-final-de-evaluacion" class="md-nav__link">
+    Análisis de sensibilidad ante cambios en el período final de evaluación
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-sensibilidad-ante-cambio-en-la-medida-de-evaluacion" class="md-nav__link">
+    Análisis de sensibilidad ante cambio en la medida de evaluación
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-sensibilidad-ante-cambios-en-el-subperiodo-de-evaluacion" class="md-nav__link">
+    Análisis de sensibilidad ante cambios en el subperíodo de evaluación
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-sensibilidad-ante-cambios-en-la-componente-de-tendencia" class="md-nav__link">
+    Análisis de sensibilidad ante cambios en la componente de tendencia
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-sensibilidad-ante-cambios-en-la-trayectoria-de-inflacion-parametrica" class="md-nav__link">
+    Análisis de sensibilidad ante cambios en la trayectoria de inflación paramétrica
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-sensibilidad-ante-cambios-en-el-numero-de-simulaciones" class="md-nav__link">
+    Análisis de sensibilidad ante cambios en el número de simulaciones
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-sensibilidad-ante-cambios-en-el-muestreo-" class="md-nav__link">
+    Análisis de sensibilidad ante cambios en el muestreo ---
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#distribuciones-de-simulacion-del-mse-en-las-medidas-optimas" class="md-nav__link">
+    Distribuciones de simulación del MSE en las medidas óptimas
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-trayectorias-para-los-datos-historicamente-observados" class="md-nav__link">
+    Análisis de trayectorias para los datos históricamente observados
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/DIE-BANGUAT/EMI-docs/edit/master/docs/evaluacion/inflaciones-totales.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  <h1>Evaluación de las medidas de inflación total</h1>
+                
+                <h2 id="evaluacion-de-medidas-de-inflacion-total">Evaluación de medidas de inflación total<a class="headerlink" href="#evaluacion-de-medidas-de-inflacion-total" title="Permanent link">&para;</a></h2>
+<p>En esta sección se documentan los resultados del proceso de evaluación de la medida de inflación obtenida a través de la variación interanual del IPC y la media ponderada de las variaciones interanuales de los índices de precios. Además de esto, se evalúan las medidas de inflación suavizadas a través de medias móviles, utilizando rezagos de 2 a 12 meses en su cómputo. </p>
+<p>Finalmente, se añade un análisis de sensibilidad, el cual se efectúa modificando algunos parámetros respecto de los criterios básicos de evaluación.</p>
+<h3 id="resultados-de-la-evaluacion-de-diferentes-medidas-de-inflacion">Resultados de la evaluación de diferentes medidas de inflación<a class="headerlink" href="#resultados-de-la-evaluacion-de-diferentes-medidas-de-inflacion" title="Permanent link">&para;</a></h3>
+<p>Dicha evaluación se llevó a cabo utilizando los criterios básicos, aplicados sobre las dos medidas de inflación total y sus respectivas medias móviles.</p>
+<p><strong>Figura.</strong> <em>Resultados del error cuadrático medio de la evaluación con criterios básicos. Variación interanual del IPC y sus medias móviles.</em>
+<img alt="" src="../images/inflaciones-totales/cpi-basedash.png" /></p>
+<p><strong>Figura.</strong> <em>Resultados del error cuadrático medio de la evaluación con criterios básicos. Variación interanual del IPC y sus medias móviles. Descomposición aditiva del MSE.</em>
+<img alt="" src="../images/inflaciones-totales/cpi-mseDescdash.png" /></p>
+<p>En las gráficas anteriores podemos observar que la variación interanual del IPC minimiza su MSE promedio de evaluación al realizar una media móvil de 12 meses. Sin embargo, dicha media móvil introduce el mayor componente de sesgo a la métrica mencionada. Esto se ve compensado por la mejora en el componente de correlación y precisión. </p>
+<p>A continuación, se muestran los resultados de la medida de inflación de media ponderada interanual.</p>
+<p><strong>Figura.</strong> <em>Resultados del MSE de la evaluación con criterios básicos. Inflación de media ponderada interanual y sus edias móviles.</em>
+<img alt="" src="../images/inflaciones-totales/mpa-basedash.png" /></p>
+<p><strong>Figura.</strong> <em>Resultados del MSE de la evaluación con criterios básicos. Inflación de media ponderada interanual y sus medias móviles. Descomposición aditiva del MSE.</em>
+<img alt="" src="../images/inflaciones-totales/mpa-mseDescdash.png" /></p>
+<p>Respecto a la media ponderada, podemos notar que la media móvil de 8 meses es la que posee el MSE promedio mínimo. En la descomposición del MSE se observa que tanto el componente de sesgo así como el componente de varianza es mínimo para la media móvil de 12 meses, sin embargo, la componente de correlación se optimiza para la media móvil de 7 periodos. </p>
+<p>Finalmente, si se compara se puede notar que la tanto la media ponderada sin media móvil, así como sus medias móviles, presentan un menor valor de MSE promedio respecto a la inflación total con media móvil de 12 meses, la cual es la mejor evaluada entre el conjunto de medidas basadas en la inflación total. </p>
+<h3 id="analisis-de-sensibilidad">Análisis de sensibilidad<a class="headerlink" href="#analisis-de-sensibilidad" title="Permanent link">&para;</a></h3>
+<p>En esta sección se presentan los análisis de sensibilidad obtenidos en el ejercicio de evaluación de las medidas de inflación total, asi como las derivadas del cómputo de sus medias móviles.  </p>
+<h4 id="analisis-de-sensibilidad-ante-cambios-en-el-periodo-final-de-evaluacion">Análisis de sensibilidad ante cambios en el período final de evaluación<a class="headerlink" href="#analisis-de-sensibilidad-ante-cambios-en-el-periodo-final-de-evaluacion" title="Permanent link">&para;</a></h4>
+<p>Debido a que se considera el período completo de evaluación hasta diciembre de 2019, se realiza un análisis de sensibilidad que considera los resultados ante un cambio en el período final de evaluación. Se consideran los siguientes períodos finales de evaluación:</p>
+<ul>
+<li>Diciembre de 2018</li>
+<li>Junio de 2019</li>
+<li>Diciembre 2019</li>
+</ul>
+<p><strong>Figura.</strong> <em>Análisis de sensibilidad respecto del período final considerado en la evaluación. Variación interanual del IPC.</em>
+<img alt="" src="../images/inflaciones-totales/final-cpidash.png" /></p>
+<p>Como se puede observar, el valor del MSE promedio para la variación interanual del IPC es poco sensible ante cambios en el periodo final de evaluación. Además, se observa que la media móvil de 12 meses de dicha medida es la mejor evaluada sin importar el periodo final de evaluación.</p>
+<p><strong>Figura.</strong> <em>Análisis de sensibilidad respecto del período final considerado en la evaluación. Media ponderada interanual.</em>
+<img alt="" src="../images/inflaciones-totales/final-mpadash.png" /></p>
+<p>Del mismo modo, se observa que la inflación media ponderada tampoco es sensible ante cambios el periodo final de evaluación. Sin embargo, la média móvil mejor evaluada sí cambia respecto a la fecha de finalización, siendo la media móvil de 8 meses la que corresponde a diciembre de 2019 y la média móvil de 9 meses para los periodos restantes.</p>
+<h4 id="analisis-de-sensibilidad-ante-cambio-en-la-medida-de-evaluacion">Análisis de sensibilidad ante cambio en la medida de evaluación<a class="headerlink" href="#analisis-de-sensibilidad-ante-cambio-en-la-medida-de-evaluacion" title="Permanent link">&para;</a></h4>
+<p>Considerando los estadísticos de evaluación alternativos, se construyen gráficas que ilustran el desempeño de las medidas consideradas, utilizando diferentes medidas de evaluación. Dichas gráficas se muestran a continuación.</p>
+<p><strong>Figura.</strong> <em>Análisis de sensibilidad respecto al cambio en la medida de evaluación. Variación interanual del IPC.</em>
+<img alt="" src="../images/inflaciones-totales/medidas-cpidash.png" /></p>
+<p>Como se observa en la gráfica, la medida de variación interanual del IPC es sensible ante el cambio de estadístico. Se puede notar por medio del error medio, que las médias móviles tienden a introducir sesgo a la medida, esto debido a el atraso de la señal que se deriva de este procedimiento. Además podemos notar que la media móvil de 8 meses es la que presenta la mejor correlación promedio. </p>
+<p><strong>Figura.</strong> <em>Análisis de sensibilidad respecto al cambio en la medida de evaluación. Media ponderada interanual.</em>
+<img alt="" src="../images/inflaciones-totales/medidas-mpadash.png" /></p>
+<p>Del mismo modo que ocurre con la variación interanual del IPC, el promedio móvil sobre la media ponderada introduce un componente de sesgo positivos a través de las médias móviles. Sin embargo, la medida de inflación es menos sensible ante los cambios del estadístico a evaluar. </p>
+<h4 id="analisis-de-sensibilidad-ante-cambios-en-el-subperiodo-de-evaluacion">Análisis de sensibilidad ante cambios en el subperíodo de evaluación<a class="headerlink" href="#analisis-de-sensibilidad-ante-cambios-en-el-subperiodo-de-evaluacion" title="Permanent link">&para;</a></h4>
+<p>A continuación, se presenta un análisis de sensibilidad de la evaluación al considerar un cambio en el período de evaluación. Las siguientes gráficas ilustran los resultados en los diferentes períodos de evaluación, mientras que el escenario base se observa en la última fila, correspondiente al período completo.</p>
+<p><strong>Figura.</strong> <em>Análisis de sensibilidad ante cambios en el subperíodo de evaluación. Variación interanual del IPC.</em>
+<img alt="" src="../images/inflaciones-totales/periodo-cpidash.png" /></p>
+<p>Se observa que la medida de variación interanual del IPC es altamente sensible al periodo de evaluación. Tanto para el periodo que abarca la base 2000 como el periodo completo, la medida mejor evaluada corresponde a la media móvil de 12 meses, sin embargo, para el periodo de transición la variación interanual del IPC sin cálculo de media móvil es la mejor evaluada. Para el periodo que comprende únicamente a la base 2010, es la media móvil de 3 meses la que optimiza el MSE promedio.</p>
+<p><strong>Figura.</strong> <em>Análisis de sensibilidad ante cambios en el subperíodo de evaluación. Media ponderada interanual.</em>
+<img alt="" src="../images/inflaciones-totales/periodo-mpadash.png" /></p>
+<p>Si observamos el valor del MSE promedio de la evaluación de la media ponderada sin media móvil, podemos notar que es menos sensible ante los cambios del periodo de evaluación. Sin embargo, la media móvil óptima sí es sensible ante este cambio. </p>
+<h4 id="analisis-de-sensibilidad-ante-cambios-en-la-componente-de-tendencia">Análisis de sensibilidad ante cambios en la componente de tendencia<a class="headerlink" href="#analisis-de-sensibilidad-ante-cambios-en-la-componente-de-tendencia" title="Permanent link">&para;</a></h4>
+<p>A continuación, se presenta un análisis de sensibilidad de la evaluación al considerar un cambio en la componente multiplicativa de tendencia en el procedimiento de evaluación. Las siguientes gráficas ilustran la evaluación de las medidas de inflación total en tres escenarios de tendencia, siendo el escenario con criterios básicos el que se observa en la primera fila, correspondiente a la componente de tendencia de caminata aleatoria.</p>
+<p><strong>Figura.</strong> <em>Análisis de sensibilidad ante cambios en la componente de tendencia. Variación interanual del IPC.</em>
+<img alt="" src="../images/inflaciones-totales/tendencia-cpidash.png" />    </p>
+<p>Si observamos el MSE promedio de la variación interanual del IPC sin media móvil en los tres escenarios, notamos que el valor de dicho estadístico es altamente sensible a la forma de la aplicación de la tendencia, sin embargo, podemos notar que la media móvil de 12 meses es la que presenta el menor MSE promedio sin importar la tendencia aplicada. </p>
+<p><strong>Figura.</strong> <em>Análisis de sensibilidad ante cambios en la componente de tendencia. Media ponderada interanual.</em>
+<img alt="" src="../images/inflaciones-totales/tendencia-mpadash.png" />    </p>
+<p>Respecto a la media ponderada, el MSE promedio obtenido sin la aplicación media móvil es menos sensible al cambio de la aplicación de tendencia, comparado con la inflación total. También se observa que la media móvil óptima para esta medida de inflación es sensible a la tendencia aplicada, siendo de 8 meses para la aplicación de caminata aleatoria y 12 para las demás.</p>
+<h4 id="analisis-de-sensibilidad-ante-cambios-en-la-trayectoria-de-inflacion-parametrica">Análisis de sensibilidad ante cambios en la trayectoria de inflación paramétrica<a class="headerlink" href="#analisis-de-sensibilidad-ante-cambios-en-la-trayectoria-de-inflacion-parametrica" title="Permanent link">&para;</a></h4>
+<p>Se presenta un análisis de sensibilidad de la evaluación al considerar un cambio en la trayectoria de inflación paramétrica del procedimiento de evaluación. La siguiente gráfica ilustra la evaluación de las diferentes medidas de inflación total utilizando tres diferentes parámetros de inflación, siendo el escenario base el que se observa en la primera fila, correspondiente a la evaluación respecto al parámetro de variación interanual del IPC con cambios de base.</p>
+<p><strong>Figura.</strong> <em>Análisis de sensibilidad ante cambios en la trayectoria de inflación paramétrica. variación interanual del IPC.</em>
+<img alt="" src="../images/inflaciones-totales/param-cpidash.png" />  </p>
+<p>Se observa que el MSE promedio de la variación interanual del IPC sin media móvil no es altamente sensible al cambio de inflación paramétrica. Además, la media móvil óptima no varía ante cambios en el parámetro de inflación.</p>
+<p><strong>Figura.</strong> <em>Análisis de sensibilidad ante cambios en la trayectoria de inflación paramétrica. Media ponderada interanual.</em>
+<img alt="" src="../images/inflaciones-totales/param-mpadash.png" /> </p>
+<p>En el caso de la media ponderada, podemos notar que el MSE promedio sin media móvil es sensible en el caso de la evaluación contra la inflación parámetro IPC total.  Además de esto, se observa que la media móvil óptima es sensible ante cambios en el parámetro de inflación. </p>
+<h4 id="analisis-de-sensibilidad-ante-cambios-en-el-numero-de-simulaciones">Análisis de sensibilidad ante cambios en el número de simulaciones<a class="headerlink" href="#analisis-de-sensibilidad-ante-cambios-en-el-numero-de-simulaciones" title="Permanent link">&para;</a></h4>
+<p>A contuación se presenta un análisis de sensibilidad cambiando el número de simulaciones a 500,000 realizaciones de las trayectorias de inflación muestral.</p>
+<p><strong>Figura.</strong> <em>Análisis de sensibilidad ante cambios en el número de simulaciones. variación interanual del IPC.</em>
+<img alt="" src="../images/inflaciones-totales/nSim-cpidash.png" /> </p>
+<p>Respecto a la variación interanual del IPC, podemos notar que no es altamente sensible ante cambios en el número de simulaciones, manteniéndose la media móvil óptima. Esto se debe a que esta medida de inflación se utilizó para fijar el número de simulaciones a utilizar en la evaluación de criterios básicos.</p>
+<p><strong>Figura.</strong> <em>Análisis de sensibilidad ante cambios en el número de simulaciones. Media ponderada interanual.</em>
+<img alt="" src="../images/inflaciones-totales/nSim-mpadash.png" /> </p>
+<p>Respecto a la media ponderada, podemos notar que no es sensible ante el cambio en el número de simulaciones, manteniéndose la media movil óptima. Podemos notar que esta medida es mucho menos sensible ante los cambios en el número de simulaciones, comparado con la inflación total.</p>
+<h4 id="analisis-de-sensibilidad-ante-cambios-en-el-muestreo-">Análisis de sensibilidad ante cambios en el muestreo ---<a class="headerlink" href="#analisis-de-sensibilidad-ante-cambios-en-el-muestreo-" title="Permanent link">&para;</a></h4>
+<p>Se realiza una prueba de sensibilidad utilizando como técnica de remuestreo la variante de <em>nonoverlapping block bootstrap</em> con bloques de 12 meses. El muestreo se realiza de forma independiente para cada unos de los gastos básicos en cada una de las bases del IPC. A continuación, se muestran los resultados en la gráfica siguiente.</p>
+<p><strong>Figura.</strong> <em>Análisis de sensibilidad ante cambios en el muestreo. Variación interanual del IPC.</em>
+<img alt="" src="../images/inflaciones-totales/muestreo-cpidash.png" /> </p>
+<p>El método de cómputo de la variación interanual del IPC hace que sea altamente sensible ante la aparición de valores extremos de las variaciones intermensuales de los gatos básicos. Por otra parte, el muestreo por bloque reduce la ocurrencia repetida de valores extremos en el muestreo, ya que históricamente se ha observado que los valores extremos tienden a revertirse algunos períodos después. Debido a esto, la variación interanual del IPC es altamente sensible ante la técnica de muestreo.</p>
+<p><strong>Figura.</strong> <em>Análisis de sensibilidad ante cambios en el muestreo. Media ponderada interanual.</em>
+<img alt="" src="../images/inflaciones-totales/muestreo-mpadash.png" /> </p>
+<p>Respecto a la media ponderada interanual, podemos notar que la medida es mucho menos sensible ante los cambios en el tipo de muestreo que la variación interanual del IPC. Esto se debe a que dicho que su metodología de cómputo utiliza las variaciones interanuales de los índices de precios de los gastos básicos. Dichas variaciones interanuales comprenden una ventana de variaciones intermensuales, que compensan la ocurrencia de valores extremos en la ventana. Es por esto que se observa que la media ponderada es mucho menos sensible ante valores extremos de las variaciones intermensuales obtenidas en el proceso de muestreo.</p>
+<h4 id="distribuciones-de-simulacion-del-mse-en-las-medidas-optimas">Distribuciones de simulación del MSE en las medidas óptimas<a class="headerlink" href="#distribuciones-de-simulacion-del-mse-en-las-medidas-optimas" title="Permanent link">&para;</a></h4>
+<p>A continuación, se presentan las gráficas de las distribuciones de simulación del MSE en el escenario base. Esta gráfica permite observar el rango, o amplitud, de la distribución de simulación del error cuadrático medio a través de la gráfica de su distribución acumulada.</p>
+<p><strong>Figura.</strong> <em>Distribuciones de simulación del MSE de la variación interanual del IPC y sus respectivas medias móviles.</em>.
+<img alt="" src="../images/inflaciones-totales/cdf-cpidash.png" /> </p>
+<p>Podemos notar que las medias móviles que abarcan más periodos, la distribución de simulación tiende a acumularse más en valores de MSE promedio más bajos.</p>
+<p><strong>Figura.</strong> <em>Distribuciones de simulación del MSE de la medida de inflación de media ponderada interanual y sus respectivas medias móviles.</em>.
+<img alt="" src="../images/inflaciones-totales/cdf-mpadash.png" /> </p>
+<p>Respecto a la media ponderada interanual, se percibe el mismo efecto de las medias móviles sobre la distribución del MSE promedio, siendo más severo el desplazamiento en aquellas distribuciones derivadas de una media móvil con menos de 5 períodos. </p>
+<p>Se puede observar que el MSE promedio derivado de la evaluación de la media ponderada interanual tiene una media y dispersión menor a la derivada de la variación interanual del IPC. En este caso, la diferencia es la sensibilidad de la medida de inflación ante la ocurrencia de valores extremos en las variaciones intermensuales de los gastos básicos.</p>
+<p><strong>Figura.</strong> <em>Distribuciones de simulación del MSE de la variación interanual del IPC con criterios básicos y por tipo de tendencia aplicada en la evaluación</em>.
+<img alt="" src="../images/inflaciones-totales/cdf-cpi-trend-periododash.png" /> </p>
+<p>En la gráfica anterior, correspondiente a la variación interanual del IPC IPC, podemos observar que, a una misma tendencia aplicada fija, el periodo de transición 2000-2010 es el que genera una distribución de MSE promedio más dispersa. Por el contrario, el periodo de evaluación 2010 es el que presenta la distribución menos dispersa, además de estar concentrada en MSE promedio menores. Respecto a la tendencia, podemos notar que la aplicación de una componente de tendencia con crecimiento exponencial genera la distribución más dispersa, concentrándose en MSE promedio mayores a los observados en los otros tipos de aplicaciones de tendencia. </p>
+<p><strong>Figura.</strong> <em>Distribuciones de simulación del MSE de la meida ponderada con criterio básicos y por tipo de tendencia aplicada en la evaluación</em>.
+<img alt="" src="../images/inflaciones-totales/cdf-mpa-trend-periododash.png" /> </p>
+<p>Por último, las conclusiones son similares en las distribuciones del MSE promedio obtenidas al evaluar la media ponderada interanual, con respecto a que dichas distribuciones se centran en valores mucho menores a los obtenidos al evaluar la variación interanual del IPC. </p>
+<h3 id="analisis-de-trayectorias-para-los-datos-historicamente-observados">Análisis de trayectorias para los datos históricamente observados<a class="headerlink" href="#analisis-de-trayectorias-para-los-datos-historicamente-observados" title="Permanent link">&para;</a></h3>
+<p>A continuación, se presenta una gráfica del comportamiento históricamente observado de las medidas de inflación total (y sus medias móviles), comparándolas con la variación interanual del IPC, en el período de diciembre de 2001 a diciembre de 2019. En primer lugar, podemos observar que las medias móviles tienden a retrasar, y a su vez, suavizar la señal provista por la variación interanual del IPC y la media ponderada interanual. Además, el nivel de las la variación interanual del IPC y de la media ponderada son similares durante la base 2000, separándose de manera persistente a partir del año 2015.</p>
+<p><strong>Figura.</strong> <em>Trayectorias de inflación históricamente observadas de la variación interanual del IPC y de la media ponderada interanual, y sus respectivas medias móviles</em>.
+<img alt="" src="../images/inflaciones-totales/trayectoriasdash.png" /> </p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../criterios-de-evaluacion/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Criterios de evaluación y pruebas de sensibilidad" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Criterios de evaluación y pruebas de sensibilidad
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../evaluacion-percentiles/" class="md-footer__link md-footer__link--next" aria-label="Next: Evaluación de las medidas basadas en percentiles" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Evaluación de las medidas basadas en percentiles
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.709b4209.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.febc23d1.min.js"></script>
+      
+        <script src="../../js/extra.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      
+    
+  </body>
+</html>

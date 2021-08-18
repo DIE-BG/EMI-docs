@@ -1,0 +1,831 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Proyecto de evaluación de medidas de inflación en MATLAB. Realizado por el Departamento de Investigaciones Económicas del Banco de Guatemala.">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.4">
+    
+    
+      
+        <title>Criterios de evaluación y pruebas de sensibilidad - HEMI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.f7f47774.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#seleccion-final-de-criterios-de-evaluacion" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="HEMI" class="md-header__button md-logo" aria-label="HEMI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            HEMI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Criterios de evaluación y pruebas de sensibilidad
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/DIE-BANGUAT/EMI-docs/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="HEMI" class="md-nav__button md-logo" aria-label="HEMI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    HEMI
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/DIE-BANGUAT/EMI-docs/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+      
+      <label class="md-nav__link" for="__nav_1">
+        HEMI
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="HEMI" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          HEMI
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Herramienta de evaluación de medidas de inflación (HEMI) de Guatemala
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      <label class="md-nav__link" for="__nav_2">
+        Principal
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Principal" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Principal
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cuerpo/introduccion/" class="md-nav__link">
+        Introducción
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cuerpo/justificacion/" class="md-nav__link">
+        Justificación
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      <label class="md-nav__link" for="__nav_3">
+        Calibración
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Calibración" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Calibración
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../calibracion/Calibraci%C3%B3n%20varianza%20RW/" class="md-nav__link">
+        Especificación y calibración del factor de tendencia estocástica
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../calibracion/Selecci%C3%B3n%20simulaciones/" class="md-nav__link">
+        Selección del número de simulaciones
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../calibracion/Determinaci%C3%B3n%20medida%20evaluaci%C3%B3n/" class="md-nav__link">
+        Selección de la medida de evaluación
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../calibracion/Remuestreo%20block%20bootstrap/" class="md-nav__link">
+        Remuestreo con block bootstrap
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      <label class="md-nav__link" for="__nav_4">
+        Evaluación
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Evaluación" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Evaluación
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Criterios de evaluación y pruebas de sensibilidad
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Criterios de evaluación y pruebas de sensibilidad
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#seleccion-final-de-criterios-de-evaluacion" class="md-nav__link">
+    Selección final de criterios de evaluación
+  </a>
+  
+    <nav class="md-nav" aria-label="Selección final de criterios de evaluación">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#criterios-de-evaluacion-base" class="md-nav__link">
+    Criterios de evaluación base
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pruebas-de-sensibilidad-de-los-resultados" class="md-nav__link">
+    Pruebas de sensibilidad de los resultados
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../inflaciones-totales/" class="md-nav__link">
+        Evaluación de las medidas de inflación total
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../evaluacion-percentiles/" class="md-nav__link">
+        Evaluación de las medidas basadas en percentiles
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../evaluacion-exclusion-fija/" class="md-nav__link">
+        Evaluación de las medidas basadas en exclusión fija
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../evaluacion-medias-truncadas/" class="md-nav__link">
+        Evaluación de las medidas basadas en medias truncadas
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../evaluacion-mai/" class="md-nav__link">
+        Evaluación de las medidas basadas en metodología de subyacente MAI
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sub-dinamica/" class="md-nav__link">
+        Evaluación de las medidas basadas en exclusión dinámica
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../combinacion-lineal/" class="md-nav__link">
+        Combinaciones lineales de medidas de inflación óptimas
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intervalos-confianza/" class="md-nav__link">
+        Conformación de intervalos de confianza para el nivel de inflación
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#seleccion-final-de-criterios-de-evaluacion" class="md-nav__link">
+    Selección final de criterios de evaluación
+  </a>
+  
+    <nav class="md-nav" aria-label="Selección final de criterios de evaluación">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#criterios-de-evaluacion-base" class="md-nav__link">
+    Criterios de evaluación base
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pruebas-de-sensibilidad-de-los-resultados" class="md-nav__link">
+    Pruebas de sensibilidad de los resultados
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/DIE-BANGUAT/EMI-docs/edit/master/docs/evaluacion/criterios-de-evaluacion.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  <h1>Criterios de evaluación y pruebas de sensibilidad</h1>
+                
+                <h2 id="seleccion-final-de-criterios-de-evaluacion">Selección final de criterios de evaluación<a class="headerlink" href="#seleccion-final-de-criterios-de-evaluacion" title="Permanent link">&para;</a></h2>
+<p>A continuación, se describen brevemente los criterios de evaluación utilizados en este apartado para la evaluación de los diferentes tipos de estimadores muestrales de inflación. Dichos criterios fueron definidos con base en el proceso de calibración y discusión de las diferentes alternativas presentadas en el apartado anterior de esta documentación. </p>
+<h3 id="criterios-de-evaluacion-base">Criterios de evaluación base<a class="headerlink" href="#criterios-de-evaluacion-base" title="Permanent link">&para;</a></h3>
+<p>Estos criterios de evaluación corresponden a la evaluación de un escenario "base" y se utilizarán en para evaluar, en una primera instancia, el desempeño de los diferentes estimadores muestrales de inflación y determinar el mejor estimador de cada uno de los tipos de estimadores propuestos. </p>
+<ul>
+<li>
+<p><strong>Período del estadístico de evaluación</strong>: se determinó que es conveniente evaluar las medidas de inflación hasta el período de <strong>diciembre de 2019</strong>, utilizando el desempeño del estadístico de evaluación sobre el período completo del IPC base 2000 y 2010, es decir, desde diciembre de 2001 hasta diciembre de 2019. </p>
+</li>
+<li>
+<p><strong>Estadístico de evaluación</strong>: se determinó que el estadístico de error cuadrático medio (MSE) y la media muestral de su distribución de simulación son los adecuados para evaluar el desempeño de las medidas de inflación, ya que permiten resumir el sesgo y la precisión en un único valor, comparable entre diferentes medidas de inflación. </p>
+</li>
+<li>
+<p><strong>Número de simulaciones</strong>: se escoge de acuerdo con la propuesta de utilizar <span><span class="MathJax_Preview">\epsilon=0.05\bar{Z}</span><script type="math/tex">\epsilon=0.05\bar{Z}</script></span> y la aproximación normal para el cómputo del número de simulaciones. Inicialmente, se corre una simulación de <span><span class="MathJax_Preview">110,000</span><script type="math/tex">110,000</script></span> realizaciones de inflación total (variación interanual del IPC) y se determinó que su MSE promedio fue de <span><span class="MathJax_Preview">\bar{Z}_{\text{MSE}} = 77.48</span><script type="math/tex">\bar{Z}_{\text{MSE}} = 77.48</script></span>, con una desviación estándar de <span><span class="MathJax_Preview">\hat{\sigma}_{\text{MSE}} = 698.63</span><script type="math/tex">\hat{\sigma}_{\text{MSE}} = 698.63</script></span>. Con esto, se requieren un total de <span><span class="MathJax_Preview">124,942.5</span><script type="math/tex">124,942.5</script></span> simulaciones para una probabilidad del <span><span class="MathJax_Preview">95\%</span><script type="math/tex">95\%</script></span> de que nuestra estimación no se aleje en más de <span><span class="MathJax_Preview">\epsilon = (0.05)(77.48) = 3.87</span><script type="math/tex">\epsilon = (0.05)(77.48) = 3.87</script></span> de la verdadera media de la distribución del MSE. Por lo que el número de simulaciones se fijará en <span><span class="MathJax_Preview">125,000</span><script type="math/tex">125,000</script></span> para todas las simulaciones en el escenario base.</p>
+</li>
+<li>
+<p><strong>Función de tendencia</strong>: se escoge utilizar una componente aditiva de tendencia generalizada de inflación utilizando un modelo de caminata aleatoria, tanto para las trayectorias paramétricas, como para las realizaciones de las trayectorias muestrales de inflación, que represente lo mejor posible la estocasticidad que, en cierta forma, puede observarse en el comportamiento generalizado de la inflación (períodos de expansión y contracción en el comportamiento de los precios). La calibración de los parámetros de esta componente se detalla en el apartado de <a href="../../calibracion/Calibraci%C3%B3n%20varianza%20RW/">calibración del proceso de caminata aleatoria</a>. </p>
+</li>
+<li>
+<p><strong>Trayectoria de inflación paramétrica</strong>: se utiliza como trayectoria paramétrica de inflación la obtenida a través de la variación interanual del IPC que se obtiene al considerar promedios aritméticos de las variaciones intermensuales de los distintos gastos básicos en los mismos meses, de los dos diferentes períodos del IPC base 2000 y 2010. Además, se considera la variante en la que se realizan cambios de base sintéticos, en el mes de diciembre, de los años 2003, 2006, 2013 y 2016. Con esto se pretende controlar el sesgo por fórmula que introduce la utilización de la fórmula del IPC.</p>
+</li>
+</ul>
+<p>Finalmente, se presenta un resumen de los criterios de evaluación del escenario en la tabla siguiente: </p>
+<table>
+<thead>
+<tr>
+<th align="left">Parámetro de evaluación</th>
+<th align="left">Criterio definido</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Período de evaluación</td>
+<td align="left">completo</td>
+</tr>
+<tr>
+<td align="left">Período final de evaluación</td>
+<td align="left">diciembre de 2019</td>
+</tr>
+<tr>
+<td align="left">Estadístico de evaluación</td>
+<td align="left">MSE</td>
+</tr>
+<tr>
+<td align="left">Número de simulaciones</td>
+<td align="left">125,000</td>
+</tr>
+<tr>
+<td align="left">Función de tendencia</td>
+<td align="left">Caminata aleatoria calibrada</td>
+</tr>
+<tr>
+<td align="left">Trayectoria de inflación paramétrica</td>
+<td align="left">Variación interanual del IPC con cambios de base</td>
+</tr>
+</tbody>
+</table>
+<h3 id="pruebas-de-sensibilidad-de-los-resultados">Pruebas de sensibilidad de los resultados<a class="headerlink" href="#pruebas-de-sensibilidad-de-los-resultados" title="Permanent link">&para;</a></h3>
+<p>Para evaluar la robustez de los resultados obtenidos con los criterios de evaluación base, se realizarán pruebas de sensibilidad respecto de estos. En particular, se consideran las variantes descritas a continuación. </p>
+<ul>
+<li>
+<p><strong>Cambio en el período final de evaluación</strong>: se considera variar el período final de evaluación en meses de diciembre de 2018, junio de 2019 y junio de 2020.  </p>
+</li>
+<li>
+<p><strong>Cambio en el estadístico de evaluación</strong>: se considera a continuación un análisis de sensibilidad que considera diferentes estadísticos de evaluación del desempeño de los estimadores muestrales de inflación, respecto del MSE utilizado en el escenario base de evaluación. A continuación, se detallan los estadísticos de evaluación alternativos:</p>
+<ul>
+<li>Promedio en el muestreo de la raíz del error cuadrático medio (<span><span class="MathJax_Preview">\overline{\text{RMSE}}</span><script type="math/tex">\overline{\text{RMSE}}</script></span>) de las trayectorias muestrales como estimador de la precisión de la medida de inflación. </li>
+<li>Promedio en el muestreo del valor absoluto del error medio (<span><span class="MathJax_Preview">|\overline{\text{ME}}|</span><script type="math/tex">|\overline{\text{ME}}|</script></span>) como estimador del sesgo (de cualquier signo) de la medida de inflación.</li>
+<li>Promedio en el muestreo del coeficiente de correlación lineal (<span><span class="MathJax_Preview">\overline{\rho}</span><script type="math/tex">\overline{\rho}</script></span>) entre la medida de inflación y la trayectoria de inflación paramétrica.</li>
+<li>Índice de error muestral (IEM) de la medida de inflación (combinación lineal de los anteriores), como una medida de resumen de las propiedades de precisión, sesgo y correlación de la medida de inflación. La fórmula utilizada es la siguiente: 
+$$ \text{IEM} =  \overline{\text{RMSE}} + |\overline{\text{ME}}| + (1-\overline{\rho}) $$</li>
+</ul>
+</li>
+<li>
+<p><strong>Cambio en el período de evaluación del estadístico</strong>: se considera el desempeño de las medidas de inflación en los siguientes subperíodos:  </p>
+<ul>
+<li>Período de la base 2000 del IPC: comprendido desde diciembre de 2001 hasta el período de cambio de base del IPC en diciembre de 2010. </li>
+<li>Período de transición de la base 2000 a la base 2010 del IPC: comprendido por las observaciones entre enero de 2011 y noviembre de 2011.</li>
+<li>Período de la base 2010 del IPC: comprendido por las observaciones a partir de diciembre de 2011 a diciembre de 2019.</li>
+</ul>
+</li>
+<li>
+<p><strong>Cambio en el número de simulaciones</strong>: se considera un cambio en el parámetro <span><span class="MathJax_Preview">\epsilon</span><script type="math/tex">\epsilon</script></span> de tal forma que <span><span class="MathJax_Preview">\epsilon=0.025\bar{Z}</span><script type="math/tex">\epsilon=0.025\bar{Z}</script></span>, es decir, que la estimación del promedio del estadístico de evaluación no esté más allá de un <span><span class="MathJax_Preview">2.5\%</span><script type="math/tex">2.5\%</script></span> del valor verdadero. Este cambio conlleva realizar <span><span class="MathJax_Preview">499,771</span><script type="math/tex">499,771</script></span> simulaciones, por lo que se realizará un análisis de sensibilidad de los resultados de simulación que utilice <span><span class="MathJax_Preview">500,000</span><script type="math/tex">500,000</script></span> realizaciones para asegurar que el número de simulaciones sea suficiente para tener la mínima variabilidad en las estimaciones.</p>
+</li>
+<li>
+<p><strong>Cambio en la componente de tendencia</strong>: se consideran dos escenarios adicionales de la componente aditiva de tendencia.  </p>
+<ul>
+<li>Sin tendencia: se agrega una componente aditiva igual a cero. Es decir, en este escenario se considera únicamente el comportamiento promedio en el muestreo de las variaciones intermensuales de los gastos básicos, y no el de una componente generalizada que inyecta tendencia en el comportamiento promedio. </li>
+<li>Crecimiento exponencial: la componente aditiva de tendencia parte de cero y crece forma exponencial a una tasa del 4% anual.</li>
+</ul>
+</li>
+<li>
+<p><strong>Cambio en el parámetro poblacional de inflación</strong>: se consideran dos trayectorias paramétricas de inflación adicionales con las que se comparan los resultados.  </p>
+<ul>
+<li>Variación interanual del IPC (sin cambios de base). </li>
+<li>Media ponderada interanual.</li>
+</ul>
+</li>
+<li>
+<p><strong>Cambio en la forma de muestreo utilizando <em>block bootstrap</em></strong>: se comparan resultados del escenario base con los resultados obtenidos al utilizar la técnica de muestreo de <em>bootstrap</em> de bloque en las variaciones intermensuales de cada gasto básico en las bases del IPC, utilizando un largo de bloque de 12 meses. Este procedimiento permite seguir obteniendo variaciones intermensuales aleatorias en los mismos meses de ocurrencia, pero manteniendo la estructura de autocorrelación individual en la mayoría de las series de tiempo al utilizar la variante de <em>nonoverlapping block bootstrap</em>. </p>
+</li>
+<li>
+<p><strong>Análisis de las distribuciones de simulación del estadístico de evaluación</strong>: se analiza el comportamiento general del estadístico de simulación a través de la distribución de simulación obtenida del proceso de evaluación para comentar sobre las causas técnicas o coyunturales que hacen que exhiba determinada forma o valores de los siguientes estadísticos.</p>
+<ul>
+<li>Promedio.</li>
+<li>Desviación estándar.</li>
+<li>Asimetría. </li>
+<li>Curtosis.</li>
+</ul>
+</li>
+<li>
+<p><strong>Análisis de trayectorias utilizando los datos históricamente observados</strong>: se analizan cualitativamente las trayectorias observadas históricamente de las medidas de inflación para determinar su consistencia con dinámica de inflación en el país durante el período de evaluación.  </p>
+</li>
+</ul>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../../calibracion/Remuestreo%20block%20bootstrap/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Remuestreo con block bootstrap" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Remuestreo con block bootstrap
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../inflaciones-totales/" class="md-footer__link md-footer__link--next" aria-label="Next: Evaluación de las medidas de inflación total" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Evaluación de las medidas de inflación total
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.709b4209.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.febc23d1.min.js"></script>
+      
+        <script src="../../js/extra.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      
+    
+  </body>
+</html>

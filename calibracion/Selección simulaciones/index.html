@@ -1,0 +1,1062 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Proyecto de evaluación de medidas de inflación en MATLAB. Realizado por el Departamento de Investigaciones Económicas del Banco de Guatemala.">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.4">
+    
+    
+      
+        <title>Selección del número de simulaciones - HEMI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.f7f47774.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#determinacion-del-numero-de-simulaciones" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="HEMI" class="md-header__button md-logo" aria-label="HEMI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            HEMI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Selección del número de simulaciones
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/DIE-BANGUAT/EMI-docs/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="HEMI" class="md-nav__button md-logo" aria-label="HEMI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    HEMI
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/DIE-BANGUAT/EMI-docs/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+      
+      <label class="md-nav__link" for="__nav_1">
+        HEMI
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="HEMI" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          HEMI
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Herramienta de evaluación de medidas de inflación (HEMI) de Guatemala
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      <label class="md-nav__link" for="__nav_2">
+        Principal
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Principal" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Principal
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cuerpo/introduccion/" class="md-nav__link">
+        Introducción
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cuerpo/justificacion/" class="md-nav__link">
+        Justificación
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      <label class="md-nav__link" for="__nav_3">
+        Calibración
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Calibración" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Calibración
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Calibraci%C3%B3n%20varianza%20RW/" class="md-nav__link">
+        Especificación y calibración del factor de tendencia estocástica
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Selección del número de simulaciones
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Selección del número de simulaciones
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#determinacion-del-numero-de-simulaciones" class="md-nav__link">
+    Determinación del número de simulaciones
+  </a>
+  
+    <nav class="md-nav" aria-label="Determinación del número de simulaciones">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#busqueda-en-foros-en-linea" class="md-nav__link">
+    Búsqueda en foros en línea
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#revision-de-papers-de-inflacion" class="md-nav__link">
+    Revisión de papers de inflación
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#literatura-academica" class="md-nav__link">
+    Literatura académica
+  </a>
+  
+    <nav class="md-nav" aria-label="Literatura académica">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#chernick" class="md-nav__link">
+    Chernick
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#degroot-y-schervish-version-con-estimador-normal" class="md-nav__link">
+    DeGroot y Schervish, versión con estimador normal
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#degroot-y-schervish-version-con-el-teorema-de-chebyshev" class="md-nav__link">
+    DeGroot y Schervish, versión con el teorema de Chebyshev
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#propuesta-para-definir-el-numero-de-simulaciones" class="md-nav__link">
+    Propuesta para definir el número de simulaciones
+  </a>
+  
+    <nav class="md-nav" aria-label="Propuesta para definir el número de simulaciones">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#numero-de-simulaciones-con-base-en-el-mse" class="md-nav__link">
+    Número de simulaciones con base en el MSE
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" class="md-nav__link">
+    Referencias
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Determinaci%C3%B3n%20medida%20evaluaci%C3%B3n/" class="md-nav__link">
+        Selección de la medida de evaluación
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Remuestreo%20block%20bootstrap/" class="md-nav__link">
+        Remuestreo con block bootstrap
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      <label class="md-nav__link" for="__nav_4">
+        Evaluación
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Evaluación" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Evaluación
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evaluacion/criterios-de-evaluacion/" class="md-nav__link">
+        Criterios de evaluación y pruebas de sensibilidad
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evaluacion/inflaciones-totales/" class="md-nav__link">
+        Evaluación de las medidas de inflación total
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evaluacion/evaluacion-percentiles/" class="md-nav__link">
+        Evaluación de las medidas basadas en percentiles
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evaluacion/evaluacion-exclusion-fija/" class="md-nav__link">
+        Evaluación de las medidas basadas en exclusión fija
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evaluacion/evaluacion-medias-truncadas/" class="md-nav__link">
+        Evaluación de las medidas basadas en medias truncadas
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evaluacion/evaluacion-mai/" class="md-nav__link">
+        Evaluación de las medidas basadas en metodología de subyacente MAI
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evaluacion/sub-dinamica/" class="md-nav__link">
+        Evaluación de las medidas basadas en exclusión dinámica
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evaluacion/combinacion-lineal/" class="md-nav__link">
+        Combinaciones lineales de medidas de inflación óptimas
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evaluacion/intervalos-confianza/" class="md-nav__link">
+        Conformación de intervalos de confianza para el nivel de inflación
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#determinacion-del-numero-de-simulaciones" class="md-nav__link">
+    Determinación del número de simulaciones
+  </a>
+  
+    <nav class="md-nav" aria-label="Determinación del número de simulaciones">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#busqueda-en-foros-en-linea" class="md-nav__link">
+    Búsqueda en foros en línea
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#revision-de-papers-de-inflacion" class="md-nav__link">
+    Revisión de papers de inflación
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#literatura-academica" class="md-nav__link">
+    Literatura académica
+  </a>
+  
+    <nav class="md-nav" aria-label="Literatura académica">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#chernick" class="md-nav__link">
+    Chernick
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#degroot-y-schervish-version-con-estimador-normal" class="md-nav__link">
+    DeGroot y Schervish, versión con estimador normal
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#degroot-y-schervish-version-con-el-teorema-de-chebyshev" class="md-nav__link">
+    DeGroot y Schervish, versión con el teorema de Chebyshev
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#propuesta-para-definir-el-numero-de-simulaciones" class="md-nav__link">
+    Propuesta para definir el número de simulaciones
+  </a>
+  
+    <nav class="md-nav" aria-label="Propuesta para definir el número de simulaciones">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#numero-de-simulaciones-con-base-en-el-mse" class="md-nav__link">
+    Número de simulaciones con base en el MSE
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" class="md-nav__link">
+    Referencias
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/DIE-BANGUAT/EMI-docs/edit/master/docs/calibracion/Selección simulaciones.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  <h1>Selección del número de simulaciones</h1>
+                
+                <h2 id="determinacion-del-numero-de-simulaciones">Determinación del número de simulaciones<a class="headerlink" href="#determinacion-del-numero-de-simulaciones" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>A continuación, se presentan algunas referencias para definir el número de simulaciones a realizar.</p>
+</li>
+<li>
+<p>Posteriormente, se presenta la propuesta final para la herramienta de evaluación de medidas de inflación.</p>
+</li>
+</ul>
+<h3 id="busqueda-en-foros-en-linea">Búsqueda en foros en línea<a class="headerlink" href="#busqueda-en-foros-en-linea" title="Permanent link">&para;</a></h3>
+<p>Consulta en foros de estadística: <a href="https://stats.stackexchange.com/questions/86040/rule-of-thumb-for-number-of-bootstrap-samples">StackExchange: Rule of thumb for number of bootstrap samples</a>. Algunos comentarios mencionan algunas alternativas:</p>
+<ul>
+<li>Utilizar tantas como sean posibles, con límite superior en un millón.</li>
+<li>Correr varias veces la simulación con un número inicial considerado como suficiente y ver la variación en los estimadores de <em>bootstrap</em>. Si las estimaciones repetidas no varían mucho, el número de simulaciones es adecuado. </li>
+<li>Utilizar 10,000 simulaciones para experimentos propios y hasta 100,000 simulaciones cuando se comparten resultados con otros (con conjuntos de datos pequeños).</li>
+</ul>
+<h3 id="revision-de-papers-de-inflacion">Revisión de papers de inflación<a class="headerlink" href="#revision-de-papers-de-inflacion" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>Haciendo una revisión de los papers principales con metodología similar a la aplicada en la HEMI tenemos: </p>
+</li>
+<li>
+<p>Bryan, Cecchetti y Wiggings (1997) <em>Efficient Inflation Estimation</em>: procedimiento de <em>bootstrap</em> similar. Se considera un número de simulaciones igual a 10,000 sin mecionar alguna justificación cuantitativa. Sin embargo, en su ejercicio de simulación utilizan menos categorías del IPC y del IPP.</p>
+</li>
+<li>
+<p>Roger (1997) <em>A robust measure of core inflation in New Zealand, 1949-96</em>: se evalúa un percentil óptimo para Nueva Zelanda, pero sin técnicas de simulación. La evaluación se hace obteniendo el percentil de la media y tomando un promedio para diferentes períodos. </p>
+</li>
+</ul>
+<h3 id="literatura-academica">Literatura académica<a class="headerlink" href="#literatura-academica" title="Permanent link">&para;</a></h3>
+<ul>
+<li>En Chernick (2011) <em>Bootstrap methods : a guide for practitioners and researchers</em> se discute: </li>
+</ul>
+<blockquote>
+<p>Let <span><span class="MathJax_Preview">B</span><script type="math/tex">B</script></span> be the number of bootstrap replications in a uniform resampling. Let <span><span class="MathJax_Preview">\sigma_{B}^2</span><script type="math/tex">\sigma_{B}^2</script></span> be the variance of a single bootstrap resample estimate of the parameter. Since the Monte Carlo approximation to the bootstrap estimate is an average of <span><span class="MathJax_Preview">B</span><script type="math/tex">B</script></span> such estimates independently drawn, the variance of the Monte Carlo approximation is just <span><span class="MathJax_Preview">\sigma_{B}^2/B</span><script type="math/tex">\sigma_{B}^2/B</script></span>. 
+Of course, this basic result is well known and has been applied for many years to judge how many replications to take in a simulation. There is nothing new here with the bootstrap. For the bootstrap, the particular distribution being sampled is the empirical distribution, but otherwise nothing is different.</p>
+</blockquote>
+<ul>
+<li>Esta aseveración se formaliza aún más en DeGroot y Schervish, (2012) <em>Probability and Statistics</em>.</li>
+</ul>
+<h4 id="chernick">Chernick<a class="headerlink" href="#chernick" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p>Más adelante se tiene: </p>
+<blockquote>
+<p>The practitioner chooses <span><span class="MathJax_Preview">B</span><script type="math/tex">B</script></span> to make the variance sufficiently small, ensuring that the bootstrap approximation is close to the actual bootstrap estimate. Note that the accuracy of this approximation depends on <span><span class="MathJax_Preview">B</span><script type="math/tex">B</script></span> and not <span><span class="MathJax_Preview">n</span><script type="math/tex">n</script></span> (sample size). It only expresses how close the approximation is to the bootstrap estimate and does not express how close the bootstrap estimate is to the true parameter value!</p>
+</blockquote>
+</li>
+<li>
+<p>Esto da indicios de un criterio práctico (<em>ad hoc</em>) dependiendo de la aplicación y la confianza en la simulación.</p>
+</li>
+<li>
+<p>Más adelante en el libro se discuten, principalmente, algunos <strong>métodos de reducción de varianza</strong>, que permiten diseñar el experimento de tal forma que se limite la aleatoriedad inherente al mismo, lo cual puede reducir en sí mismo el número de simulaciones.</p>
+</li>
+</ul>
+<h4 id="degroot-y-schervish-version-con-estimador-normal">DeGroot y Schervish, versión con estimador normal<a class="headerlink" href="#degroot-y-schervish-version-con-estimador-normal" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p>Se supone un estimador de Monte Carlo <span><span class="MathJax_Preview">Z</span><script type="math/tex">Z</script></span> de un parámetro <span><span class="MathJax_Preview">\theta</span><script type="math/tex">\theta</script></span>, basado en <span><span class="MathJax_Preview">v</span><script type="math/tex">v</script></span> simulaciones, siendo <span><span class="MathJax_Preview">Z</span><script type="math/tex">Z</script></span> un promedio<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> (estimador de la media poblacional), entonces <span><span class="MathJax_Preview">Z</span><script type="math/tex">Z</script></span> tiene aproximadamente distribución normal con media <span><span class="MathJax_Preview">\theta</span><script type="math/tex">\theta</script></span> y varianza <span><span class="MathJax_Preview">\sigma^2/v</span><script type="math/tex">\sigma^2/v</script></span>, en donde <span><span class="MathJax_Preview">\sigma^2</span><script type="math/tex">\sigma^2</script></span> no depende del tamaño de la simulación. Entonces, para cada <span><span class="MathJax_Preview">\epsilon &gt; 0</span><script type="math/tex">\epsilon > 0</script></span>: 
+$$ Pr(|Z-\theta| \leq \epsilon) \approx 2\Phi(\epsilon v^{1/2} / \sigma) -1 $$
+en donde <span><span class="MathJax_Preview">\Phi(\cdot)</span><script type="math/tex">\Phi(\cdot)</script></span> representa la función de distribución acumulada de la distribución normal estándar.</p>
+</li>
+<li>
+<p>Ya que, usualmente, la desviación estándar <span><span class="MathJax_Preview">\sigma</span><script type="math/tex">\sigma</script></span> no es conocida, esta se estima a través de un número inicial de simulaciones.</p>
+</li>
+<li>A partir de esto, podemos se tiene la probabilidad <span><span class="MathJax_Preview">\gamma = Pr(|Z-\theta| \leq \epsilon)</span><script type="math/tex">\gamma = Pr(|Z-\theta| \leq \epsilon)</script></span> y se escoge <span><span class="MathJax_Preview">v</span><script type="math/tex">v</script></span> a partir de dicha ecuación: 
+$$ v = \left[ \Phi^{-1}\left( \frac{1+\gamma}{2} \right) \frac{\hat{\sigma}}{\epsilon} \right]^2 $$</li>
+</ul>
+<h4 id="degroot-y-schervish-version-con-el-teorema-de-chebyshev">DeGroot y Schervish, versión con el teorema de Chebyshev<a class="headerlink" href="#degroot-y-schervish-version-con-el-teorema-de-chebyshev" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Si la aproximación normal de <span><span class="MathJax_Preview">Z</span><script type="math/tex">Z</script></span> resulta poco confiable, se puede utilizar una aproximación de Chebyshev, tal que si: 
+$$ v = \frac{\sigma^2}{\epsilon^2 (1-\gamma)} $$</li>
+<li>La desigualdad de Chebyshev garantiza que <span><span class="MathJax_Preview">Pr(|Z-\theta| \leq \epsilon) \geq \gamma</span><script type="math/tex">Pr(|Z-\theta| \leq \epsilon) \geq \gamma</script></span></li>
+<li>Este es un criterio más riguroso, pero eleva significativamente el número de simulaciones a realizar. </li>
+</ul>
+<h3 id="propuesta-para-definir-el-numero-de-simulaciones">Propuesta para definir el número de simulaciones<a class="headerlink" href="#propuesta-para-definir-el-numero-de-simulaciones" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Utilizar el hecho de que la distribución de <span><span class="MathJax_Preview">Z</span><script type="math/tex">Z</script></span> (de la media <span><span class="MathJax_Preview">\overline{\text{MSE}}_{j}</span><script type="math/tex">\overline{\text{MSE}}_{j}</script></span> del estadístico de error cuadrático medio <span><span class="MathJax_Preview">\text{MSE}_{j}</span><script type="math/tex">\text{MSE}_{j}</script></span> de la medida de inflación <span><span class="MathJax_Preview">j</span><script type="math/tex">j</script></span>) se aproxima a la distribución normal y computar <span><span class="MathJax_Preview">\epsilon = 0.05|Z|</span><script type="math/tex">\epsilon = 0.05|Z|</script></span>. Es decir, se permite una distancia del 5% del valor del estadístico <span><span class="MathJax_Preview">Z</span><script type="math/tex">Z</script></span> entre éste y el parámetro estimado.</li>
+<li>Utilizar <span><span class="MathJax_Preview">\gamma = 0.95</span><script type="math/tex">\gamma = 0.95</script></span>, es decir, que la probabilidad del intervalo de confianza sea del 95%.</li>
+<li>Fijar el número de simulaciones al número requerido por la medida de evaluación para la medida de inflación denominada <strong>"Variación interanual del IPC"</strong>, ya que es la que mayor varianza presenta en las distribuciones de sus estadísticos de error.  </li>
+<li>En este caso, el número de simulaciones estaría dado por:
+$$ v = (400) \left[ \Phi^{-1}\left( \frac{1.95}{2} \right) \right]^2 \frac{\sigma^2}{Z^2}$$</li>
+<li>Ventajas: </li>
+<li>Criterio cuantitativo bien definido, factible y no tan estricto (pero que permite alcanzar una alta probabilidad para el intervalo de confianza). </li>
+<li>El número de simulaciones está en función del coeficiente de variación de la medida de evaluación (mayor dispersión relativa, más simulaciones). </li>
+</ul>
+<h4 id="numero-de-simulaciones-con-base-en-el-mse">Número de simulaciones con base en el MSE<a class="headerlink" href="#numero-de-simulaciones-con-base-en-el-mse" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Utilizando el MSE de la variación interanual del IPC con la calibración de tendencia de caminata aleatoria, <span><span class="MathJax_Preview">Z=\overline{\text{MSE}} = 77.48</span><script type="math/tex">Z=\overline{\text{MSE}} = 77.48</script></span> y <span><span class="MathJax_Preview">\epsilon=cZ</span><script type="math/tex">\epsilon=cZ</script></span>, <span><span class="MathJax_Preview">c \in \lbrace0.05, 0.025, 0.01\rbrace</span><script type="math/tex">c \in \lbrace0.05, 0.025, 0.01\rbrace</script></span>. </li>
+<li>Con una simulación inicial de 110,000 realizaciones, la desviación estándar en la distribución de simulación del MSE es <span><span class="MathJax_Preview">\hat{\sigma} = 698.63</span><script type="math/tex">\hat{\sigma} = 698.63</script></span>. </li>
+<li>Por lo tanto, para los diferentes niveles de confianza <span><span class="MathJax_Preview">\gamma</span><script type="math/tex">\gamma</script></span> y desviación absoluta <span><span class="MathJax_Preview">\epsilon</span><script type="math/tex">\epsilon</script></span> admisible tenemos: </li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center"><span><span class="MathJax_Preview">\gamma</span><script type="math/tex">\gamma</script></span></th>
+<th align="center"><span><span class="MathJax_Preview">\bar{Z}</span><script type="math/tex">\bar{Z}</script></span></th>
+<th align="center"><span><span class="MathJax_Preview">\hat{\sigma}</span><script type="math/tex">\hat{\sigma}</script></span></th>
+<th align="left"><span><span class="MathJax_Preview">c</span><script type="math/tex">c</script></span></th>
+<th align="center"><span><span class="MathJax_Preview">\epsilon</span><script type="math/tex">\epsilon</script></span></th>
+<th align="right"><span><span class="MathJax_Preview">v</span><script type="math/tex">v</script></span> (normal)</th>
+<th align="right"><span><span class="MathJax_Preview">v</span><script type="math/tex">v</script></span> (Chebyshev)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">0.90</td>
+<td align="center">77.48</td>
+<td align="center">698.63</td>
+<td align="left">0.05</td>
+<td align="center">3.87</td>
+<td align="right">87,997.15</td>
+<td align="right">325,247.66</td>
+</tr>
+<tr>
+<td align="center">0.90</td>
+<td align="center">77.48</td>
+<td align="center">698.63</td>
+<td align="left">0.025</td>
+<td align="center">1.94</td>
+<td align="right">351,988.59</td>
+<td align="right">1,300,990.63</td>
+</tr>
+<tr>
+<td align="center">0.90</td>
+<td align="center">77.48</td>
+<td align="center">698.63</td>
+<td align="left">0.01</td>
+<td align="center">0.77</td>
+<td align="right">2,199,928.50</td>
+<td align="right">8,131,190.50</td>
+</tr>
+<tr>
+<td align="center">0.95</td>
+<td align="center">77.48</td>
+<td align="center">698.63</td>
+<td align="left">0.05</td>
+<td align="center">3.87</td>
+<td align="right"><strong>124,942.53</strong></td>
+<td align="right">650,495.31</td>
+</tr>
+<tr>
+<td align="center">0.95</td>
+<td align="center">77.48</td>
+<td align="center">698.63</td>
+<td align="left">0.025</td>
+<td align="center">1.94</td>
+<td align="right"><strong>499,770.13</strong></td>
+<td align="right">2,601,981.25</td>
+</tr>
+<tr>
+<td align="center">0.95</td>
+<td align="center">77.48</td>
+<td align="center">698.63</td>
+<td align="left">0.01</td>
+<td align="center">0.77</td>
+<td align="right">3,123,563.00</td>
+<td align="right">16,262,381.00</td>
+</tr>
+<tr>
+<td align="center">0.99</td>
+<td align="center">77.48</td>
+<td align="center">698.63</td>
+<td align="left">0.05</td>
+<td align="center">3.87</td>
+<td align="right">215,798.44</td>
+<td align="right">3,252,476.50</td>
+</tr>
+<tr>
+<td align="center">0.99</td>
+<td align="center">77.48</td>
+<td align="center">698.63</td>
+<td align="left">0.025</td>
+<td align="center">1.94</td>
+<td align="right">863,193.75</td>
+<td align="right">13,009,906.00</td>
+</tr>
+<tr>
+<td align="center">0.99</td>
+<td align="center">77.48</td>
+<td align="center">698.63</td>
+<td align="left">0.01</td>
+<td align="center">0.77</td>
+<td align="right">5,394,961.00</td>
+<td align="right">81,311,904.00</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Se utilizan 125,000 simulaciones para el escenario base de evaluación y 500,000 simulaciones para el análisis de sensbilidad.</li>
+</ul>
+<!-- Resultados anteriores con tendencia aditiva RW -->
+<!-- | $\gamma$ | $\hat{\sigma}$ | $\epsilon$ | $v$ (normal) | $v$ (Chebyshev) |
+|:--------:|:--------------:|-----------:|-------------:|----------------:|
+|   0.90   |    236.2194    |   1.442929 |    72,509.62 |       268,003.9 |
+|   0.90   |    236.2194    |  0.7214647 |    290,038.5 |       1,072,016 |
+|   0.90   |    236.2194    |  0.2885859 |    1,812,740 |       6,700,097 |
+|   0.95   |    236.2194    |   1.442929 |    102,952.6 |       536,007.8 |
+|   0.95   |    236.2194    |  0.7214647 |    411,810.3 |       2,144,031 |
+|   0.95   |    236.2194    |  0.2885859 |    2,573,815 |   13,400,194.00 |
+|   0.99   |    236.2194    |   1.442929 |    177,817.8 |       2,680,039 |
+|   0.99   |    236.2194    |  0.7214647 |    711,271.2 |   10,720,155.00 |
+|   0.99   |    236.2194    |  0.2885859 |    4,445,445 |   67,000,968.00 | -->
+
+<h2 id="referencias">Referencias<a class="headerlink" href="#referencias" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Bryan, Michael F., Stephen G. Cecchetti y Rodney L. Wiggins (1997). <em>Efficient inflation estimation</em>.</li>
+<li>Casella, G., &amp; Berger, R. L. (2002). <em>Statistical Inference</em>. 2a. ed. Duxbury. Pacific Grove, CA.</li>
+<li>Chernick, M. R. (2011). Bootstrap methods: <em>A guide for practitioners and researchers</em> (Vol. 619). John Wiley &amp; Sons.</li>
+<li>DeGroot, Morris H. y Mark J. Schervish (2012). <em>Probability and statistics</em>. 4.a ed. Pearson Education.</li>
+<li>Lahiri, S. N. (2003). <em>Resampling methods for dependent data</em>. Springer Science &amp; Business Media.</li>
+<li>Roger, Scott (1997). <em>A robust measure of core inflation in New Zealand</em>, 1949-96.</li>
+<li>Walther, B. A., &amp; Moore, J. L. (2005). The concepts of bias, precision and accuracy, and their use in testing the performance of species richness estimators, with a literature review of estimator performance. Ecography, 28(6), 815-829.</li>
+<li>En línea. <a href="https://stats.stackexchange.com/questions/86040/rule-of-thumb-for-number-of-bootstrap-samples">StackExchange: Rule of thumb for number of bootstrap samples</a>. Consultado el 18/06/2020.</li>
+</ul>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>En el caso de la HEMI, <span><span class="MathJax_Preview">Z</span><script type="math/tex">Z</script></span> es el promedio empírico de los errores cuadráticos medios de las <span><span class="MathJax_Preview">v</span><script type="math/tex">v</script></span> simulaciones correspondientes a la medida de inflación <span><span class="MathJax_Preview">j</span><script type="math/tex">j</script></span>. Es decir, <span><span class="MathJax_Preview">Z</span><script type="math/tex">Z</script></span> es el estimador <span><span class="MathJax_Preview">\overline{\text{MSE}}_{j}</span><script type="math/tex">\overline{\text{MSE}}_{j}</script></span>, en tanto que <span><span class="MathJax_Preview">\theta</span><script type="math/tex">\theta</script></span> es el parámetro <span><span class="MathJax_Preview">\text{MSE}_{j}</span><script type="math/tex">\text{MSE}_{j}</script></span>.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../Calibraci%C3%B3n%20varianza%20RW/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Especificación y calibración del factor de tendencia estocástica" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Especificación y calibración del factor de tendencia estocástica
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../Determinaci%C3%B3n%20medida%20evaluaci%C3%B3n/" class="md-footer__link md-footer__link--next" aria-label="Next: Selección de la medida de evaluación" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Selección de la medida de evaluación
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.709b4209.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.febc23d1.min.js"></script>
+      
+        <script src="../../js/extra.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      
+    
+  </body>
+</html>

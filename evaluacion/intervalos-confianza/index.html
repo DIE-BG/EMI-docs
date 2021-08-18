@@ -1,0 +1,1492 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Proyecto de evaluación de medidas de inflación en MATLAB. Realizado por el Departamento de Investigaciones Económicas del Banco de Guatemala.">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.4">
+    
+    
+      
+        <title>Conformación de intervalos de confianza para el nivel de inflación - HEMI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.f7f47774.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#intervalos-de-confianza" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="HEMI" class="md-header__button md-logo" aria-label="HEMI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            HEMI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Conformación de intervalos de confianza para el nivel de inflación
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/DIE-BANGUAT/EMI-docs/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="HEMI" class="md-nav__button md-logo" aria-label="HEMI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    HEMI
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/DIE-BANGUAT/EMI-docs/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+      
+      <label class="md-nav__link" for="__nav_1">
+        HEMI
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="HEMI" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          HEMI
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Herramienta de evaluación de medidas de inflación (HEMI) de Guatemala
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      <label class="md-nav__link" for="__nav_2">
+        Principal
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Principal" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Principal
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cuerpo/introduccion/" class="md-nav__link">
+        Introducción
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cuerpo/justificacion/" class="md-nav__link">
+        Justificación
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      <label class="md-nav__link" for="__nav_3">
+        Calibración
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Calibración" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Calibración
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../calibracion/Calibraci%C3%B3n%20varianza%20RW/" class="md-nav__link">
+        Especificación y calibración del factor de tendencia estocástica
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../calibracion/Selecci%C3%B3n%20simulaciones/" class="md-nav__link">
+        Selección del número de simulaciones
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../calibracion/Determinaci%C3%B3n%20medida%20evaluaci%C3%B3n/" class="md-nav__link">
+        Selección de la medida de evaluación
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../calibracion/Remuestreo%20block%20bootstrap/" class="md-nav__link">
+        Remuestreo con block bootstrap
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      <label class="md-nav__link" for="__nav_4">
+        Evaluación
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Evaluación" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Evaluación
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../criterios-de-evaluacion/" class="md-nav__link">
+        Criterios de evaluación y pruebas de sensibilidad
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../inflaciones-totales/" class="md-nav__link">
+        Evaluación de las medidas de inflación total
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../evaluacion-percentiles/" class="md-nav__link">
+        Evaluación de las medidas basadas en percentiles
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../evaluacion-exclusion-fija/" class="md-nav__link">
+        Evaluación de las medidas basadas en exclusión fija
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../evaluacion-medias-truncadas/" class="md-nav__link">
+        Evaluación de las medidas basadas en medias truncadas
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../evaluacion-mai/" class="md-nav__link">
+        Evaluación de las medidas basadas en metodología de subyacente MAI
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sub-dinamica/" class="md-nav__link">
+        Evaluación de las medidas basadas en exclusión dinámica
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../combinacion-lineal/" class="md-nav__link">
+        Combinaciones lineales de medidas de inflación óptimas
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Conformación de intervalos de confianza para el nivel de inflación
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Conformación de intervalos de confianza para el nivel de inflación
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#intervalos-de-confianza" class="md-nav__link">
+    Intervalos de confianza
+  </a>
+  
+    <nav class="md-nav" aria-label="Intervalos de confianza">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#construccion-de-intervalos-de-confianza-para-medidas-de-combinacion-lineal" class="md-nav__link">
+    Construcción de intervalos de confianza para medidas de combinación lineal
+  </a>
+  
+    <nav class="md-nav" aria-label="Construcción de intervalos de confianza para medidas de combinación lineal">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#intervalos-de-confianza-para-combinacion-lineal-mse" class="md-nav__link">
+    Intervalos de confianza para combinación lineal MSE
+  </a>
+  
+    <nav class="md-nav" aria-label="Intervalos de confianza para combinación lineal MSE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#distribuciones-de-error-de-medidas-de-la-combinacion-lineal-de-mse" class="md-nav__link">
+    Distribuciones de error de medidas de la combinación lineal de MSE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#percentiles-de-distribuciones-de-error-combinacion-mse" class="md-nav__link">
+    Percentiles de distribuciones de error (combinación MSE)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#combinacion-lineal-optima-mse-con-intervalos-de-confianza-al-99" class="md-nav__link">
+    Combinación lineal óptima MSE con intervalos de confianza al 99%
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#intervalos-de-confianza-para-combinacion-lineal-me" class="md-nav__link">
+    Intervalos de confianza para combinación lineal ME
+  </a>
+  
+    <nav class="md-nav" aria-label="Intervalos de confianza para combinación lineal ME">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#distribuciones-de-error-de-medidas-de-la-combinacion-lineal-de-mse_1" class="md-nav__link">
+    Distribuciones de error de medidas de la combinación lineal de MSE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#percentiles-de-distribuciones-de-error-combinacion-me" class="md-nav__link">
+    Percentiles de distribuciones de error (combinación ME)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#combinacion-lineal-optima-me-con-intervalos-de-confianza-al-99" class="md-nav__link">
+    Combinación lineal óptima ME con intervalos de confianza al 99%
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#intervalos-de-confianza-para-combinacion-lineal-de-correlacion" class="md-nav__link">
+    Intervalos de confianza para combinación lineal de correlación
+  </a>
+  
+    <nav class="md-nav" aria-label="Intervalos de confianza para combinación lineal de correlación">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#distribuciones-de-error-de-medidas-de-la-combinacion-lineal-de-correlacion" class="md-nav__link">
+    Distribuciones de error de medidas de la combinación lineal de correlación
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#percentiles-de-distribuciones-de-error-combinacion-de-correlacion" class="md-nav__link">
+    Percentiles de distribuciones de error (combinación de correlación)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#combinacion-lineal-optima-de-correlacion-con-intervalos-de-confianza-al-99" class="md-nav__link">
+    Combinación lineal óptima de correlación con intervalos de confianza al 99%
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reduccion-de-intervalos-de-confianza-con-medidas-basadas-en-percentiles" class="md-nav__link">
+    Reducción de intervalos de confianza con medidas basadas en percentiles
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conformacion-de-intervalo-de-confianza-conjunto" class="md-nav__link">
+    Conformación de intervalo de confianza conjunto
+  </a>
+  
+    <nav class="md-nav" aria-label="Conformación de intervalo de confianza conjunto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nivel-de-confianza-con-distribucion-conjunta-de-errores" class="md-nav__link">
+    Nivel de confianza con distribución conjunta de errores
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interpretacion-del-computo-del-nivel-de-confianza-del-975" class="md-nav__link">
+    Interpretación del cómputo del nivel de confianza del 97.5%
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anexos" class="md-nav__link">
+    Anexos
+  </a>
+  
+    <nav class="md-nav" aria-label="Anexos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#medidas-de-inflacion-que-componen-el-intervalo-de-confianza-conjunto" class="md-nav__link">
+    Medidas de inflación que componen el intervalo de confianza conjunto
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#intervalos-de-confianza" class="md-nav__link">
+    Intervalos de confianza
+  </a>
+  
+    <nav class="md-nav" aria-label="Intervalos de confianza">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#construccion-de-intervalos-de-confianza-para-medidas-de-combinacion-lineal" class="md-nav__link">
+    Construcción de intervalos de confianza para medidas de combinación lineal
+  </a>
+  
+    <nav class="md-nav" aria-label="Construcción de intervalos de confianza para medidas de combinación lineal">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#intervalos-de-confianza-para-combinacion-lineal-mse" class="md-nav__link">
+    Intervalos de confianza para combinación lineal MSE
+  </a>
+  
+    <nav class="md-nav" aria-label="Intervalos de confianza para combinación lineal MSE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#distribuciones-de-error-de-medidas-de-la-combinacion-lineal-de-mse" class="md-nav__link">
+    Distribuciones de error de medidas de la combinación lineal de MSE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#percentiles-de-distribuciones-de-error-combinacion-mse" class="md-nav__link">
+    Percentiles de distribuciones de error (combinación MSE)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#combinacion-lineal-optima-mse-con-intervalos-de-confianza-al-99" class="md-nav__link">
+    Combinación lineal óptima MSE con intervalos de confianza al 99%
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#intervalos-de-confianza-para-combinacion-lineal-me" class="md-nav__link">
+    Intervalos de confianza para combinación lineal ME
+  </a>
+  
+    <nav class="md-nav" aria-label="Intervalos de confianza para combinación lineal ME">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#distribuciones-de-error-de-medidas-de-la-combinacion-lineal-de-mse_1" class="md-nav__link">
+    Distribuciones de error de medidas de la combinación lineal de MSE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#percentiles-de-distribuciones-de-error-combinacion-me" class="md-nav__link">
+    Percentiles de distribuciones de error (combinación ME)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#combinacion-lineal-optima-me-con-intervalos-de-confianza-al-99" class="md-nav__link">
+    Combinación lineal óptima ME con intervalos de confianza al 99%
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#intervalos-de-confianza-para-combinacion-lineal-de-correlacion" class="md-nav__link">
+    Intervalos de confianza para combinación lineal de correlación
+  </a>
+  
+    <nav class="md-nav" aria-label="Intervalos de confianza para combinación lineal de correlación">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#distribuciones-de-error-de-medidas-de-la-combinacion-lineal-de-correlacion" class="md-nav__link">
+    Distribuciones de error de medidas de la combinación lineal de correlación
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#percentiles-de-distribuciones-de-error-combinacion-de-correlacion" class="md-nav__link">
+    Percentiles de distribuciones de error (combinación de correlación)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#combinacion-lineal-optima-de-correlacion-con-intervalos-de-confianza-al-99" class="md-nav__link">
+    Combinación lineal óptima de correlación con intervalos de confianza al 99%
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reduccion-de-intervalos-de-confianza-con-medidas-basadas-en-percentiles" class="md-nav__link">
+    Reducción de intervalos de confianza con medidas basadas en percentiles
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conformacion-de-intervalo-de-confianza-conjunto" class="md-nav__link">
+    Conformación de intervalo de confianza conjunto
+  </a>
+  
+    <nav class="md-nav" aria-label="Conformación de intervalo de confianza conjunto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nivel-de-confianza-con-distribucion-conjunta-de-errores" class="md-nav__link">
+    Nivel de confianza con distribución conjunta de errores
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interpretacion-del-computo-del-nivel-de-confianza-del-975" class="md-nav__link">
+    Interpretación del cómputo del nivel de confianza del 97.5%
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anexos" class="md-nav__link">
+    Anexos
+  </a>
+  
+    <nav class="md-nav" aria-label="Anexos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#medidas-de-inflacion-que-componen-el-intervalo-de-confianza-conjunto" class="md-nav__link">
+    Medidas de inflación que componen el intervalo de confianza conjunto
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/DIE-BANGUAT/EMI-docs/edit/master/docs/evaluacion/intervalos-confianza.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  <h1>Conformación de intervalos de confianza para el nivel de inflación</h1>
+                
+                <h2 id="intervalos-de-confianza">Intervalos de confianza<a class="headerlink" href="#intervalos-de-confianza" title="Permanent link">&para;</a></h2>
+<h3 id="construccion-de-intervalos-de-confianza-para-medidas-de-combinacion-lineal">Construcción de intervalos de confianza para medidas de combinación lineal<a class="headerlink" href="#construccion-de-intervalos-de-confianza-para-medidas-de-combinacion-lineal" title="Permanent link">&para;</a></h3>
+<ul>
+<li>A partir de las distribuciones de error (de todos los períodos y todas las realizaciones) de cada medida de inflación, se obtienen los percentiles adecuados para tener el 90%, 95% y 99% de los errores dentro de los límites <span><span class="MathJax_Preview">e_{j,L}</span><script type="math/tex">e_{j,L}</script></span> y <span><span class="MathJax_Preview">e_{j,U}</span><script type="math/tex">e_{j,U}</script></span>.</li>
+<li><span><span class="MathJax_Preview">e_{j,L}</span><script type="math/tex">e_{j,L}</script></span> acumula 0.5%, 2.5% ó 5% en la cola inferior de la medida <span><span class="MathJax_Preview">j</span><script type="math/tex">j</script></span>.</li>
+<li><span><span class="MathJax_Preview">e_{j,U}</span><script type="math/tex">e_{j,U}</script></span> acumula 99.5%, 97.5% ó 95% en la cola superior de la medida <span><span class="MathJax_Preview">j</span><script type="math/tex">j</script></span>.</li>
+<li>
+<p>Partiendo de que los errores de la medida <span><span class="MathJax_Preview">j</span><script type="math/tex">j</script></span> en el período <span><span class="MathJax_Preview">t</span><script type="math/tex">t</script></span> fueron computados como <span><span class="MathJax_Preview">e_{j,t} = \pi_{j,t} - \pi_{t}</span><script type="math/tex">e_{j,t} = \pi_{j,t} - \pi_{t}</script></span>, esto permite estimar que el parámetro (la verdadera inflación) está dado por: <span><span class="MathJax_Preview">\hat{\pi}_{t} = \pi_{j,t} - e_{j,t}</span><script type="math/tex">\hat{\pi}_{t} = \pi_{j,t} - e_{j,t}</script></span></p>
+</li>
+<li>
+<p>Por lo tanto, se puede construir un intervalo de confianza para la estimación del parámetro utilizando <span><span class="MathJax_Preview">e_{j,L}</span><script type="math/tex">e_{j,L}</script></span> y <span><span class="MathJax_Preview">e_{j,U}</span><script type="math/tex">e_{j,U}</script></span>. </p>
+</li>
+<li>El límite inferior de <span><span class="MathJax_Preview">\hat{\pi}_{t}</span><script type="math/tex">\hat{\pi}_{t}</script></span> está dado por <span><span class="MathJax_Preview">\pi_{j,t} - e_{j,U}</span><script type="math/tex">\pi_{j,t} - e_{j,U}</script></span>. </li>
+<li>El límite superior de <span><span class="MathJax_Preview">\hat{\pi}_{t}</span><script type="math/tex">\hat{\pi}_{t}</script></span> está dado por <span><span class="MathJax_Preview">\pi_{j,t} - e_{j,L}</span><script type="math/tex">\pi_{j,t} - e_{j,L}</script></span>. </li>
+<li>
+<p>El valor central está dado por <span><span class="MathJax_Preview">\pi_{j,t}</span><script type="math/tex">\pi_{j,t}</script></span> </p>
+<ul>
+<li>pues, si el error fuera cero (<span><span class="MathJax_Preview">e_{j,t} = 0</span><script type="math/tex">e_{j,t} = 0</script></span>), el estimador muestral <span><span class="MathJax_Preview">j</span><script type="math/tex">j</script></span> estaría justo en el nivel de la verdadera inflación.</li>
+</ul>
+</li>
+<li>
+<p>A continuación se ilustran los resultados obtenidos para las medidas de inflación que componen las combinaciones lineales óptimas.</p>
+</li>
+</ul>
+<h4 id="intervalos-de-confianza-para-combinacion-lineal-mse">Intervalos de confianza para combinación lineal MSE<a class="headerlink" href="#intervalos-de-confianza-para-combinacion-lineal-mse" title="Permanent link">&para;</a></h4>
+<h5 id="distribuciones-de-error-de-medidas-de-la-combinacion-lineal-de-mse">Distribuciones de error de medidas de la combinación lineal de MSE<a class="headerlink" href="#distribuciones-de-error-de-medidas-de-la-combinacion-lineal-de-mse" title="Permanent link">&para;</a></h5>
+<p><img alt="" src="../images/intervalos-confianza/err_density_facet_mse.png" /></p>
+<h5 id="percentiles-de-distribuciones-de-error-combinacion-mse">Percentiles de distribuciones de error (combinación MSE)<a class="headerlink" href="#percentiles-de-distribuciones-de-error-combinacion-mse" title="Permanent link">&para;</a></h5>
+<table>
+<thead>
+<tr>
+<th align="left">Medida de inflación</th>
+<th align="right"><span><span class="MathJax_Preview">L_{99}</span><script type="math/tex">L_{99}</script></span></th>
+<th align="right"><span><span class="MathJax_Preview">U_{99}</span><script type="math/tex">U_{99}</script></span></th>
+<th align="right"><span><span class="MathJax_Preview">L_{95}</span><script type="math/tex">L_{95}</script></span></th>
+<th align="right"><span><span class="MathJax_Preview">U_{95}</span><script type="math/tex">U_{95}</script></span></th>
+<th align="right"><span><span class="MathJax_Preview">L_{90}</span><script type="math/tex">L_{90}</script></span></th>
+<th align="right"><span><span class="MathJax_Preview">U_{90}</span><script type="math/tex">U_{90}</script></span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Percentil equiponderado 72</td>
+<td align="right">-0.764</td>
+<td align="right">1.738</td>
+<td align="right">-0.606</td>
+<td align="right">1.384</td>
+<td align="right">-0.532</td>
+<td align="right">1.152</td>
+</tr>
+<tr>
+<td align="left">Percentil ponderado 70</td>
+<td align="right">-1.688</td>
+<td align="right">1.786</td>
+<td align="right">-1.258</td>
+<td align="right">1.313</td>
+<td align="right">-1.044</td>
+<td align="right">1.034</td>
+</tr>
+<tr>
+<td align="left">Media truncada eq. (57.5, 84)</td>
+<td align="right">-0.876</td>
+<td align="right">1.523</td>
+<td align="right">-0.708</td>
+<td align="right">1.165</td>
+<td align="right">-0.633</td>
+<td align="right">0.928</td>
+</tr>
+<tr>
+<td align="left">Media truncada pond. (15, 97)</td>
+<td align="right">-1.355</td>
+<td align="right">1.670</td>
+<td align="right">-1.006</td>
+<td align="right">1.230</td>
+<td align="right">-0.833</td>
+<td align="right">0.971</td>
+</tr>
+<tr>
+<td align="left">Exclusión fija óptima DIE</td>
+<td align="right">-2.415</td>
+<td align="right">1.965</td>
+<td align="right">-1.502</td>
+<td align="right">1.519</td>
+<td align="right">-1.062</td>
+<td align="right">1.327</td>
+</tr>
+<tr>
+<td align="left">Subyacente dinámica (0.32, 1.72)</td>
+<td align="right">-1.362</td>
+<td align="right">1.741</td>
+<td align="right">-0.974</td>
+<td align="right">1.299</td>
+<td align="right">-0.797</td>
+<td align="right">1.019</td>
+</tr>
+<tr>
+<td align="left">Subyacente MAI óptima MSE</td>
+<td align="right">-1.098</td>
+<td align="right">1.492</td>
+<td align="right">-0.824</td>
+<td align="right">1.103</td>
+<td align="right">-0.691</td>
+<td align="right">0.869</td>
+</tr>
+<tr>
+<td align="left"><strong>Combinación lineal óptima MSE</strong></td>
+<td align="right">-0.940</td>
+<td align="right">1.390</td>
+<td align="right">-0.662</td>
+<td align="right">0.986</td>
+<td align="right">-0.544</td>
+<td align="right">0.732</td>
+</tr>
+</tbody>
+</table>
+<h5 id="combinacion-lineal-optima-mse-con-intervalos-de-confianza-al-99">Combinación lineal óptima MSE con intervalos de confianza al 99%<a class="headerlink" href="#combinacion-lineal-optima-mse-con-intervalos-de-confianza-al-99" title="Permanent link">&para;</a></h5>
+<p><img alt="" src="../images/intervalos-confianza/tray_infl_opt_ci_8-mse.png" /></p>
+<hr />
+<h4 id="intervalos-de-confianza-para-combinacion-lineal-me">Intervalos de confianza para combinación lineal ME<a class="headerlink" href="#intervalos-de-confianza-para-combinacion-lineal-me" title="Permanent link">&para;</a></h4>
+<h5 id="distribuciones-de-error-de-medidas-de-la-combinacion-lineal-de-mse_1">Distribuciones de error de medidas de la combinación lineal de MSE<a class="headerlink" href="#distribuciones-de-error-de-medidas-de-la-combinacion-lineal-de-mse_1" title="Permanent link">&para;</a></h5>
+<p><img alt="" src="../images/intervalos-confianza/err_density_facet_absme.png" /></p>
+<h5 id="percentiles-de-distribuciones-de-error-combinacion-me">Percentiles de distribuciones de error (combinación ME)<a class="headerlink" href="#percentiles-de-distribuciones-de-error-combinacion-me" title="Permanent link">&para;</a></h5>
+<table>
+<thead>
+<tr>
+<th align="left">Medida de inflación</th>
+<th align="right"><span><span class="MathJax_Preview">L_{99}</span><script type="math/tex">L_{99}</script></span></th>
+<th align="right"><span><span class="MathJax_Preview">U_{99}</span><script type="math/tex">U_{99}</script></span></th>
+<th align="right"><span><span class="MathJax_Preview">L_{95}</span><script type="math/tex">L_{95}</script></span></th>
+<th align="right"><span><span class="MathJax_Preview">U_{95}</span><script type="math/tex">U_{95}</script></span></th>
+<th align="right"><span><span class="MathJax_Preview">L_{90}</span><script type="math/tex">L_{90}</script></span></th>
+<th align="right"><span><span class="MathJax_Preview">U_{90}</span><script type="math/tex">U_{90}</script></span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Percentil equiponderado 72</td>
+<td align="right">-0.763</td>
+<td align="right">1.738</td>
+<td align="right">-0.606</td>
+<td align="right">1.384</td>
+<td align="right">-0.532</td>
+<td align="right">1.152</td>
+</tr>
+<tr>
+<td align="left">Percentil ponderado 70</td>
+<td align="right">-1.688</td>
+<td align="right">1.786</td>
+<td align="right">-1.258</td>
+<td align="right">1.313</td>
+<td align="right">-1.044</td>
+<td align="right">1.034</td>
+</tr>
+<tr>
+<td align="left">Media truncada eq. (42.5, 91)</td>
+<td align="right">-0.762</td>
+<td align="right">1.623</td>
+<td align="right">-0.640</td>
+<td align="right">1.288</td>
+<td align="right">-0.574</td>
+<td align="right">1.074</td>
+</tr>
+<tr>
+<td align="left">Media truncada pond. (52.5, 85)</td>
+<td align="right">-1.600</td>
+<td align="right">1.606</td>
+<td align="right">-1.235</td>
+<td align="right">1.156</td>
+<td align="right">-1.052</td>
+<td align="right">0.900</td>
+</tr>
+<tr>
+<td align="left">Exclusión fija óptima DIE</td>
+<td align="right">-2.415</td>
+<td align="right">1.965</td>
+<td align="right">-1.502</td>
+<td align="right">1.519</td>
+<td align="right">-1.062</td>
+<td align="right">1.327</td>
+</tr>
+<tr>
+<td align="left">Subyacente dinámica (0.35, 1.88)</td>
+<td align="right">-1.324</td>
+<td align="right">1.720</td>
+<td align="right">-0.967</td>
+<td align="right">1.289</td>
+<td align="right">-0.800</td>
+<td align="right">1.019</td>
+</tr>
+<tr>
+<td align="left">Subyacente MAI óptima ME</td>
+<td align="right">-1.357</td>
+<td align="right">1.552</td>
+<td align="right">-0.991</td>
+<td align="right">1.105</td>
+<td align="right">-0.814</td>
+<td align="right">0.870</td>
+</tr>
+<tr>
+<td align="left"><strong>Combinación lineal óptima ME</strong></td>
+<td align="right">-1.256</td>
+<td align="right">1.537</td>
+<td align="right">-0.959</td>
+<td align="right">1.137</td>
+<td align="right">-0.808</td>
+<td align="right">0.873</td>
+</tr>
+</tbody>
+</table>
+<h5 id="combinacion-lineal-optima-me-con-intervalos-de-confianza-al-99">Combinación lineal óptima ME con intervalos de confianza al 99%<a class="headerlink" href="#combinacion-lineal-optima-me-con-intervalos-de-confianza-al-99" title="Permanent link">&para;</a></h5>
+<p><img alt="" src="../images/intervalos-confianza/tray_infl_opt_ci_8-absme.png" /></p>
+<hr />
+<h4 id="intervalos-de-confianza-para-combinacion-lineal-de-correlacion">Intervalos de confianza para combinación lineal de correlación<a class="headerlink" href="#intervalos-de-confianza-para-combinacion-lineal-de-correlacion" title="Permanent link">&para;</a></h4>
+<h5 id="distribuciones-de-error-de-medidas-de-la-combinacion-lineal-de-correlacion">Distribuciones de error de medidas de la combinación lineal de correlación<a class="headerlink" href="#distribuciones-de-error-de-medidas-de-la-combinacion-lineal-de-correlacion" title="Permanent link">&para;</a></h5>
+<p><img alt="" src="../images/intervalos-confianza/err_density_facet_corr.png" /></p>
+<h5 id="percentiles-de-distribuciones-de-error-combinacion-de-correlacion">Percentiles de distribuciones de error (combinación de correlación)<a class="headerlink" href="#percentiles-de-distribuciones-de-error-combinacion-de-correlacion" title="Permanent link">&para;</a></h5>
+<table>
+<thead>
+<tr>
+<th align="left">Medida de inflación</th>
+<th align="right"><span><span class="MathJax_Preview">L_{99}</span><script type="math/tex">L_{99}</script></span></th>
+<th align="right"><span><span class="MathJax_Preview">U_{99}</span><script type="math/tex">U_{99}</script></span></th>
+<th align="right"><span><span class="MathJax_Preview">L_{95}</span><script type="math/tex">L_{95}</script></span></th>
+<th align="right"><span><span class="MathJax_Preview">U_{95}</span><script type="math/tex">U_{95}</script></span></th>
+<th align="right"><span><span class="MathJax_Preview">L_{90}</span><script type="math/tex">L_{90}</script></span></th>
+<th align="right"><span><span class="MathJax_Preview">U_{90}</span><script type="math/tex">U_{90}</script></span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Percentil equiponderado 80</td>
+<td align="right">-5.308</td>
+<td align="right">-1.447</td>
+<td align="right">-4.821</td>
+<td align="right">-1.70</td>
+<td align="right">-4.558</td>
+<td align="right">-1.817</td>
+</tr>
+<tr>
+<td align="left">Percentil ponderado 80</td>
+<td align="right">-8.292</td>
+<td align="right">-1.045</td>
+<td align="right">-7.310</td>
+<td align="right">-1.31</td>
+<td align="right">-6.802</td>
+<td align="right">-1.465</td>
+</tr>
+<tr>
+<td align="left">Media truncada eq. (57.5, 92)</td>
+<td align="right">-3.799</td>
+<td align="right">-0.721</td>
+<td align="right">-3.426</td>
+<td align="right">-1.15</td>
+<td align="right">-3.225</td>
+<td align="right">-1.343</td>
+</tr>
+<tr>
+<td align="left">Media truncada pond. (52.5, 97)</td>
+<td align="right">-9.251</td>
+<td align="right">-1.740</td>
+<td align="right">-8.304</td>
+<td align="right">-2.05</td>
+<td align="right">-7.804</td>
+<td align="right">-2.225</td>
+</tr>
+<tr>
+<td align="left">Exclusión fija óptima DIE</td>
+<td align="right">-2.415</td>
+<td align="right">1.9652</td>
+<td align="right">-1.502</td>
+<td align="right">1.519</td>
+<td align="right">-1.062</td>
+<td align="right">1.3277</td>
+</tr>
+<tr>
+<td align="left">Subyacente dinámica (0.359, 2.5)</td>
+<td align="right">-2.109</td>
+<td align="right">1.1368</td>
+<td align="right">-1.652</td>
+<td align="right">0.670</td>
+<td align="right">-1.437</td>
+<td align="right">0.4075</td>
+</tr>
+<tr>
+<td align="left">Subyacente MAI óptima CORR</td>
+<td align="right">0.989</td>
+<td align="right">6.2742</td>
+<td align="right">1.110</td>
+<td align="right">5.974</td>
+<td align="right">1.210</td>
+<td align="right">5.7135</td>
+</tr>
+<tr>
+<td align="left"><strong>Combinación lineal óptima CORR</strong></td>
+<td align="right">-0.001</td>
+<td align="right">3.0126</td>
+<td align="right">0.1263</td>
+<td align="right">2.716</td>
+<td align="right">0.210</td>
+<td align="right">2.5332</td>
+</tr>
+</tbody>
+</table>
+<h5 id="combinacion-lineal-optima-de-correlacion-con-intervalos-de-confianza-al-99">Combinación lineal óptima de correlación con intervalos de confianza al 99%<a class="headerlink" href="#combinacion-lineal-optima-de-correlacion-con-intervalos-de-confianza-al-99" title="Permanent link">&para;</a></h5>
+<p><img alt="" src="../images/intervalos-confianza/tray_infl_opt_ci_8-corr.png" /></p>
+<hr />
+<h3 id="reduccion-de-intervalos-de-confianza-con-medidas-basadas-en-percentiles">Reducción de intervalos de confianza con medidas basadas en percentiles<a class="headerlink" href="#reduccion-de-intervalos-de-confianza-con-medidas-basadas-en-percentiles" title="Permanent link">&para;</a></h3>
+<p>Se busca acotar el intervalo de confianza de la combinación lineal óptima MSE y para esto se observan las distribuciones de error medio a través de todas las simulaciones de las medidas de inflación basadas en percentiles. </p>
+<p><img alt="" src="../images/intervalos-confianza/distr_errores_percentiles.png" /></p>
+<ul>
+<li>Conformamos límites de confianza del 99% para la inflación paramétrica de las medidas que subestiman el parámetro de inflación.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">Medida de inflación</th>
+<th align="center">Observado en FEB-21</th>
+<th align="center">Límite inferior</th>
+<th align="center">Límite superior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">Percentil eq. 62</td>
+<td align="center">1.0261</td>
+<td align="center"><strong>1.6402</strong></td>
+<td align="center">5.4392</td>
+</tr>
+<tr>
+<td align="center">Percentil eq. 64</td>
+<td align="center">1.3244</td>
+<td align="center"><strong>1.7191</strong></td>
+<td align="center">5.2495</td>
+</tr>
+<tr>
+<td align="center">Percentil eq. 66</td>
+<td align="center">1.6414</td>
+<td align="center"><strong>1.7953</strong></td>
+<td align="center">5.0713</td>
+</tr>
+<tr>
+<td align="center">Percentil eq. 68</td>
+<td align="center">1.9131</td>
+<td align="center"><strong>1.8452</strong></td>
+<td align="center">4.7224</td>
+</tr>
+<tr>
+<td align="center"><strong>Percentil eq. 69</strong></td>
+<td align="center">2.0581</td>
+<td align="center"><strong><em>1.8447</em></strong></td>
+<td align="center">4.6078</td>
+</tr>
+<tr>
+<td align="center">Percentil eq. 70</td>
+<td align="center">2.2122</td>
+<td align="center"><strong>1.8388</strong></td>
+<td align="center">4.4958</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<ul>
+<li>Conformamos límites de confianza del 99% para la inflación paramétrica de las medidas que sobreestiman el parámetro de inflación.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">Medida de inflación</th>
+<th align="center">Observado en FEB-21</th>
+<th align="center">Límite inferior</th>
+<th align="center">Límite superior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">Percentil eq. 74</td>
+<td align="center">2.9963</td>
+<td align="center">1.3669</td>
+<td align="center"><strong>4.0055</strong></td>
+</tr>
+<tr>
+<td align="center">Percentil eq. 76</td>
+<td align="center">3.3794</td>
+<td align="center">0.83698</td>
+<td align="center"><strong>3.7005</strong></td>
+</tr>
+<tr>
+<td align="center">Percentil eq. 78</td>
+<td align="center">3.9679</td>
+<td align="center">0.024996</td>
+<td align="center"><strong>3.398</strong></td>
+</tr>
+<tr>
+<td align="center"><strong>Percentil eq. 80</strong></td>
+<td align="center">4.7694</td>
+<td align="center">-0.53946</td>
+<td align="center"><strong><em>3.3221</em></strong></td>
+</tr>
+<tr>
+<td align="center">Percentil eq. 82</td>
+<td align="center">5.7276</td>
+<td align="center">-1.2157</td>
+<td align="center"><strong>3.5531</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<ul>
+<li>
+<p>La siguiente gráfica fue revisada para determinar si límites inferiores de los intervalos de confianza de los percentiles equiponderados 68 y 69 pueden fungir como límites inferiores de la combinación lineal óptima MSE.</p>
+</li>
+<li>
+<p>En la base 2000 del IPC, dichos límites no son mejores que el propio límite inferior de la combinación lineal óptima. </p>
+</li>
+<li>En algunos períodos alrededor del 2010, el límite inferior es superior al estimador puntual de combinación lineal MSE (hay un traslape).</li>
+<li>En la base 2010, dichos límites inferiores resultan mejores que el de la cominación lineal MSE.</li>
+</ul>
+<p><img alt="" src="../images/intervalos-confianza/optima_mse_ci_con_limites_80_68_69.png" /></p>
+<p><img alt="" src="../images/intervalos-confianza/optima_mse_ci_con_limites_80_68_69_optcorr.png" /></p>
+<h3 id="conformacion-de-intervalo-de-confianza-conjunto">Conformación de intervalo de confianza conjunto<a class="headerlink" href="#conformacion-de-intervalo-de-confianza-conjunto" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Se seleccionan las siguientes tres medidas de inflación para determinar un intervalo de confianza conjunto: </li>
+<li>Combinación lineal óptima MSE.</li>
+<li>Combinación lineal óptima de correlación.</li>
+<li>
+<p>Percentil equiponderado 80.</p>
+</li>
+<li>
+<p>A continuación se muestran las distribuciones de sus errores y las distribuciones marginales para el nivel de inflación en febrero de 2021.</p>
+</li>
+</ul>
+<p><img alt="" src="../images/intervalos-confianza/distribucion_errores_niveles_inflacion.png" /></p>
+<p><img alt="" src="../images/intervalos-confianza/optima_mse_con_ci_originales_reducidos.png" /></p>
+<h4 id="nivel-de-confianza-con-distribucion-conjunta-de-errores">Nivel de confianza con distribución conjunta de errores<a class="headerlink" href="#nivel-de-confianza-con-distribucion-conjunta-de-errores" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p>El valor estimado de inflación a través de la combinación lineal de MSE en febrero de 2021 es: </p>
+</li>
+<li>
+<p><strong>Estimación puntual:</strong>  2.84 p.p. </p>
+</li>
+<li><strong>Límite inferior:</strong>     2.41 p.p. </li>
+<li><strong>Límite superior:</strong>     3.32 p.p. </li>
+<li><strong>Nivel de confianza:</strong>  97.5% de acuerdo con la distribución conjunta de errores de las 3 medidas de inflación.</li>
+</ul>
+<h3 id="interpretacion-del-computo-del-nivel-de-confianza-del-975">Interpretación del cómputo del nivel de confianza del 97.5%<a class="headerlink" href="#interpretacion-del-computo-del-nivel-de-confianza-del-975" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Esta puede servir como una forma alternativa de explicar el nivel de confianza del 97.5%.</li>
+<li>En cada realización y para cada medida y período se tiene el valor puntual de cada estimador. Además, se tiene la distribución ex-post del error,  es decir, los tríos de errores de cada medida de inflación. </li>
+<li>
+<p>Se siguen los pasos detallados a continuación: </p>
+</li>
+<li>
+<p>Conformar en cada realización el intervalo de confianza de cada estimador con su respectiva distribución de error ex-post.</p>
+</li>
+<li>Obtener la intersección de los límites de confianza: el máximo de los intervalos inferiores y el mínimo de los intervalos superiores</li>
+<li>Determinar si el parámetro quedó dentro de esta reducción del intervalo de confianza en cada período y en cada realización.</li>
+<li>Determinar en qué proporción total del número de realizaciones el parámetro quedó acotado por estos límites recortados. </li>
+<li>Se calcula el promedio en la dimensión de las realizaciones y queda como función del tiempo. Se muestra gráfica a continuación. </li>
+<li>Se calcula el promedio en la dimensión de las realizaciones y el tiempo. Esto resultó en el <strong>97.5%</strong> nuevamente.</li>
+</ul>
+<p><img alt="" src="../images/intervalos-confianza/proporcion_simu_param_in_limci_reducidos.png" /></p>
+<ul>
+<li>
+<p>La ventaja de este análisis es que nos da una idea de la interpretación que tiene el 97.5% en el tiempo: <strong>es el promedio a través del tiempo del porcentaje de las veces que durante la simulación, la trayectoria paramétrica estuvo dentro del intervalo de confianza reducido con las 3 medidas de inflación</strong>.</p>
+</li>
+<li>
+<p>Como se observa, en algunos períodos la trayectoria paramétrica estuvo efectivamente fuera del intervalo de confianza reducido.</p>
+</li>
+<li>Desde un 10% en los mejores períodos hasta un 40% de las veces al inicio de la base 2010.</li>
+<li>Si se compara esta gráfica con la equivalente, pero tomando solamente la combinación lineal MSE, queda claro que se está haciendo un intercambio en el nivel de confianza por reducir el ancho del intervalo utilizando las 3 medidas de inflación.</li>
+</ul>
+<p><img alt="" src="../images/intervalos-confianza/proporcion_simu_param_in_optmse_limci_reducidos.png" /></p>
+<hr />
+<h3 id="anexos">Anexos<a class="headerlink" href="#anexos" title="Permanent link">&para;</a></h3>
+<h4 id="medidas-de-inflacion-que-componen-el-intervalo-de-confianza-conjunto">Medidas de inflación que componen el intervalo de confianza conjunto<a class="headerlink" href="#medidas-de-inflacion-que-componen-el-intervalo-de-confianza-conjunto" title="Permanent link">&para;</a></h4>
+<p><img alt="" src="../images/intervalos-confianza/componente_intervalos_confianza_medida_1.png" /></p>
+<p><img alt="" src="../images/intervalos-confianza/componente_intervalos_confianza_medida_2.png" /></p>
+<p><img alt="" src="../images/intervalos-confianza/componente_intervalos_confianza_medida_3.png" /></p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../combinacion-lineal/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Combinaciones lineales de medidas de inflación óptimas" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Combinaciones lineales de medidas de inflación óptimas
+            </div>
+          </div>
+        </a>
+      
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.709b4209.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.febc23d1.min.js"></script>
+      
+        <script src="../../js/extra.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      
+    
+  </body>
+</html>
