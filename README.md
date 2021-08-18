@@ -5,3 +5,5 @@
 En este repositorio se encuentra publicada la documentación de la herramienta de evaluación de medidas de inflación (HEMI), la cual pretende evaluar a través de simulación, la eficiencia de diferentes métodos para obtener una medida de ritmo inflacionario interanual, utilizando un punto de vista de estas medidas como estimadores muestrales de la inflación generalizada no observable.
 
 Esta documentación corresponde al proyecto realizado en MATLAB, utilizando datos disponibles hasta diciembre de 2019.
+
+*El contenido de este trabajo de investigación es responsabilidad exclusiva de sus autores y no necesariamente representa la postura institucional del Banco de Guatemala*.
